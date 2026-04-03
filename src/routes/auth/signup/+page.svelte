@@ -55,6 +55,7 @@
 							type="email" 
 							bind:value={email}
 							placeholder="scholar@email.com"
+							inputmode="email"
 							class="w-full bg-white/05 border border-white/10 rounded-2xl p-4 text-white outline-none focus:border-gold/50 transition-all placeholder:text-white/10"
 							required
 						/>

@@ -76,9 +76,9 @@
 			</p>
 		</div>
 
-		<div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-8 sm:gap-10">
+		<div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 lg:gap-10">
 			{#each features as feature}
-				<div class="glass-card p-10 sm:p-12 flex flex-col h-full transition-all duration-300 hover:border-gold/30 hover:-translate-y-2 group">
+				<div class="glass-card p-6 sm:p-10 lg:p-12 flex flex-col h-full transition-all duration-300 hover:border-gold/30 hover:-translate-y-2 group">
 					<div
 						class="w-16 h-16 rounded-2xl bg-gradient-to-br from-cobalt to-cobalt-dark border border-white/10 flex items-center justify-center mb-8 text-4xl shadow-2xl group-hover:scale-110 group-hover:rotate-3 transition-transform"
 					>

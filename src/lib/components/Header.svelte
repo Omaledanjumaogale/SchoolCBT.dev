@@ -72,7 +72,7 @@
 				<button
 					id="hamburger"
 					onclick={toggleMenu}
-					class="flex flex-col items-end gap-1.5 p-3 rounded-2xl bg-white/05 hover:bg-white/10 border border-white/10 transition-all active:scale-90"
+					class="flex flex-col items-end justify-center gap-1.5 p-3 min-h-[44px] min-w-[44px] rounded-2xl bg-white/05 hover:bg-white/10 border border-white/10 transition-all active:scale-90"
 					aria-label="Toggle Menu"
 				>
 					<span

@@ -2,7 +2,7 @@
 	const currentYear = new Date().getFullYear();
 </script>
 
-<footer class="bg-cobalt-xdark/80 border-t border-white/05 pt-24 pb-12 relative overflow-hidden backdrop-blur-3xl">
+<footer class="bg-cobalt-xdark/80 border-t border-white/05 pt-16 sm:pt-24 pb-24 md:pb-12 relative overflow-hidden backdrop-blur-3xl">
 	<!-- Background Elements -->
 	<div class="absolute inset-0 pointer-events-none opacity-10">
 		<div class="orb orb-blue bottom-[-10%] left-[-10%] w-[500px] h-[500px]"></div>

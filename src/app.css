@@ -220,6 +220,7 @@ img, svg, video, canvas, audio, iframe, embed, object {
 
 /* === BTNS === */
 .btn-primary {
+  @apply min-h-[44px] min-w-[44px] px-4 py-2;
   background: linear-gradient(135deg, #003399 0%, #002366 100%);
   border: 1px solid rgba(255, 255, 255, 0.13);
   color: #fff;
@@ -237,6 +238,7 @@ img, svg, video, canvas, audio, iframe, embed, object {
 }
 
 .btn-gold {
+  @apply min-h-[44px] min-w-[44px] px-4 py-2;
   background: linear-gradient(135deg, #FFD700 0%, #CCA900 100%);
   color: #002366;
   font-weight: 700;
@@ -252,6 +254,7 @@ img, svg, video, canvas, audio, iframe, embed, object {
 }
 
 .btn-outline {
+  @apply min-h-[44px] min-w-[44px] px-4 py-2;
   border: 1.5px solid rgba(255, 215, 0, 0.4);
   color: #FFD700;
   font-weight: 600;
@@ -268,6 +271,7 @@ img, svg, video, canvas, audio, iframe, embed, object {
 }
 
 .btn-ghost {
+  @apply min-h-[44px] min-w-[44px] px-4 py-2;
   color: rgba(221, 228, 245, 0.7);
   font-weight: 500;
   border-radius: 10px;
@@ -379,12 +383,13 @@ img, svg, video, canvas, audio, iframe, embed, object {
 
 /* === FORMS === */
 .form-input {
+  @apply min-h-[44px];
   width: 100%;
   background: rgba(0, 25, 80, 0.5);
   border: 1.5px solid rgba(255, 255, 255, 0.09);
   border-radius: 12px;
   padding: 11px 14px;
-  font-size: 0.875rem;
+  font-size: 1rem; /* 16px to prevent iOS zoom */
   color: #dde4f5;
   transition: border-color 0.2s;
   outline: none;

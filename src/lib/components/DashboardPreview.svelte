@@ -51,7 +51,7 @@
 			<div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-gold via-jade to-gold"></div>
 			
 			<!-- Dashboard Tabs -->
-			<div class="flex flex-wrap gap-2 sm:gap-4 mb-12 border-b border-white/05 pb-8 overflow-x-auto no-scrollbar">
+			<div class="flex flex-wrap gap-2 sm:gap-4 mb-8 sm:mb-12 border-b border-white/05 pb-6 sm:pb-8 overflow-x-auto no-scrollbar">
 				{#each ['overview', 'analytics', 'study', 'reports', 'tutors'] as tab}
 					<button
 						class="px-6 py-3 rounded-2xl font-bold text-sm transition-all duration-300 flex items-center gap-2 whitespace-nowrap
@@ -87,8 +87,8 @@
 
 					<div class="grid lg:grid-cols-3 gap-6 sm:gap-8">
 						<!-- Predictive Analysis Card -->
-						<div class="lg:col-span-2 glass-card p-8 sm:p-10 relative overflow-hidden">
-							<div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-12">
+						<div class="lg:col-span-2 glass-card p-6 sm:p-8 lg:p-10 relative overflow-hidden">
+							<div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-10 sm:mb-12">
 								<h3 class="text-white font-sora font-800 text-xl sm:text-2xl flex items-center gap-3">
 									<span class="text-2xl">📈</span> Predictive Pass Analysis
 								</h3>
@@ -97,7 +97,7 @@
 									AI Powered
 								</div>
 							</div>
-							<div class="space-y-8">
+							<div class="space-y-6 sm:space-y-8">
 								{#each predictive as item}
 									<div class="group/bar">
 										<div class="flex justify-between text-sm font-bold mb-3">
@@ -116,14 +116,14 @@
 						</div>
 
 						<!-- Recent Awards Card -->
-						<div class="glass-card p-8 sm:p-10">
-							<h3 class="text-white font-sora font-800 text-xl sm:text-2xl mb-10 flex items-center gap-3">
+						<div class="glass-card p-6 sm:p-8 lg:p-10">
+							<h3 class="text-white font-sora font-800 text-xl sm:text-2xl mb-8 sm:mb-10 flex items-center gap-3">
 								<span class="text-2xl">🏆</span> Recent Awards
 							</h3>
 							<div class="space-y-4">
 								{#each awards as award}
-									<div class="flex items-center gap-5 p-5 rounded-2xl bg-white/03 border border-white/05 hover:bg-white/05 transition-all group/award">
-										<div class="w-14 h-14 rounded-2xl bg-cobalt/40 flex items-center justify-center text-3xl group-hover/award:scale-110 group-hover/award:rotate-3 transition-transform">
+									<div class="flex items-center gap-5 p-4 sm:p-5 rounded-2xl bg-white/03 border border-white/05 hover:bg-white/05 transition-all group/award">
+										<div class="w-12 h-12 sm:w-14 sm:h-14 rounded-2xl bg-cobalt/40 flex items-center justify-center text-2xl sm:text-3xl group-hover/award:scale-110 group-hover/award:rotate-3 transition-transform">
 											{award.emoji}
 										</div>
 										<div class="flex-grow">

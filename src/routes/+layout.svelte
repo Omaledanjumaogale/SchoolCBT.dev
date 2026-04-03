@@ -1,6 +1,7 @@
 <script lang="ts">
 	import '../app.css';
 	import favicon from '$lib/assets/favicon.svg';
+	import BottomNav from '$lib/components/BottomNav.svelte';
 
 	let { children } = $props();
 </script>
@@ -14,6 +15,7 @@
 	<link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
 </svelte:head>
 
-<div class="min-h-screen flex flex-col overflow-x-hidden">
+<div class="min-h-screen flex flex-col overflow-x-hidden pb-16 md:pb-0">
 	{@render children()}
+	<BottomNav />
 </div>

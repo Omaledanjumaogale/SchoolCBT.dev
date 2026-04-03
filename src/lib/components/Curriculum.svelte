@@ -81,13 +81,13 @@
 					</div>
 					<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
 						{#each curriculum.jss.subjects as subject}
-							<div class="glass-card p-6 flex items-center gap-5 hover:border-jade/40 hover:bg-white/07 transition-all group cursor-pointer hover:-translate-y-1">
-								<div class="w-14 h-14 rounded-2xl bg-cobalt/40 border border-white/10 flex items-center justify-center text-3xl group-hover:scale-110 group-hover:rotate-3 transition-transform shadow-lg">
+							<div class="glass-card p-4 sm:p-6 flex items-center gap-4 sm:gap-5 hover:border-jade/40 hover:bg-white/07 transition-all group cursor-pointer hover:-translate-y-1">
+								<div class="w-12 h-12 sm:w-14 sm:h-14 rounded-2xl bg-cobalt/40 border border-white/10 flex items-center justify-center text-2xl sm:text-3xl group-hover:scale-110 group-hover:rotate-3 transition-transform shadow-lg shrink-0">
 									{subject.icon}
 								</div>
-								<div class="flex flex-col">
-									<div class="text-white font-sora font-800 text-base group-hover:text-gold transition-colors leading-tight mb-1">{subject.name}</div>
-									<div class="text-white/40 text-[10px] font-bold uppercase tracking-widest">{subject.topics} topics covered</div>
+								<div class="flex flex-col min-w-0">
+									<div class="text-white font-sora font-800 text-sm sm:text-base group-hover:text-gold transition-colors leading-tight mb-1 truncate">{subject.name}</div>
+									<div class="text-white/40 text-[9px] sm:text-[10px] font-bold uppercase tracking-widest">{subject.topics} topics covered</div>
 								</div>
 							</div>
 						{/each}
@@ -106,13 +106,13 @@
 					</div>
 					<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
 						{#each curriculum.sss.subjects as subject}
-							<div class="glass-card p-6 flex items-center gap-5 hover:border-gold/40 hover:bg-white/07 transition-all group cursor-pointer hover:-translate-y-1">
-								<div class="w-14 h-14 rounded-2xl bg-cobalt/40 border border-white/10 flex items-center justify-center text-3xl group-hover:scale-110 group-hover:rotate-3 transition-transform shadow-lg">
+							<div class="glass-card p-4 sm:p-6 flex items-center gap-4 sm:gap-5 hover:border-gold/40 hover:bg-white/07 transition-all group cursor-pointer hover:-translate-y-1">
+								<div class="w-12 h-12 sm:w-14 sm:h-14 rounded-2xl bg-cobalt/40 border border-white/10 flex items-center justify-center text-2xl sm:text-3xl group-hover:scale-110 group-hover:rotate-3 transition-transform shadow-lg shrink-0">
 									{subject.icon}
 								</div>
-								<div class="flex flex-col">
-									<div class="text-white font-sora font-800 text-base group-hover:text-gold transition-colors leading-tight mb-1">{subject.name}</div>
-									<div class="text-white/40 text-[10px] font-bold uppercase tracking-widest">{subject.topics} topics covered</div>
+								<div class="flex flex-col min-w-0">
+									<div class="text-white font-sora font-800 text-sm sm:text-base group-hover:text-gold transition-colors leading-tight mb-1 truncate">{subject.name}</div>
+									<div class="text-white/40 text-[9px] sm:text-[10px] font-bold uppercase tracking-widest">{subject.topics} topics covered</div>
 								</div>
 							</div>
 						{/each}

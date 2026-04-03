@@ -66,7 +66,7 @@
 				<!-- Stats Grid -->
 				<div in:fade={{ delay: 600 }} class="grid grid-cols-2 gap-4 sm:gap-6">
 					{#each stats as stat}
-						<div class="glass-card p-6 sm:p-10 text-center border-white/05 hover:border-gold/30 hover:-translate-y-2 transition-all group">
+						<div class="glass-card p-5 sm:p-8 lg:p-10 text-center border-white/05 hover:border-gold/30 hover:-translate-y-2 transition-all group">
 							<div class="text-4xl mb-4 group-hover:scale-125 transition-transform">{stat.icon}</div>
 							<div class="text-3xl sm:text-4xl font-sora font-900 text-white mb-2">{stat.val}</div>
 							<div class="text-white/40 text-[10px] font-black uppercase tracking-[0.2em]">{stat.label}</div>

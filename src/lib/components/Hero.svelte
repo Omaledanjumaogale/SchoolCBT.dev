@@ -64,12 +64,12 @@
 					</p>
 
 					<div in:fly={{ y: 20, duration: 600, delay: 450 }} class="flex flex-col sm:flex-row gap-4 mb-12">
-						<a href="/auth/signup" class="btn-gold px-10 py-5 text-lg font-bold transition-all hover:scale-105 active:scale-95 shadow-xl shadow-gold/20 text-center">
+						<a href="/auth/signup" class="btn-gold w-full sm:w-auto px-10 py-5 text-lg font-bold transition-all hover:scale-105 active:scale-95 shadow-xl shadow-gold/20 text-center">
 							🔥 Start Preparing Free →
 						</a>
 						<a
 							href="/exam"
-							class="btn-outline px-8 py-5 text-lg flex items-center justify-center gap-3 transition-all hover:bg-gold/10 backdrop-blur-sm"
+							class="btn-outline w-full sm:w-auto px-8 py-5 text-lg flex items-center justify-center gap-3 transition-all hover:bg-gold/10 backdrop-blur-sm"
 						>
 							<span class="text-2xl">📝</span>
 							Try CBT Demo

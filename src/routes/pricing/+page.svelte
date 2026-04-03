@@ -73,9 +73,9 @@
 			full school implementation, we have the perfect RaaS solution. 🇳🇬🚀
 		</p>
 
-		<div class="grid md:grid-cols-3 gap-8 items-stretch">
+		<div class="grid md:grid-cols-3 gap-6 sm:gap-8 items-stretch">
 			{#each plans as plan}
-				<div in:fly={{ y: 20, delay: 400 }} class="glass-card p-8 sm:p-12 flex flex-col h-full relative overflow-hidden transition-all duration-300 hover:border-{plan.color}/30 hover:-translate-y-2 group {plan.popular ? 'border-gold/30 shadow-2xl shadow-gold/10' : 'border-white/05'}">
+				<div in:fly={{ y: 20, delay: 400 }} class="glass-card p-6 sm:p-10 lg:p-12 flex flex-col h-full relative overflow-hidden transition-all duration-300 hover:border-{plan.color}/30 hover:-translate-y-2 group {plan.popular ? 'border-gold/30 shadow-2xl shadow-gold/10' : 'border-white/05'}">
 					{#if plan.popular}
 						<div class="absolute top-0 right-0 px-4 py-1 bg-gold text-cobalt font-black text-[10px] uppercase tracking-widest rounded-bl-xl shadow-lg">
 							{plan.badge}

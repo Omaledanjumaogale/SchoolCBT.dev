@@ -131,14 +131,14 @@
 
 		<div class="max-w-4xl mx-auto">
 			{#if currentStep === 'setup'}
-				<div in:fade class="glass-card p-8 sm:p-12 relative overflow-hidden group">
+				<div in:fade class="glass-card p-6 sm:p-10 lg:p-12 relative overflow-hidden group">
 					<div class="absolute top-0 right-0 p-10 text-9xl opacity-[0.03] group-hover:scale-110 transition-transform">⚙️</div>
 					<div class="relative z-10">
 						<h3 class="font-sora text-2xl sm:text-3xl font-800 text-white mb-8 flex items-center gap-3">
 							<span class="text-3xl">🛠️</span> Configure Your Batch
 						</h3>
 
-						<div class="grid sm:grid-cols-2 gap-6 sm:gap-8 mb-10">
+						<div class="grid sm:grid-cols-2 gap-4 sm:gap-6 lg:gap-8 mb-10">
 							<div class="space-y-2">
 								<label class="text-white/40 text-[10px] font-bold uppercase tracking-widest ml-1" for="level">Educational Level</label>
 								<select id="level" bind:value={level} class="w-full bg-white/05 border border-white/10 rounded-2xl p-4 text-white font-bold focus:border-gold/50 outline-none transition-all appearance-none cursor-pointer">
@@ -278,7 +278,7 @@
 					{/if}
 				</div>
 			{:else}
-				<div in:fly={{ y: 20 }} class="glass-card p-10 sm:p-16 text-center relative overflow-hidden">
+				<div in:fly={{ y: 20 }} class="glass-card p-6 sm:p-10 lg:p-16 text-center relative overflow-hidden">
 					<div class="absolute top-0 left-0 w-full h-2 bg-gradient-to-r from-gold via-jade to-gold"></div>
 					<div class="text-7xl mb-8">🏆</div>
 					<h3 class="font-sora text-3xl sm:text-4xl font-900 text-white mb-2">Batch Completed!</h3>
