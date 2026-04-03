@@ -129,14 +129,14 @@ img, svg, video, canvas, audio, iframe, embed, object {
   background: rgba(0, 20, 70, 0.5);
   backdrop-filter: blur(18px);
   -webkit-backdrop-filter: blur(18px);
-  border: 1px solid rgba(255, 255, 255, 0.07);
+  border: 1px solid rgba(255, 255, 255, 0.15);
 }
 
 @utility glass-card {
   background: rgba(0, 25, 80, 0.4);
   backdrop-filter: blur(14px);
   -webkit-backdrop-filter: blur(14px);
-  border: 1px solid rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.15);
   border-radius: 14px;
 }
 
@@ -284,7 +284,7 @@ img, svg, video, canvas, audio, iframe, embed, object {
 /* === CARDS === */
 .feature-card {
   background: rgba(0, 30, 90, 0.28);
-  border: 1px solid rgba(255, 255, 255, 0.07);
+  border: 1px solid rgba(255, 255, 255, 0.15);
   border-radius: 14px;
   transition: all 0.28s;
 }
