@@ -1,0 +1,1209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nigeria Secondary School Curriculum — WAEC · NECO · NABTEB · JAMB</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --green: #006600;
+    --green-mid: #1a8c1a;
+    --green-light: #2ab52a;
+    --gold: #d4a017;
+    --gold-light: #f0c040;
+    --cream: #fdf8ee;
+    --dark: #0d1a0d;
+    --mid: #1e2e1e;
+    --text: #2c3e2c;
+    --muted: #6b7c6b;
+    --border: #c8d8c0;
+    --card-bg: #ffffff;
+    --shadow: 0 4px 24px rgba(0,80,0,0.10);
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--cream);
+    color: var(--text);
+    min-height: 100vh;
+  }
+
+  /* ===== HEADER ===== */
+  header {
+    background: var(--dark);
+    padding: 0;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    box-shadow: 0 2px 16px rgba(0,0,0,0.4);
+  }
+  .header-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 14px 32px;
+    gap: 20px;
+  }
+  .logo-block h1 {
+    font-family: 'Playfair Display', serif;
+    color: var(--gold-light);
+    font-size: 1.35rem;
+    line-height: 1.1;
+    letter-spacing: 0.02em;
+  }
+  .logo-block p {
+    font-size: 0.72rem;
+    color: #8da88d;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    margin-top: 2px;
+  }
+  .exam-badges {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+  }
+  .badge {
+    background: transparent;
+    border: 1.5px solid var(--gold);
+    color: var(--gold-light);
+    font-size: 0.68rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    padding: 4px 10px;
+    border-radius: 3px;
+    font-family: 'DM Mono', monospace;
+    text-transform: uppercase;
+  }
+  .badge.active { background: var(--gold); color: var(--dark); }
+
+  /* ===== HERO STRIP ===== */
+  .hero {
+    background: linear-gradient(135deg, #003300 0%, #005500 50%, #003d00 100%);
+    padding: 52px 32px 44px;
+    text-align: center;
+    border-bottom: 4px solid var(--gold);
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: -60px; left: -60px;
+    width: 320px; height: 320px;
+    background: radial-gradient(circle, rgba(212,160,23,0.12) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .hero::after {
+    content: '';
+    position: absolute;
+    bottom: -80px; right: -40px;
+    width: 400px; height: 400px;
+    background: radial-gradient(circle, rgba(42,181,42,0.08) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .hero h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.8rem, 4vw, 3rem);
+    color: #fff;
+    line-height: 1.15;
+    max-width: 700px;
+    margin: 0 auto 12px;
+  }
+  .hero h2 span { color: var(--gold-light); }
+  .hero p {
+    color: #a8c8a8;
+    font-size: 1rem;
+    max-width: 560px;
+    margin: 0 auto 24px;
+    line-height: 1.6;
+  }
+  .stats-row {
+    display: flex;
+    justify-content: center;
+    gap: 32px;
+    flex-wrap: wrap;
+  }
+  .stat { text-align: center; }
+  .stat-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 2rem;
+    color: var(--gold-light);
+    display: block;
+    line-height: 1;
+  }
+  .stat-label { font-size: 0.75rem; color: #8da88d; letter-spacing: 0.08em; text-transform: uppercase; }
+
+  /* ===== CONTROLS ===== */
+  .controls {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 24px 32px 0;
+    display: flex;
+    gap: 14px;
+    flex-wrap: wrap;
+    align-items: center;
+  }
+  .search-wrap {
+    position: relative;
+    flex: 1;
+    min-width: 220px;
+  }
+  .search-wrap input {
+    width: 100%;
+    padding: 10px 16px 10px 40px;
+    border: 2px solid var(--border);
+    border-radius: 6px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.9rem;
+    background: #fff;
+    color: var(--text);
+    outline: none;
+    transition: border-color 0.2s;
+  }
+  .search-wrap input:focus { border-color: var(--green-mid); }
+  .search-wrap svg {
+    position: absolute; left: 12px; top: 50%;
+    transform: translateY(-50%);
+    color: var(--muted);
+    pointer-events: none;
+  }
+  .filter-btns { display: flex; gap: 8px; flex-wrap: wrap; }
+  .filter-btn {
+    padding: 8px 16px;
+    border: 2px solid var(--border);
+    background: #fff;
+    border-radius: 6px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.82rem;
+    font-weight: 500;
+    cursor: pointer;
+    color: var(--text);
+    transition: all 0.18s;
+    white-space: nowrap;
+  }
+  .filter-btn:hover { border-color: var(--green-mid); color: var(--green); }
+  .filter-btn.active { background: var(--green); border-color: var(--green); color: #fff; }
+
+  /* ===== LEVEL TABS ===== */
+  .level-tabs {
+    max-width: 1400px;
+    margin: 20px auto 0;
+    padding: 0 32px;
+    display: flex;
+    gap: 4px;
+    border-bottom: 2px solid var(--border);
+  }
+  .level-tab {
+    padding: 10px 22px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.88rem;
+    font-weight: 600;
+    cursor: pointer;
+    border: none;
+    background: transparent;
+    color: var(--muted);
+    border-bottom: 3px solid transparent;
+    margin-bottom: -2px;
+    transition: all 0.18s;
+    letter-spacing: 0.03em;
+  }
+  .level-tab:hover { color: var(--green); }
+  .level-tab.active { color: var(--green); border-bottom-color: var(--green); }
+
+  /* ===== MAIN GRID ===== */
+  .main {
+    max-width: 1400px;
+    margin: 28px auto;
+    padding: 0 32px 60px;
+  }
+  .section-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid var(--border);
+  }
+  .section-header h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.4rem;
+    color: var(--dark);
+  }
+  .section-header .level-pill {
+    background: var(--green);
+    color: #fff;
+    font-size: 0.7rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 3px 10px;
+    border-radius: 20px;
+  }
+  .subject-count {
+    margin-left: auto;
+    font-size: 0.8rem;
+    color: var(--muted);
+    font-family: 'DM Mono', monospace;
+  }
+
+  .subjects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+    gap: 18px;
+  }
+
+  /* ===== SUBJECT CARD ===== */
+  .subject-card {
+    background: var(--card-bg);
+    border: 1.5px solid var(--border);
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: var(--shadow);
+    transition: box-shadow 0.2s, transform 0.2s, border-color 0.2s;
+  }
+  .subject-card:hover {
+    box-shadow: 0 8px 32px rgba(0,80,0,0.14);
+    border-color: var(--green-mid);
+    transform: translateY(-2px);
+  }
+
+  .card-header {
+    padding: 14px 18px 12px;
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    cursor: pointer;
+    user-select: none;
+    background: #f7fbf7;
+    border-bottom: 1.5px solid var(--border);
+    transition: background 0.15s;
+  }
+  .card-header:hover { background: #edf7ed; }
+
+  .subject-icon {
+    width: 36px; height: 36px;
+    border-radius: 8px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.1rem;
+    flex-shrink: 0;
+    margin-top: 1px;
+  }
+
+  .card-title-block { flex: 1; }
+  .card-title {
+    font-weight: 700;
+    font-size: 0.95rem;
+    color: var(--dark);
+    line-height: 1.2;
+  }
+  .card-meta {
+    display: flex;
+    gap: 6px;
+    margin-top: 5px;
+    flex-wrap: wrap;
+  }
+  .meta-tag {
+    font-size: 0.65rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 2px 7px;
+    border-radius: 3px;
+    font-family: 'DM Mono', monospace;
+  }
+  .meta-tag.waec { background: #fff3e0; color: #e65100; }
+  .meta-tag.neco { background: #e8f5e9; color: #1b5e20; }
+  .meta-tag.jamb { background: #e3f2fd; color: #0d47a1; }
+  .meta-tag.nabteb { background: #fce4ec; color: #880e4f; }
+  .meta-tag.compulsory { background: #f3e5f5; color: #4a148c; }
+
+  .card-toggle {
+    width: 26px; height: 26px;
+    border-radius: 50%;
+    background: var(--green);
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1rem;
+    flex-shrink: 0;
+    transition: background 0.15s, transform 0.25s;
+    margin-top: 2px;
+  }
+  .card-toggle.open { transform: rotate(45deg); background: #c62828; }
+
+  .card-body {
+    display: none;
+    padding: 14px 18px 16px;
+  }
+  .card-body.open { display: block; }
+
+  .topics-intro {
+    font-size: 0.78rem;
+    color: var(--muted);
+    margin-bottom: 10px;
+    font-style: italic;
+  }
+
+  .topic-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+  }
+  .topic-list li {
+    font-size: 0.84rem;
+    color: var(--text);
+    padding: 5px 10px;
+    border-left: 3px solid transparent;
+    border-radius: 0 4px 4px 0;
+    line-height: 1.4;
+    transition: background 0.12s, border-color 0.12s;
+  }
+  .topic-list li:hover {
+    background: #f0f8f0;
+    border-left-color: var(--green-light);
+  }
+  .topic-list li::before {
+    content: '▸ ';
+    color: var(--green-mid);
+    font-size: 0.7rem;
+  }
+
+  .topic-section-title {
+    font-size: 0.72rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--green);
+    margin: 12px 0 6px;
+    padding-bottom: 3px;
+    border-bottom: 1px dashed var(--border);
+    font-family: 'DM Mono', monospace;
+  }
+
+  /* ===== LEVEL SECTIONS ===== */
+  .level-section {
+    margin-bottom: 44px;
+    animation: fadeUp 0.4s ease forwards;
+    opacity: 0;
+  }
+  .level-section:nth-child(1) { animation-delay: 0.05s; }
+  .level-section:nth-child(2) { animation-delay: 0.15s; }
+  .level-section:nth-child(3) { animation-delay: 0.25s; }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(16px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* ===== HIDDEN ===== */
+  .hidden { display: none !important; }
+
+  /* ===== NO RESULTS ===== */
+  .no-results {
+    text-align: center;
+    padding: 60px 20px;
+    color: var(--muted);
+    font-size: 1rem;
+  }
+  .no-results strong { display: block; font-size: 1.3rem; color: var(--text); margin-bottom: 8px; }
+
+  /* ===== FOOTER ===== */
+  footer {
+    background: var(--dark);
+    color: #8da88d;
+    text-align: center;
+    padding: 24px 32px;
+    font-size: 0.8rem;
+    line-height: 1.7;
+  }
+  footer strong { color: var(--gold-light); }
+
+  /* ===== SCROLLBAR ===== */
+  ::-webkit-scrollbar { width: 7px; }
+  ::-webkit-scrollbar-track { background: var(--cream); }
+  ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 4px; }
+  ::-webkit-scrollbar-thumb:hover { background: var(--green-mid); }
+
+  /* ===== RESPONSIVE ===== */
+  @media (max-width: 768px) {
+    .header-inner { padding: 12px 16px; }
+    .hero { padding: 36px 16px 28px; }
+    .controls, .level-tabs, .main { padding-left: 16px; padding-right: 16px; }
+    .subjects-grid { grid-template-columns: 1fr; }
+    .stats-row { gap: 20px; }
+    .exam-badges { display: none; }
+  }
+
+  /* ===== EXPAND ALL ===== */
+  .expand-all-btn {
+    padding: 8px 18px;
+    background: var(--dark);
+    color: var(--gold-light);
+    border: 1.5px solid var(--gold);
+    border-radius: 6px;
+    font-family: 'DM Mono', monospace;
+    font-size: 0.75rem;
+    cursor: pointer;
+    letter-spacing: 0.06em;
+    transition: background 0.15s;
+    white-space: nowrap;
+  }
+  .expand-all-btn:hover { background: #1a2e1a; }
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header>
+  <div class="header-inner">
+    <div class="logo-block">
+      <h1>🇳🇬 Nigeria Secondary School Curriculum</h1>
+      <p>Official Topics · Examination Bodies Reference</p>
+    </div>
+    <div class="exam-badges">
+      <span class="badge active">WAEC</span>
+      <span class="badge">NECO</span>
+      <span class="badge">NABTEB</span>
+      <span class="badge">JAMB</span>
+    </div>
+  </div>
+</header>
+
+<!-- HERO -->
+<div class="hero">
+  <h2>Complete <span>JSS &amp; SSS</span> Curriculum Reference</h2>
+  <p>All subjects and syllabus topics used by WAEC, NECO, NABTEB &amp; JAMB for setting examination questions — Junior and Senior Secondary levels.</p>
+  <div class="stats-row">
+    <div class="stat"><span class="stat-num" id="totalSubjects">0</span><span class="stat-label">Subjects</span></div>
+    <div class="stat"><span class="stat-num" id="totalTopics">0</span><span class="stat-label">Topics</span></div>
+    <div class="stat"><span class="stat-num">2</span><span class="stat-label">Levels</span></div>
+    <div class="stat"><span class="stat-num">4</span><span class="stat-label">Exam Bodies</span></div>
+  </div>
+</div>
+
+<!-- CONTROLS -->
+<div class="controls">
+  <div class="search-wrap">
+    <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+    <input type="text" id="searchInput" placeholder="Search subjects or topics…">
+  </div>
+  <div class="filter-btns">
+    <button class="filter-btn active" data-filter="all">All Subjects</button>
+    <button class="filter-btn" data-filter="science">Sciences</button>
+    <button class="filter-btn" data-filter="arts">Arts &amp; Humanities</button>
+    <button class="filter-btn" data-filter="commercial">Commercial</button>
+    <button class="filter-btn" data-filter="technical">Technical/Vocational</button>
+    <button class="filter-btn" data-filter="compulsory">Compulsory</button>
+  </div>
+  <button class="expand-all-btn" id="expandAllBtn">+ Expand All</button>
+</div>
+
+<!-- LEVEL TABS -->
+<div class="level-tabs">
+  <button class="level-tab active" data-level="all">All Levels</button>
+  <button class="level-tab" data-level="jss">JSS (Junior — JS1–JS3)</button>
+  <button class="level-tab" data-level="sss">SSS (Senior — SS1–SS3)</button>
+</div>
+
+<!-- MAIN CONTENT -->
+<div class="main" id="mainContent"></div>
+
+<footer>
+  <p><strong>Nigeria Secondary School Curriculum Reference</strong></p>
+  <p>Aligned with NERDC National Curriculum · Topics reflect WAEC, NECO, NABTEB &amp; JAMB Syllabuses</p>
+  <p style="margin-top:6px; font-size:0.72rem;">For educational reference only. Always verify with current official syllabuses from WAEC, NECO, NABTEB and JAMB.</p>
+</footer>
+
+<script>
+const CURRICULUM = {
+  jss: {
+    label: "Junior Secondary School (JSS1 – JSS3)",
+    pill: "JSS",
+    subjects: [
+      {
+        id: "jss-english",
+        name: "English Language",
+        icon: "📖",
+        iconBg: "#e8f5e9",
+        categories: ["compulsory"],
+        exams: ["waec","neco"],
+        topicSections: [
+          { title: "Grammar & Language Use", topics: ["Parts of speech: Nouns, Verbs, Adjectives, Adverbs, Pronouns, Prepositions, Conjunctions, Interjections","Tenses: Simple, Continuous, Perfect, Perfect Continuous","Subject-verb agreement","Direct and indirect speech","Active and passive voice","Question tags","Punctuation marks and their uses","Vocabulary development: Synonyms, Antonyms, Homonyms","Word formation: Prefixes, Suffixes, Root words"] },
+          { title: "Comprehension & Summary", topics: ["Reading comprehension passages","Identifying main ideas and supporting details","Making inferences","Summary writing skills"] },
+          { title: "Composition & Writing", topics: ["Narrative essay","Descriptive essay","Formal and informal letters","Dialogue writing","Story completion"] },
+          { title: "Literature", topics: ["Introduction to prose, poetry and drama","Figures of speech: Simile, Metaphor, Personification, Alliteration","Oral literature — folktales, proverbs, riddles"] }
+        ]
+      },
+      {
+        id: "jss-math",
+        name: "Mathematics",
+        icon: "🔢",
+        iconBg: "#e3f2fd",
+        categories: ["compulsory","science"],
+        exams: ["waec","neco","jamb"],
+        topicSections: [
+          { title: "Number & Numeration", topics: ["Whole numbers, Integers and Place value","Fractions: proper, improper, mixed","Decimals and percentages","Approximation and estimation","Number bases (binary, octal, hexadecimal)","Factors and multiples, HCF and LCM","Indices and standard form","Rational and irrational numbers"] },
+          { title: "Basic Operations & Algebra", topics: ["Addition, subtraction, multiplication, division of integers","Order of operations (BODMAS/PEMDAS)","Algebraic expressions — simplification","Equations: linear equations in one and two variables","Word problems involving equations","Ratio and proportion","Variation: direct and inverse"] },
+          { title: "Geometry & Mensuration", topics: ["Angles: types, properties, measurement","Triangles, quadrilaterals, polygons","Circle: radius, diameter, circumference, area","Perimeter and area of plane shapes","Volume and surface area of solids","Pythagoras theorem (introduction)","Constructions and loci"] },
+          { title: "Statistics & Probability", topics: ["Data collection and presentation","Frequency tables, bar charts, pie charts, histograms","Mean, median, mode (ungrouped data)","Simple probability"] }
+        ]
+      },
+      {
+        id: "jss-basicscience",
+        name: "Basic Science & Technology",
+        icon: "🔬",
+        iconBg: "#f3e5f5",
+        categories: ["science"],
+        exams: ["waec","neco"],
+        topicSections: [
+          { title: "Living Things & Environment", topics: ["Characteristics of living things","Classification of living things","Cells: plant and animal cells","Nutrition in plants and animals","Respiration","Reproduction","Ecology and food chains","Pollution and conservation"] },
+          { title: "Physical & Chemical Processes", topics: ["States of matter: solid, liquid, gas","Changes of state","Mixtures and separation methods (filtration, evaporation, distillation)","Elements, compounds and mixtures","Acids, bases and salts (introduction)","Simple chemical reactions","Corrosion and rusting"] },
+          { title: "Energy & Forces", topics: ["Sources of energy","Heat energy and temperature","Light: reflection, refraction","Sound: production, propagation","Electricity: simple circuits","Magnetism","Forces and motion","Simple machines"] },
+          { title: "Technology & Society", topics: ["Information and communication technology","Basic internet safety","Agricultural technology","Environmental technology — solar, wind"] }
+        ]
+      },
+      {
+        id: "jss-socialstudy",
+        name: "Social Studies",
+        icon: "🌍",
+        iconBg: "#fff3e0",
+        categories: ["compulsory","arts"],
+        exams: ["waec","neco"],
+        topicSections: [
+          { title: "Family & Community", topics: ["Types of family","Roles and responsibilities in the family","Community living and cooperation","Types of community: rural, urban","Social groups and organisations"] },
+          { title: "Citizenship & Government", topics: ["Meaning and types of government","Nigeria's three tiers of government","Rights and duties of citizens","Democracy and democratic principles","Rule of law","INEC and electoral process"] },
+          { title: "Nigeria & Geography", topics: ["Nigeria's geographical features","Natural resources in Nigeria","Population distribution and problems","Environmental problems: erosion, flooding, drought","Land use and agriculture in Nigeria"] },
+          { title: "Culture & Values", topics: ["Nigerian cultural heritage and diversity","Cultural practices: festivals, dressing, food","Drug abuse and social vices","Human rights","Conflict resolution"] }
+        ]
+      },
+      {
+        id: "jss-civic",
+        name: "Civic Education",
+        icon: "🏛️",
+        iconBg: "#e8eaf6",
+        categories: ["compulsory","arts"],
+        exams: ["waec","neco"],
+        topicSections: [
+          { title: "Citizenship", topics: ["Definition and types of citizenship","Ways of acquiring citizenship","Rights and responsibilities of citizens","Civic virtues: honesty, patriotism, discipline"] },
+          { title: "Government & Democracy", topics: ["Concepts of government","Constitutional democracy","Federalism in Nigeria","Separation of powers","Human rights and the constitution"] },
+          { title: "Social Issues", topics: ["Drug abuse and trafficking","HIV/AIDS awareness","Child trafficking and abuse","Corruption: causes, effects, prevention","Environmental awareness"] }
+        ]
+      },
+      {
+        id: "jss-yoruba",
+        name: "Yoruba Language",
+        icon: "🗣️",
+        iconBg: "#fce4ec",
+        categories: ["arts"],
+        exams: ["waec","neco"],
+        topicSections: [
+          { title: "Oral & Listening Skills", topics: ["Tonal patterns in Yoruba","Oral literature: Oriki, Ìjálá, Rara, Ewì","Proverbs and their meanings","Riddles and folktales"] },
+          { title: "Grammar", topics: ["Nouns and pronouns in Yoruba","Verbs and tenses","Sentence construction","Yoruba orthography and diacritical marks"] },
+          { title: "Composition & Literature", topics: ["Letter writing in Yoruba","Narrative and descriptive compositions","Reading and understanding Yoruba prose","Yoruba poetry: structure and meaning"] }
+        ]
+      },
+      {
+        id: "jss-hausa",
+        name: "Hausa Language",
+        icon: "🗣️",
+        iconBg: "#fce4ec",
+        categories: ["arts"],
+        exams: ["waec","neco"],
+        topicSections: [
+          { title: "Oral Literature & Communication", topics: ["Kirarin Hausa (epithets)","Karin magana (proverbs)","Zambo da Tatsuniya (riddles and folktales)","Oral comprehension"] },
+          { title: "Grammar", topics: ["Parts of speech in Hausa","Sentence structure","Verbal extensions","Nouns and pronouns","Negation in Hausa"] },
+          { title: "Writing & Literature", topics: ["Essay writing in Hausa","Letter writing","Modern Hausa prose","Hausa poetry: Wakokin baka"] }
+        ]
+      },
+      {
+        id: "jss-igbo",
+        name: "Igbo Language",
+        icon: "🗣️",
+        iconBg: "#fce4ec",
+        categories: ["arts"],
+        exams: ["waec","neco"],
+        topicSections: [
+          { title: "Oral Literature", topics: ["Ilu na akpa ilu (proverbs)","Akuko ifo (folktales)","Egwu (songs and chants)","Oral comprehension passages"] },
+          { title: "Grammar", topics: ["Igbo tone marks and orthography","Parts of speech in Igbo","Verb extensions","Sentence construction"] },
+          { title: "Composition & Literature", topics: ["Descriptive and narrative essays in Igbo","Letter writing","Reading Igbo prose","Igbo poetry analysis"] }
+        ]
+      },
+      {
+        id: "jss-cultural",
+        name: "Cultural & Creative Arts",
+        icon: "🎨",
+        iconBg: "#fff9c4",
+        categories: ["arts"],
+        exams: ["waec","neco"],
+        topicSections: [
+          { title: "Visual Arts", topics: ["Elements of art: line, shape, colour, texture, form","Drawing from observation","Basic design principles","Painting techniques: watercolour, poster colour","Sculpture and modelling with clay","Printmaking: block printing, mono printing"] },
+          { title: "Music", topics: ["Musical notation: staff, clef, notes, rests","Time signatures","Tonic sol-fa","Nigerian traditional music","Musical instruments: classification","Simple song composition"] },
+          { title: "Drama & Dance", topics: ["Introduction to drama: plot, character, setting","Nigerian traditional dances","Mime and improvisation","Costume and make-up in drama","Play writing (simple scripts)"] }
+        ]
+      },
+      {
+        id: "jss-phe",
+        name: "Physical & Health Education",
+        icon: "⚽",
+        iconBg: "#e8f5e9",
+        categories: ["compulsory"],
+        exams: ["waec","neco"],
+        topicSections: [
+          { title: "Physical Education", topics: ["Athletics: sprints, relays, long jump, high jump","Ball games: football, basketball, handball, volleyball","Swimming (introduction)","Gymnastics and exercises","Indigenous games of Nigeria"] },
+          { title: "Health Education", topics: ["Personal hygiene","Nutrition and balanced diet","Common diseases and prevention","First aid and emergency care","Reproductive health education","Drug education","Mental health"] }
+        ]
+      },
+      {
+        id: "jss-homeeconomics",
+        name: "Home Economics",
+        icon: "🏠",
+        iconBg: "#fff3e0",
+        categories: ["arts","technical"],
+        exams: ["waec","neco"],
+        topicSections: [
+          { title: "Food & Nutrition", topics: ["Classes of food and nutrients","Balanced diet and dietary requirements","Meal planning","Food storage and preservation","Methods of cooking","Kitchen hygiene and safety"] },
+          { title: "Clothing & Textiles", topics: ["Fibres and fabrics","Care labelling and laundering","Basic sewing skills","Clothing design (introduction)","Mending and repair"] },
+          { title: "Home Management", topics: ["The home environment","Family resources","Consumer education","Child care basics","Home safety"] }
+        ]
+      },
+      {
+        id: "jss-agric",
+        name: "Agricultural Science",
+        icon: "🌾",
+        iconBg: "#e8f5e9",
+        categories: ["science","technical"],
+        exams: ["waec","neco"],
+        topicSections: [
+          { title: "Introduction to Agriculture", topics: ["Meaning, importance and branches of agriculture","Types of farming: subsistence, commercial","Agricultural tools and equipment","Farm records"] },
+          { title: "Soil Science", topics: ["Types of soil: sandy, clay, loam","Soil composition and properties","Soil fertility and improvement","Erosion and conservation"] },
+          { title: "Crop Production", topics: ["Crop classification: cereals, legumes, roots, vegetables","Planting, cultivation and harvesting","Pests and diseases of crops","Weed control","Fertilizers and manures"] },
+          { title: "Animal Production", topics: ["Farm animals: cattle, poultry, pigs, fish","Animal nutrition","Animal health and disease","Animal housing and management"] }
+        ]
+      },
+      {
+        id: "jss-business",
+        name: "Business Studies",
+        icon: "💼",
+        iconBg: "#e3f2fd",
+        categories: ["commercial"],
+        exams: ["waec","neco"],
+        topicSections: [
+          { title: "Office Practice", topics: ["The office: types and functions","Office equipment and machines","Filing systems","Office correspondence: memos, letters","Telephone communication"] },
+          { title: "Commerce", topics: ["Trade: home and foreign trade","Channels of distribution","Retail and wholesale trade","Advertising and marketing","Consumer protection"] },
+          { title: "Keyboarding", topics: ["Introduction to the keyboard","Home row, top row and bottom row keys","Typing speed and accuracy","Document formatting"] },
+          { title: "Accounts", topics: ["Introduction to bookkeeping","Double entry principles","Cash book","Trial balance (introduction)"] }
+        ]
+      },
+      {
+        id: "jss-computer",
+        name: "Computer Studies / ICT",
+        icon: "💻",
+        iconBg: "#e1f5fe",
+        categories: ["science","technical"],
+        exams: ["waec","neco"],
+        topicSections: [
+          { title: "Computer Fundamentals", topics: ["History and generations of computers","Types of computers","Hardware components: CPU, input/output devices, storage","Software: system software, application software","Number systems: binary, decimal, hexadecimal"] },
+          { title: "Operating System & Applications", topics: ["Introduction to Windows OS","File management: creating, copying, moving, deleting files","Word processing (Microsoft Word basics)","Spreadsheets (Microsoft Excel basics)","Presentation software (PowerPoint basics)"] },
+          { title: "Internet & Communication", topics: ["The internet: definition and uses","Web browsers and search engines","Email communication","Social media and digital citizenship","Cybersecurity and internet safety"] },
+          { title: "Programming Concepts", topics: ["Algorithms and flowcharts","Introduction to BASIC programming","Variables, data types","Simple input/output statements","Loops and conditions (introduction)"] }
+        ]
+      },
+      {
+        id: "jss-frenchisa",
+        name: "French Language",
+        icon: "🇫🇷",
+        iconBg: "#e3f2fd",
+        categories: ["arts"],
+        exams: ["waec","neco"],
+        topicSections: [
+          { title: "Oral Communication", topics: ["Greetings and introductions","Numbers, dates and time","Family and relationships vocabulary","Classroom objects and commands"] },
+          { title: "Grammar", topics: ["Articles: definite, indefinite","Nouns and gender","Adjectives: agreement","Verbs: être, avoir, present tense regular verbs","Negation in French","Question formation"] },
+          { title: "Reading & Writing", topics: ["Simple dialogues and texts","Letter writing (informal)","Short compositions","Vocabulary building"] }
+        ]
+      },
+    ]
+  },
+  sss: {
+    label: "Senior Secondary School (SS1 – SS3)",
+    pill: "SSS",
+    subjects: [
+      {
+        id: "sss-english",
+        name: "English Language",
+        icon: "📖",
+        iconBg: "#e8f5e9",
+        categories: ["compulsory"],
+        exams: ["waec","neco","jamb"],
+        topicSections: [
+          { title: "Comprehension", topics: ["Reading and understanding of prose passages","Identifying tone, mood, purpose of passages","Figurative language in prose","Making deductions and inferences"] },
+          { title: "Summary Writing", topics: ["Techniques of effective summary","Avoiding padding and irrelevancy","Identifying key ideas","Combining sentences for summary"] },
+          { title: "Lexis & Structure", topics: ["Word classes and their functions","Tense and aspect","Concord (agreement)","Mood and modality","Clause and sentence structures","Transformation of sentences","Reported speech and logical reasoning","Syntactic analysis"] },
+          { title: "Oral English / Phonology", topics: ["Vowels: monophthongs and diphthongs","Consonants: voiced and voiceless","Minimal pairs","Word stress and sentence stress","Intonation","Connected speech features","Phonetic symbols (IPA)"] },
+          { title: "Essay Writing", topics: ["Argumentative essay","Expository essay","Narrative and descriptive essays","Article and report writing","Formal and informal letters","Speech writing","CV and application letter"] },
+          { title: "Literature-in-English", topics: ["Prose: setting, plot, theme, character, style","Poetry: diction, imagery, figures of speech, tone","Drama: conflict, stagecraft, dialogue","African literature","British literature (prescribed texts)"] }
+        ]
+      },
+      {
+        id: "sss-math",
+        name: "Mathematics",
+        icon: "🔢",
+        iconBg: "#e3f2fd",
+        categories: ["compulsory","science"],
+        exams: ["waec","neco","jamb"],
+        topicSections: [
+          { title: "Number & Numeration", topics: ["Surds and indices","Logarithms (laws and calculations)","Number bases and conversions","Modular arithmetic","Sequence and series: AP and GP","Fractions, decimals and approximations","Ratio, proportions and rates","Percentages — profit, loss, tax, simple interest, compound interest"] },
+          { title: "Algebra", topics: ["Algebraic expressions and identities","Linear, quadratic and simultaneous equations","Inequalities and number line","Change of subject of formulae","Functions and relations","Polynomials and factor theorem","Partial fractions","Remainder theorem"] },
+          { title: "Geometry & Trigonometry", topics: ["Angles at a point, on a line, in triangles and polygons","Circle theorems","Loci and constructions","Coordinate geometry: midpoint, gradient, distance","Equations of lines and circles","Trigonometric ratios: sin, cos, tan","Sine rule and cosine rule","Angles of elevation and depression","Bearings and distances"] },
+          { title: "Calculus", topics: ["Limits of functions","Differentiation: basic rules, chain rule, product rule, quotient rule","Applications of differentiation: rates of change, maxima and minima","Integration: basic rules, definite and indefinite integrals","Applications of integration: area under a curve"] },
+          { title: "Statistics & Probability", topics: ["Frequency distributions and cumulative frequency","Measures of central tendency: mean, median, mode","Measures of dispersion: range, variance, standard deviation","Histograms, ogives, bar charts, pie charts","Probability: classical, frequency, subjective","Mutually exclusive and independent events","Permutations and combinations","Binomial distribution (introduction)"] },
+          { title: "Vectors & Matrices", topics: ["Vectors in 2D: addition, subtraction, scalar multiplication","Position vectors and magnitude","Matrices: order, operations, determinant","Matrix inversion and simultaneous equations","Transformation matrices"] }
+        ]
+      },
+      {
+        id: "sss-physics",
+        name: "Physics",
+        icon: "⚛️",
+        iconBg: "#e1f5fe",
+        categories: ["science"],
+        exams: ["waec","neco","jamb"],
+        topicSections: [
+          { title: "Mechanics", topics: ["Measurement: SI units, scalars and vectors","Motion: speed, velocity, acceleration, equations of motion","Newton's laws of motion","Momentum and impulse","Work, energy and power","Conservation of energy","Projectile motion","Circular motion","Simple harmonic motion","Gravitational field","Satellites and escape velocity"] },
+          { title: "Thermal Physics", topics: ["Temperature and thermometry","Heat capacity and specific heat capacity","Latent heat","Gas laws: Boyle's, Charles', Pressure law, General gas law","Kinetic theory of gases","Vapour pressure","Thermodynamic processes"] },
+          { title: "Waves & Optics", topics: ["Wave motion: transverse and longitudinal waves","Wave properties: reflection, refraction, diffraction, interference","Sound waves: frequency, amplitude, speed","Resonance and beats","Light: reflection at plane and curved mirrors","Refraction: Snell's law, critical angle, total internal reflection","Lenses: converging and diverging","The eye and optical instruments"] },
+          { title: "Electricity & Magnetism", topics: ["Electric charges and Coulomb's law","Electric field and potential","Capacitance: capacitors in series and parallel","Current, voltage and resistance (Ohm's law)","Electrical circuits: Kirchhoff's laws","Work, power and energy in electric circuits","Magnetic field of current-carrying conductors","Electromagnetic induction: Faraday's and Lenz's laws","Alternating current: RMS, peak values, transformers"] },
+          { title: "Modern Physics", topics: ["Photoelectric effect","Atomic structure: Bohr's model","Radioactivity: alpha, beta, gamma","Nuclear reactions: fission and fusion","Half-life and decay","Electronic components: diodes, transistors","Basic logic gates"] }
+        ]
+      },
+      {
+        id: "sss-chemistry",
+        name: "Chemistry",
+        icon: "🧪",
+        iconBg: "#f3e5f5",
+        categories: ["science"],
+        exams: ["waec","neco","jamb"],
+        topicSections: [
+          { title: "Atomic Structure & Periodic Table", topics: ["Atomic structure: protons, neutrons, electrons","Electronic configuration","Periodic table: periods and groups","Periodicity of properties: atomic radius, ionisation energy, electronegativity","Chemical bonding: ionic, covalent, metallic, coordinate","Intermolecular forces","VSEPR theory and molecular shapes"] },
+          { title: "States of Matter & Kinetic Theory", topics: ["Gas laws and ideal gas equation","Diffusion and Graham's law","Mole concept and Avogadro's number","Stoichiometry and chemical formulae","Solutions: concentration, molarity, mole fraction","Colligative properties"] },
+          { title: "Chemical Reactions & Energetics", topics: ["Types of chemical reactions","Rate of reaction: factors affecting rate","Collision theory","Activation energy and catalysis","Chemical equilibrium: Le Chatelier's principle, Kc","Acids, bases and salts: definitions, pH scale","Solubility product","Thermochemistry: exothermic, endothermic, Hess's law","Oxidation and reduction (redox), oxidation numbers","Electrochemistry: electrolysis, electrode reactions, electrochemical cells, standard electrode potentials"] },
+          { title: "Inorganic Chemistry", topics: ["Extraction of metals: iron, aluminium, copper, zinc","Properties and uses of metals and non-metals","Hydrogen and its compounds","Group I and II metals (alkali and alkaline earth metals)","Group VII: halogens","Period 3 elements","Nitrogen and its compounds: ammonia, nitric acid, fertilizers","Sulphur and its compounds: sulphuric acid","Carbon and its compounds: oxides, carbonates"] },
+          { title: "Organic Chemistry", topics: ["Homologous series and functional groups","Alkanes: preparation, properties, reactions","Alkenes: preparation, addition reactions, polymerisation","Alkynes: preparation and reactions","Benzene and aromatic compounds","Alkanols (alcohols)","Alkanoic acids (carboxylic acids)","Esters: esterification, saponification","Halogenoalkanes","Aldehydes and ketones","Amines and amino acids","Polymers: addition and condensation"] }
+        ]
+      },
+      {
+        id: "sss-biology",
+        name: "Biology",
+        icon: "🧬",
+        iconBg: "#e8f5e9",
+        categories: ["science"],
+        exams: ["waec","neco","jamb"],
+        topicSections: [
+          { title: "Cell Biology", topics: ["Cell structure: prokaryotic and eukaryotic cells","Cell organelles and functions","Cell membrane and transport: diffusion, osmosis, active transport","Cell division: mitosis and meiosis","Chromosomes and DNA"] },
+          { title: "Classification of Living Things", topics: ["Taxonomy: Kingdoms, Phyla, Classes","Viruses, Bacteria, Fungi","Kingdom Plantae: Algae, Bryophytes, Pteridophytes, Gymnosperms, Angiosperms","Kingdom Animalia: Invertebrates (Porifera to Echinodermata), Vertebrates","Dichotomous keys"] },
+          { title: "Plant Biology", topics: ["Photosynthesis: light and dark reactions","Transpiration and water transport in plants","Mineral nutrition in plants","Growth and development in plants","Plant hormones: auxins, gibberellins","Sexual reproduction in flowering plants: pollination, fertilisation","Vegetative propagation"] },
+          { title: "Animal Biology & Physiology", topics: ["Nutrition in animals: digestion, absorption, assimilation","Respiratory system: gas exchange in man, fish, insects","Circulatory system: blood, heart, blood vessels","Excretion: kidneys, skin, liver, lungs","Nervous system: neurones, CNS, PNS, reflex action","Sense organs: eye, ear","Endocrine system and hormones","Reproduction in animals: fertilisation, development","Skeletal and muscular systems"] },
+          { title: "Ecology & Environment", topics: ["Ecosystem components: biotic and abiotic","Food chains, food webs and ecological pyramids","Nutrient cycles: carbon, nitrogen, water","Population dynamics","Adaptation and habitats","Environmental pollution","Conservation of natural resources","Tropical biomes"] },
+          { title: "Genetics & Evolution", topics: ["Mendelian genetics: monohybrid, dihybrid crosses","Laws of dominance, segregation, independent assortment","Codominance and incomplete dominance","Sex determination and sex-linked traits","Mutations and mutagenic agents","Theory of evolution: Lamarck, Darwin","Evidence for evolution","Natural selection and adaptations"] }
+        ]
+      },
+      {
+        id: "sss-furthermath",
+        name: "Further Mathematics",
+        icon: "∑",
+        iconBg: "#fff3e0",
+        categories: ["science"],
+        exams: ["waec","neco"],
+        topicSections: [
+          { title: "Pure Mathematics", topics: ["Polynomials and algebraic divisions","Rational functions and partial fractions","Binomial theorem","Trigonometric functions: graphs, identities, equations","Inverse trigonometric functions","Complex numbers: Argand diagram, modulus-argument form","Matrices and determinants","Vectors in 3D","Differentiation: further techniques, implicit, parametric","Integration: by parts, by substitution, reduction formulae","Differential equations","Proof by induction"] },
+          { title: "Statistics & Probability", topics: ["Probability distributions: binomial, Poisson, normal","Hypothesis testing","Correlation and regression","Chi-square test"] },
+          { title: "Mechanics", topics: ["Statics: forces in equilibrium, moments","Dynamics: Newton's laws in depth, collisions, energy","Projectile motion (extended)","Simple harmonic motion (analytical)"] }
+        ]
+      },
+      {
+        id: "sss-geog",
+        name: "Geography",
+        icon: "🗺️",
+        iconBg: "#e0f7fa",
+        categories: ["arts","science"],
+        exams: ["waec","neco","jamb"],
+        topicSections: [
+          { title: "Physical Geography", topics: ["The Earth: structure, composition, plate tectonics","Earthquakes and volcanoes","Rock types and weathering","Erosion by water, wind, ice","Landforms: rivers, coastal features, karst landscape","Atmosphere: composition, layers, temperature","Atmospheric pressure and winds","Humidity, precipitation, rainfall types","Weather and climate: types and distribution","Soils: formation, profile, types","Natural vegetation belts","Oceans and tides"] },
+          { title: "Human & Economic Geography", topics: ["Population: distribution, density, growth, migration","Urbanisation and settlement patterns","Agriculture: types, systems, land use","Industrialisation: factors, industrial regions","Transport and communication networks","Trade: imports, exports, balance of trade","Tourism: types and impacts","Energy resources: conventional and alternative"] },
+          { title: "Regional Geography — Nigeria & Africa", topics: ["Nigeria: location, relief, drainage, climate, vegetation","Geopolitical zones of Nigeria","Agriculture in Nigeria","Mineral resources of Nigeria","Population and urbanisation in Nigeria","West Africa: physical features, countries","Major African rivers and lakes","Economic activities in Africa"] },
+          { title: "Map Reading & Field Work", topics: ["Types of maps: topographic, thematic","Reading grid references, scales, contours","Interpretation of topographic maps","Measurement of distances and areas on maps","Statistical maps: dot, choropleth, isoline","Field investigation techniques","Aerial photographs and remote sensing"] }
+        ]
+      },
+      {
+        id: "sss-economics",
+        name: "Economics",
+        icon: "📊",
+        iconBg: "#e8f5e9",
+        categories: ["commercial","arts"],
+        exams: ["waec","neco","jamb"],
+        topicSections: [
+          { title: "Microeconomics", topics: ["Scarcity, choice and opportunity cost","Factors of production: land, labour, capital, entrepreneur","Demand: law, determinants, elasticity","Supply: law, determinants, elasticity","Price mechanism and market equilibrium","Consumer theory: utility, indifference curves","Production and costs: short run, long run","Market structures: perfect competition, monopoly, oligopoly, monopolistic competition","Factor pricing: wages, rent, interest, profit"] },
+          { title: "Macroeconomics", topics: ["National income: GDP, GNP, NNP","Business cycle: boom, recession, depression","Money and banking: functions of money, commercial banks, central bank","Monetary policy","Fiscal policy: government revenue and expenditure, budgets","Inflation: types, causes, effects, control","Unemployment: types, causes, effects","Economic development vs economic growth","Population and development"] },
+          { title: "International Trade & Finance", topics: ["Basis of international trade: absolute and comparative advantage","Balance of payments","Foreign exchange and exchange rates","Trade barriers: tariffs, quotas, embargoes","Trade organisations: WTO, ECOWAS, AU","International financial institutions: IMF, World Bank, ADB"] },
+          { title: "Nigerian Economy", topics: ["Structure of the Nigerian economy","Agriculture and its challenges","Petroleum and mineral resources","Industrialisation in Nigeria","Government economic policies","Poverty and inequality in Nigeria","Environmental economics"] }
+        ]
+      },
+      {
+        id: "sss-accounts",
+        name: "Financial Accounting",
+        icon: "📒",
+        iconBg: "#fff3e0",
+        categories: ["commercial"],
+        exams: ["waec","neco"],
+        topicSections: [
+          { title: "Bookkeeping Fundamentals", topics: ["Double entry bookkeeping principles","Source documents: invoice, receipt, voucher, credit note","Books of original entry: sales daybook, purchases daybook, cash book, petty cash book","The ledger: personal, real and nominal accounts","Balancing accounts","Trial balance"] },
+          { title: "Financial Statements", topics: ["Trading account and cost of goods sold","Profit and loss account","Balance sheet: assets, liabilities, capital","Adjustments: depreciation, accruals, prepayments, bad debts, provision for bad debts","Cash flow statement"] },
+          { title: "Special Accounts & Organisations", topics: ["Partnership accounts: appropriation, current and capital accounts","Company accounts: final accounts, shares and debentures","Non-profit organisations: receipts and payments, income and expenditure accounts","Departmental accounts","Branch accounts","Manufacturing accounts"] },
+          { title: "Costing", topics: ["Cost classification: fixed, variable, direct, indirect","Break-even analysis","Marginal costing","Overhead absorption","Budgeting and budgetary control"] }
+        ]
+      },
+      {
+        id: "sss-commerce",
+        name: "Commerce",
+        icon: "🏪",
+        iconBg: "#e3f2fd",
+        categories: ["commercial"],
+        exams: ["waec","neco","jamb"],
+        topicSections: [
+          { title: "Trade & Distribution", topics: ["Home and foreign trade","Channels of distribution: producers, wholesalers, retailers","Types of retail trade: supermarkets, departmental stores, cooperative societies","E-commerce and online trade","Warehousing: types and functions","Transportation: road, rail, sea, air, pipeline"] },
+          { title: "Commercial Documents", topics: ["Enquiry, quotation, order forms","Invoice, delivery note, credit note, debit note","Statement of account","Bill of lading, certificate of origin","Proforma invoice","Letter of credit"] },
+          { title: "Banking & Finance", topics: ["Types of banks: commercial, development, mortgage, central","Bank services: current, savings, loan accounts","Means of payment: cheques, drafts, NEFT, RTGS","Insurance: types, principles, life, fire, marine, motor","Stock exchange functions and operations","Hire purchase and leasing"] },
+          { title: "Business Organisations", topics: ["Sole proprietorship","Partnership","Limited liability companies","Cooperatives","Statutory corporations and government enterprises","Multinationals","Mergers and acquisitions"] }
+        ]
+      },
+      {
+        id: "sss-govtpol",
+        name: "Government / Political Science",
+        icon: "🏛️",
+        iconBg: "#e8eaf6",
+        categories: ["arts"],
+        exams: ["waec","neco","jamb"],
+        topicSections: [
+          { title: "Basic Concepts", topics: ["State: sovereignty, legitimacy, territory, population","Government: meaning, forms — democracy, authoritarianism, monarchy","Political power and authority","Political culture and political socialisation","Citizenship: rights and duties","Constitution: types, features, supremacy of constitution"] },
+          { title: "Political Institutions", topics: ["Legislature: unicameralism vs bicameralism, functions","Executive: presidential vs parliamentary systems","Judiciary: functions, independence","Civil service: role and neutrality","Local government: functions and administration","Electoral systems: FPTP, proportional representation","Political parties: functions, party systems"] },
+          { title: "Nigerian Government & Politics", topics: ["Constitutional development: 1914–present","Federalism in Nigeria: federal character, revenue allocation","Nigerian constitutions: 1946, 1951, 1954, 1960, 1963, 1979, 1999","Tiers of government: federal, state, local","INEC and electoral process","Military interventions in Nigerian politics","Public order and national security agencies"] },
+          { title: "International Relations", topics: ["Nigerian foreign policy: non-alignment, African unity","United Nations: organs, agencies, peacekeeping","African Union and ECOWAS","International law and diplomacy","Globalisation and Nigeria"] }
+        ]
+      },
+      {
+        id: "sss-history",
+        name: "History & Government",
+        icon: "📜",
+        iconBg: "#fce4ec",
+        categories: ["arts"],
+        exams: ["waec","neco"],
+        topicSections: [
+          { title: "Pre-Colonial Nigeria", topics: ["Early peoples of Nigeria: Nok, Yoruba, Igbo, Hausa-Fulani, Kanuri, Ijaw","Pre-colonial political systems: Oyo Empire, Benin Kingdom, Hausa States, Kanem-Borno","Economic activities: agriculture, trade, crafts","Social structures and religion","Trans-Saharan trade routes","The Atlantic slave trade: causes, effects on Nigeria"] },
+          { title: "Colonial Nigeria", topics: ["European exploration and contact","Legitimate trade and the consular era","The scramble for Africa and the Berlin Conference","British conquest and pacification","Indirect rule: Lugard and its effects","Economic exploitation: land, labour, taxation","Nationalist movements: NCNC, AG, NPC","Road to independence 1960"] },
+          { title: "Post-Colonial Nigeria & Africa", topics: ["First Republic 1960–1966","Military coups: causes and effects","Civil War (1967–1970): causes, conduct, aftermath","Gowon, Murtala, Obasanjo military regimes","Second Republic 1979–1983","Babangida, Abacha regimes","Fourth Republic from 1999","African nationalism and decolonisation","African states: post-independence challenges"] },
+          { title: "World History", topics: ["The French Revolution","Industrial Revolution in Europe","World War I: causes, course, effects","The Great Depression","World War II: causes, Holocaust, effects","The Cold War","United Nations and post-war order"] }
+        ]
+      },
+      {
+        id: "sss-literature",
+        name: "Literature in English",
+        icon: "📚",
+        iconBg: "#ede7f6",
+        categories: ["arts"],
+        exams: ["waec","neco","jamb"],
+        topicSections: [
+          { title: "Prose", topics: ["Plot structure: exposition, rising action, climax, falling action, resolution","Characterisation: protagonist, antagonist, round, flat characters","Setting and atmosphere","Theme and subject matter","Style and narrative technique","Point of view","Symbolism and imagery in prose"] },
+          { title: "Poetry", topics: ["Types of poetry: lyric, narrative, dramatic","Poetic devices: rhyme, rhythm, metre","Figures of speech: simile, metaphor, personification, oxymoron, paradox, alliteration, assonance, onomatopoeia","Tone and mood in poetry","Diction and imagery","Interpretation of unseen poems"] },
+          { title: "Drama", topics: ["Types of drama: tragedy, comedy, tragi-comedy","Dramatic elements: conflict, plot, setting, character, dialogue, stage directions","Theme in drama","Stagecraft: costume, lighting, music","African drama and its unique features","Interpretation of dramatic extracts"] },
+          { title: "Prescribed Texts (General)", topics: ["African novels: themes of colonialism, identity, tradition vs modernity","African poetry: negritude, protest poetry","African drama: Wole Soyinka, Ola Rotimi, J.P. Clark","British/European classics (prescribed titles change annually)","Criticism and evaluation of texts"] }
+        ]
+      },
+      {
+        id: "sss-crs",
+        name: "Christian Religious Studies (CRS)",
+        icon: "✝️",
+        iconBg: "#e8f5e9",
+        categories: ["arts"],
+        exams: ["waec","neco"],
+        topicSections: [
+          { title: "Old Testament", topics: ["Creation: Genesis 1–2","The Fall and consequences: Genesis 3","Noah and the flood","Call of Abraham, covenant","Moses and the Exodus","The Ten Commandments","Judges: Samson, Gideon, Deborah","The monarchy: Saul, David, Solomon","Major prophets: Isaiah, Jeremiah, Ezekiel","Minor prophets: Amos, Hosea, Micah"] },
+          { title: "New Testament", topics: ["The birth and early life of Jesus","Jesus's baptism and temptation","Sermon on the Mount","The miracles of Jesus","The parables of Jesus","The Passion, death and Resurrection","Pentecost and the early church","Missionary journeys of Paul","Pauline epistles: faith, grace, love","The Book of Revelation (selected chapters)"] },
+          { title: "Christian Ethics & Living", topics: ["Christian concept of God","Family and Christian values","Social justice and the church","Christian responses to corruption","Stewardship and tithing","Christian approach to suffering and death","Ecumenism and Christian unity"] }
+        ]
+      },
+      {
+        id: "sss-irs",
+        name: "Islamic Religious Studies (IRS)",
+        icon: "☪️",
+        iconBg: "#e8f5e9",
+        categories: ["arts"],
+        exams: ["waec","neco"],
+        topicSections: [
+          { title: "Qur'an & Hadith", topics: ["Selected Surahs from Juz Amma","Tafsir (exegesis) of selected verses","Hadith literature: collection and classification","Application of Qur'anic teachings to daily life"] },
+          { title: "Islamic History", topics: ["Prophet Muhammad's early life and mission","The Hijra and Madinah period","Early caliphates: Abu Bakr, Umar, Uthman, Ali","Spread of Islam to West Africa","Islamic dynasties: Umayyads, Abbasids","Islamic scholarship and civilisation","History of Islam in Nigeria: Sokoto Caliphate, Usman Dan Fodio"] },
+          { title: "Islamic Jurisprudence & Practice", topics: ["Pillars of Islam: Shahadah, Salat, Zakat, Sawm, Hajj","Pillars of Iman","Purity and prayer: wudu, salat procedure","Family law in Islam: marriage, divorce, inheritance","Islamic economic principles: prohibition of riba","Social justice in Islam","Ethics: honesty, humility, respect for elders"] }
+        ]
+      },
+      {
+        id: "sss-sss-agric",
+        name: "Agricultural Science (SS)",
+        icon: "🌾",
+        iconBg: "#e8f5e9",
+        categories: ["science","technical"],
+        exams: ["waec","neco","nabteb"],
+        topicSections: [
+          { title: "Soil Science", topics: ["Soil formation: weathering, leaching, humification","Soil texture, structure and water content","Soil organisms and organic matter","Soil pH and plant nutrition","Fertilisers: types, methods of application","Soil erosion: causes and control","Land reclamation and conservation"] },
+          { title: "Crop Production", topics: ["Classification of crops by use","Land preparation: bush clearing, ploughing, harrowing, ridging","Cropping systems: mono-cropping, mixed cropping, rotation","Seeds: germination, seedbed preparation, transplanting","Weed classification and control (mechanical, chemical)","Pest and disease management in crops","Harvesting, processing and storage","Cash crops: cocoa, groundnut, cotton, palm, cassava, maize"] },
+          { title: "Animal Production", topics: ["Ruminants: cattle, sheep, goat — breeds, management","Non-ruminants: pigs, poultry — breeds, housing","Aquaculture: fish farming types","Dairy and beef production","Animal nutrition: ruminant vs monogastric","Veterinary practices: vaccination, deworming","Animal diseases and control"] },
+          { title: "Agricultural Economics & Extension", topics: ["Farm planning and budgeting","Agricultural credit and marketing","Cooperative farming","Agricultural extension: role of extension workers","Food security in Nigeria","Agro-processing and value addition","Challenges of agriculture in Nigeria"] }
+        ]
+      },
+      {
+        id: "sss-technicaldrawing",
+        name: "Technical Drawing",
+        icon: "📐",
+        iconBg: "#e0f2f1",
+        categories: ["technical"],
+        exams: ["waec","neco","nabteb"],
+        topicSections: [
+          { title: "Plane Geometry", topics: ["Geometric constructions: perpendicular bisectors, angle bisectors","Triangles, quadrilaterals and polygons: construction and properties","Circles: tangents, sectors, segments","Loci: construction of loci","Conic sections: ellipse, parabola, hyperbola"] },
+          { title: "Orthographic Projection", topics: ["First angle and third angle orthographic projection","Three views: front, side, plan","Sectional views and conventions","Dimensioning techniques","Tolerances and limits (introduction)"] },
+          { title: "Isometric & Pictorial Drawing", topics: ["Isometric projection and drawing","Oblique drawing: cavalier and cabinet","Perspective drawing: one-point, two-point","Conversion of orthographic to isometric"] },
+          { title: "Building Drawing", topics: ["Building construction terminology","Plans, elevations and sections","Site plans and layouts","Architectural symbols and conventions","Electrical and plumbing symbols"] }
+        ]
+      },
+      {
+        id: "sss-computerss",
+        name: "Data Processing / Computer Science (SS)",
+        icon: "💻",
+        iconBg: "#e1f5fe",
+        categories: ["science","technical"],
+        exams: ["waec","neco","nabteb"],
+        topicSections: [
+          { title: "Computer Hardware & Software", topics: ["System unit components: motherboard, CPU, RAM, ROM","Secondary storage: HDD, SSD, flash drives, optical discs","Input and output devices","Operating systems: Windows, Linux, macOS — functions","Types of software: system, application, utility","Software acquisition: licensed, open source, freeware"] },
+          { title: "Data & Information Processing", topics: ["Data types and structures","Database concepts: DBMS, tables, queries, reports","Spreadsheet functions: formulas, charts, sorting, filtering","Word processing: styles, mail merge, templates","Desktop publishing basics"] },
+          { title: "Programming & Algorithms", topics: ["Problem solving: algorithms, flowcharts, pseudocode","Programming concepts: variables, data types, operators","Control structures: sequential, selection (if-else, switch), iteration (loops)","Procedures and functions","Arrays and lists","Introduction to Python/BASIC/VB programming","Debugging and testing"] },
+          { title: "Networking & Internet", topics: ["Network types: LAN, WAN, MAN","Network topologies: bus, star, ring, mesh","Network devices: router, switch, hub, modem","Internet protocols: TCP/IP, HTTP, FTP","Web development basics: HTML, CSS","Cybersecurity: threats, firewalls, encryption","Cloud computing"] }
+        ]
+      },
+      {
+        id: "sss-fineart",
+        name: "Fine Arts / Visual Arts",
+        icon: "🎨",
+        iconBg: "#fff9c4",
+        categories: ["arts","technical"],
+        exams: ["waec","neco"],
+        topicSections: [
+          { title: "Art Theory & Appreciation", topics: ["Elements of design: line, shape, form, colour, texture, space","Principles of design: balance, contrast, emphasis, rhythm, unity","History of African art","Nigerian traditional art forms: Ife bronzes, Nok terracotta, Benin bronzes","Western art movements: Renaissance, Impressionism, Cubism, Abstract Art","Contemporary Nigerian art"] },
+          { title: "Drawing & Painting", topics: ["Life drawing","Still life","Landscape","Portrait and figure composition","Colour theory: colour wheel, mixing, harmonies","Watercolour techniques","Oil and acrylic painting","Composition and perspective"] },
+          { title: "Sculpture & Ceramics", topics: ["Modelling: clay and plaster","Carving: wood and stone","Construction and assemblage","Casting: lost wax technique","Pottery: coiling, slab building, wheel throwing","Kiln firing and glazing"] },
+          { title: "Graphics & Crafts", topics: ["Printmaking: screen printing, linocut","Typography and layout","Logo design","Textile design: tie-dye, batik, weaving","Leatherwork and beadwork","Basketry and mat making"] }
+        ]
+      },
+      {
+        id: "sss-music",
+        name: "Music",
+        icon: "🎵",
+        iconBg: "#fce4ec",
+        categories: ["arts"],
+        exams: ["waec","neco"],
+        topicSections: [
+          { title: "Music Theory", topics: ["Staff notation: treble and bass clef","Note values and time signatures","Intervals: major, minor, perfect","Scales: major and minor (natural, harmonic, melodic)","Chords: triads, seventh chords","Harmony: chord progressions, cadences","Form and structure: binary, ternary, rondo, sonata","Musical terms and symbols","Transposition"] },
+          { title: "History & Appreciation", topics: ["Western classical music periods: Baroque, Classical, Romantic, 20th century","Major composers: Bach, Mozart, Beethoven","African music characteristics","Nigerian traditional music: Highlife, Afrobeats, Fuji, Juju","Music of other African regions","Music and culture"] },
+          { title: "Performance & Composition", topics: ["Solo performance on instrument or voice","Sight-reading","Ensemble playing","Song writing: melody, harmony, lyrics","Arrangement and orchestration (introduction)","Rhythmic analysis and dictation","Aural training: intervals, chords, melodies"] }
+        ]
+      },
+      {
+        id: "sss-french",
+        name: "French Language (SS)",
+        icon: "🇫🇷",
+        iconBg: "#e3f2fd",
+        categories: ["arts"],
+        exams: ["waec","neco"],
+        topicSections: [
+          { title: "Oral Communication & Listening", topics: ["Phone conversations and formal discussions","Listening comprehension passages","Pronunciation: liaison, elision, vowel sounds"] },
+          { title: "Grammar (Advanced)", topics: ["Present, past (passé composé, imparfait), future, conditional tenses","Subjunctive mood","Relative pronouns: qui, que, dont, où","Passive voice","Reported speech","Reflexive verbs","Pronouns: direct, indirect, y, en"] },
+          { title: "Reading & Comprehension", topics: ["Extended reading passages","Identifying main ideas and implicit meaning","Vocabulary in context","Francophone African literature (selected)"] },
+          { title: "Written Expression", topics: ["Formal and informal letters","Narrative and descriptive compositions","Summary writing in French","Translation: French to English"] }
+        ]
+      },
+      {
+        id: "sss-homeec",
+        name: "Home Economics (SS)",
+        icon: "🏠",
+        iconBg: "#fff3e0",
+        categories: ["arts","technical"],
+        exams: ["waec","neco","nabteb"],
+        topicSections: [
+          { title: "Food & Nutrition (Advanced)", topics: ["Nutritional science: macro and micronutrients","Nutritional disorders: kwashiorkor, marasmus, anaemia, scurvy","Special diets: pregnancy, infancy, old age, disease management","Menu planning for institutions","Food preservation and processing technologies","Food safety: HACCP principles","Traditional Nigerian foods and their nutritional value"] },
+          { title: "Clothing & Textiles (Advanced)", topics: ["Fabric classification: natural and synthetic","Dyeing and printing methods","Pattern drafting and making","Clothing construction: cutting, sewing, finishing","Garment fitting and alteration","Textile care and quality control","Nigerian traditional textiles: aso-oke, adire, akwete"] },
+          { title: "Child Development & Care", topics: ["Stages of child development","Factors affecting child development","Health and nutrition for children","Immunisation schedule","Child welfare and protection","Care of the elderly"] },
+          { title: "Home Management & Consumer Education", topics: ["Housing: types, selection, maintenance","Interior decoration principles","Household budgeting and financial management","Consumer rights and protection","ICT in home management","Entrepreneurship in home economics"] }
+        ]
+      }
+    ]
+  }
+};
+
+// ============================================================
+// Build UI
+// ============================================================
+
+let currentLevel = 'all';
+let currentFilter = 'all';
+let currentSearch = '';
+let allExpanded = false;
+
+function countStats() {
+  let subjects = 0, topics = 0;
+  ['jss','sss'].forEach(level => {
+    CURRICULUM[level].subjects.forEach(sub => {
+      subjects++;
+      sub.topicSections.forEach(sec => topics += sec.topics.length);
+    });
+  });
+  document.getElementById('totalSubjects').textContent = subjects;
+  document.getElementById('totalTopics').textContent = topics + '+';
+}
+
+function buildCards(subjects) {
+  return subjects.map(sub => {
+    const examTags = sub.exams.map(e => `<span class="meta-tag ${e}">${e.toUpperCase()}</span>`).join('');
+    const compTag = sub.categories.includes('compulsory') ? '<span class="meta-tag compulsory">Compulsory</span>' : '';
+    const totalTopics = sub.topicSections.reduce((a,s) => a + s.topics.length, 0);
+
+    const sectionsHTML = sub.topicSections.map(sec => `
+      <div class="topic-section-title">${sec.title}</div>
+      <ul class="topic-list">
+        ${sec.topics.map(t => `<li>${t}</li>`).join('')}
+      </ul>
+    `).join('');
+
+    return `
+    <div class="subject-card" 
+         data-id="${sub.id}"
+         data-categories="${sub.categories.join(' ')}"
+         data-name="${sub.name.toLowerCase()}"
+         data-topics="${sub.topicSections.map(s=>s.topics.join(' ')).join(' ').toLowerCase()}">
+      <div class="card-header" onclick="toggleCard('${sub.id}')">
+        <div class="subject-icon" style="background:${sub.iconBg}">${sub.icon}</div>
+        <div class="card-title-block">
+          <div class="card-title">${sub.name}</div>
+          <div class="card-meta">${compTag}${examTags}</div>
+        </div>
+        <div style="margin-left:auto; margin-right:10px; font-size:0.72rem; color:var(--muted); font-family:'DM Mono',monospace; white-space:nowrap">${totalTopics} topics</div>
+        <button class="card-toggle" id="toggle-${sub.id}">+</button>
+      </div>
+      <div class="card-body" id="body-${sub.id}">
+        <p class="topics-intro">All syllabus topics examined by WAEC / NECO / NABTEB / JAMB:</p>
+        ${sectionsHTML}
+      </div>
+    </div>`;
+  }).join('');
+}
+
+function render() {
+  const container = document.getElementById('mainContent');
+  const levels = currentLevel === 'all' ? ['jss','sss'] : [currentLevel];
+  let anyVisible = false;
+
+  container.innerHTML = levels.map(lvl => {
+    const data = CURRICULUM[lvl];
+    let subjects = data.subjects;
+
+    // Filter by category
+    if (currentFilter !== 'all') {
+      subjects = subjects.filter(s => s.categories.includes(currentFilter));
+    }
+    // Filter by search
+    if (currentSearch.trim()) {
+      const q = currentSearch.trim().toLowerCase();
+      subjects = subjects.filter(s =>
+        s.name.toLowerCase().includes(q) ||
+        s.topicSections.some(sec =>
+          sec.title.toLowerCase().includes(q) ||
+          sec.topics.some(t => t.toLowerCase().includes(q))
+        )
+      );
+    }
+
+    if (!subjects.length) return '';
+    anyVisible = true;
+
+    return `
+    <div class="level-section" data-level="${lvl}">
+      <div class="section-header">
+        <h3>${data.label}</h3>
+        <span class="level-pill">${data.pill}</span>
+        <span class="subject-count">${subjects.length} subject${subjects.length !== 1 ? 's' : ''}</span>
+      </div>
+      <div class="subjects-grid">
+        ${buildCards(subjects)}
+      </div>
+    </div>`;
+  }).join('');
+
+  if (!anyVisible) {
+    container.innerHTML = `<div class="no-results"><strong>No results found</strong>Try a different search term or filter.</div>`;
+  }
+}
+
+function toggleCard(id) {
+  const body = document.getElementById('body-' + id);
+  const btn = document.getElementById('toggle-' + id);
+  const isOpen = body.classList.toggle('open');
+  btn.classList.toggle('open', isOpen);
+  btn.textContent = isOpen ? '×' : '+';
+}
+
+// Level tabs
+document.querySelectorAll('.level-tab').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.level-tab').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    currentLevel = btn.dataset.level;
+    render();
+  });
+});
+
+// Filter buttons
+document.querySelectorAll('.filter-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    currentFilter = btn.dataset.filter;
+    render();
+  });
+});
+
+// Search
+document.getElementById('searchInput').addEventListener('input', e => {
+  currentSearch = e.target.value;
+  render();
+});
+
+// Expand all
+document.getElementById('expandAllBtn').addEventListener('click', () => {
+  allExpanded = !allExpanded;
+  document.querySelectorAll('.card-body').forEach(body => {
+    body.classList.toggle('open', allExpanded);
+  });
+  document.querySelectorAll('.card-toggle').forEach(btn => {
+    btn.classList.toggle('open', allExpanded);
+    btn.textContent = allExpanded ? '×' : '+';
+  });
+  document.getElementById('expandAllBtn').textContent = allExpanded ? '− Collapse All' : '+ Expand All';
+});
+
+// Initial render
+countStats();
+render();
+</script>
+</body>
+</html>

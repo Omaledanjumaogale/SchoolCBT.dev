@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://schoolcbt.dev/sitemap.xml

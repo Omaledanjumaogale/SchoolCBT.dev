@@ -1,0 +1,1916 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>DealxTest – Results as a Service | CBT Platform</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Sora:wght@400;600;700;800&display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+tailwind.config = {
+  theme: {
+    extend: {
+      colors: {
+        cobalt: { DEFAULT:'#002366', light:'#003399', dark:'#001540', 50:'#e8edf8', 100:'#c5d0ef' },
+        emerald: { DEFAULT:'#50C878', light:'#6FD991', dark:'#3CAF62' },
+        gold: { DEFAULT:'#FFD700', light:'#FFE44D', dark:'#CCA900' },
+        crimson: { DEFAULT:'#DC3545', light:'#E85563', dark:'#B02837' },
+      },
+      fontFamily: { inter:['Inter','sans-serif'], sora:['Sora','sans-serif'] },
+      borderRadius: { xl2:'12px' },
+      backdropBlur: { glass:'16px' },
+    }
+  }
+}
+</script>
+<style>
+  :root {
+    --cobalt: #002366;
+    --cobalt-light: #003399;
+    --cobalt-dark: #001540;
+    --emerald: #50C878;
+    --gold: #FFD700;
+    --crimson: #DC3545;
+    --glass-bg: rgba(0,35,102,0.45);
+    --glass-border: rgba(255,255,255,0.12);
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { font-family: 'Inter', sans-serif; scroll-behavior: smooth; }
+  body { background: #060d1f; color: #e8edf8; overflow-x: hidden; }
+
+  /* Glassmorphism */
+  .glass { background: rgba(0,20,64,0.55); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); border: 1px solid rgba(255,255,255,0.09); }
+  .glass-card { background: rgba(0,35,102,0.35); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border: 1px solid rgba(255,255,255,0.1); border-radius: 12px; }
+  .glass-nav { background: rgba(6,13,31,0.82); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); border-bottom: 1px solid rgba(255,255,255,0.07); }
+
+  /* Animated Background */
+  .hero-bg { background: radial-gradient(ellipse 80% 60% at 50% 0%, rgba(0,51,153,0.6) 0%, transparent 70%), radial-gradient(ellipse 60% 40% at 80% 80%, rgba(80,200,120,0.12) 0%, transparent 60%), #060d1f; }
+  .mesh-bg { background: radial-gradient(ellipse 70% 50% at 20% 50%, rgba(0,51,153,0.25) 0%, transparent 60%), radial-gradient(ellipse 50% 40% at 85% 20%, rgba(255,215,0,0.06) 0%, transparent 60%), #060d1f; }
+
+  /* Orbs */
+  .orb { position: absolute; border-radius: 50%; filter: blur(80px); opacity: 0.18; pointer-events: none; animation: orbFloat 10s ease-in-out infinite alternate; }
+  .orb-blue { background: #003399; width: 500px; height: 500px; }
+  .orb-green { background: #50C878; width: 300px; height: 300px; animation-delay: 3s; }
+  .orb-gold { background: #FFD700; width: 200px; height: 200px; animation-delay: 6s; }
+  @keyframes orbFloat { 0% { transform: translate(0,0) scale(1); } 100% { transform: translate(30px,40px) scale(1.08); } }
+
+  /* Nav */
+  .nav-link { position: relative; font-weight: 500; color: rgba(232,237,248,0.75); transition: color .25s; }
+  .nav-link::after { content:''; position:absolute; bottom:-4px; left:0; width:0; height:2px; background: var(--gold); border-radius:2px; transition: width .25s; }
+  .nav-link:hover { color: #FFD700; }
+  .nav-link:hover::after { width: 100%; }
+
+  /* Buttons */
+  .btn-primary { background: linear-gradient(135deg, #003399 0%, #002366 100%); border: 1px solid rgba(255,255,255,0.15); color: #fff; font-weight: 600; border-radius: 12px; transition: all .25s; box-shadow: 0 4px 20px rgba(0,51,153,0.4); }
+  .btn-primary:hover { background: linear-gradient(135deg, #0044cc 0%, #003399 100%); box-shadow: 0 8px 30px rgba(0,51,153,0.6); transform: translateY(-2px); }
+  .btn-gold { background: linear-gradient(135deg, #FFD700 0%, #CCA900 100%); color: #002366; font-weight: 700; border-radius: 12px; transition: all .25s; box-shadow: 0 4px 20px rgba(255,215,0,0.3); }
+  .btn-gold:hover { box-shadow: 0 8px 30px rgba(255,215,0,0.5); transform: translateY(-2px); }
+  .btn-outline { border: 1.5px solid rgba(255,215,0,0.5); color: #FFD700; font-weight: 600; border-radius: 12px; transition: all .25s; }
+  .btn-outline:hover { background: rgba(255,215,0,0.1); border-color: #FFD700; transform: translateY(-2px); }
+
+  /* Feature Cards */
+  .feature-card { background: rgba(0,35,102,0.3); border: 1px solid rgba(255,255,255,0.08); border-radius: 12px; transition: all .3s; }
+  .feature-card:hover { background: rgba(0,51,153,0.4); border-color: rgba(255,215,0,0.25); transform: translateY(-5px); box-shadow: 0 16px 40px rgba(0,0,0,0.4); }
+
+  /* Progress Bar */
+  .progress-bar { height: 8px; border-radius: 99px; background: rgba(255,255,255,0.08); overflow: hidden; }
+  .progress-fill { height: 100%; border-radius: 99px; transition: width 1s ease; }
+
+  /* Timer Ring */
+  .timer-ring { position: relative; display: inline-flex; align-items: center; justify-content: center; }
+  .timer-ring svg { transform: rotate(-90deg); }
+
+  /* Countdown animate */
+  @keyframes countdown { from { stroke-dashoffset: 0; } to { stroke-dashoffset: 220; } }
+  .countdown-stroke { stroke-dasharray: 220; stroke-dashoffset: 0; animation: countdown 50s linear forwards; stroke: var(--gold); }
+
+  /* Option pills */
+  .option-btn { border: 1.5px solid rgba(255,255,255,0.12); border-radius: 12px; transition: all .2s; cursor: pointer; background: rgba(0,35,102,0.2); }
+  .option-btn:hover { border-color: rgba(255,215,0,0.5); background: rgba(0,51,153,0.35); }
+  .option-btn.correct { border-color: #50C878; background: rgba(80,200,120,0.15); }
+  .option-btn.wrong { border-color: #DC3545; background: rgba(220,53,69,0.15); }
+
+  /* Stat Card */
+  .stat-card { background: rgba(0,35,102,0.35); border: 1px solid rgba(255,255,255,0.08); border-radius: 12px; transition: all .3s; }
+  .stat-card:hover { border-color: rgba(255,215,0,0.2); }
+
+  /* Section Headers */
+  .section-badge { background: rgba(255,215,0,0.1); border: 1px solid rgba(255,215,0,0.25); color: #FFD700; border-radius: 99px; font-size: 0.75rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; display: inline-block; padding: 4px 14px; margin-bottom: 12px; }
+
+  /* Table */
+  .data-table th { background: rgba(0,35,102,0.6); color: rgba(232,237,248,0.6); font-size: 0.75rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.06em; padding: 12px 16px; }
+  .data-table td { padding: 14px 16px; border-bottom: 1px solid rgba(255,255,255,0.05); }
+  .data-table tr:hover td { background: rgba(0,51,153,0.2); }
+
+  /* Scrollbar */
+  ::-webkit-scrollbar { width: 6px; } ::-webkit-scrollbar-track { background: #060d1f; } ::-webkit-scrollbar-thumb { background: #003399; border-radius: 3px; }
+
+  /* Mobile menu */
+  #mobile-menu { transition: max-height 0.4s ease, opacity 0.3s ease; }
+
+  /* Tabs */
+  .tab-btn { border-radius: 8px; font-weight: 500; transition: all .2s; color: rgba(232,237,248,0.55); }
+  .tab-btn.active { background: rgba(0,51,153,0.5); color: #FFD700; border: 1px solid rgba(255,215,0,0.25); }
+  .tab-content { display: none; }
+  .tab-content.active { display: block; }
+
+  /* Accordion */
+  .accordion-content { max-height: 0; overflow: hidden; transition: max-height 0.4s ease; }
+  .accordion-item.open .accordion-content { max-height: 500px; }
+  .accordion-item.open .accordion-arrow { transform: rotate(180deg); }
+
+  /* Tooltip */
+  .tooltip { position: relative; }
+  .tooltip:hover .tooltip-text { opacity: 1; pointer-events: auto; }
+  .tooltip-text { opacity: 0; pointer-events: none; position: absolute; bottom: calc(100% + 8px); left: 50%; transform: translateX(-50%); background: rgba(0,20,60,0.95); border: 1px solid rgba(255,255,255,0.1); color: #fff; font-size: 0.75rem; padding: 6px 12px; border-radius: 8px; white-space: nowrap; transition: opacity .2s; z-index: 100; }
+
+  /* Badge */
+  .badge { display: inline-flex; align-items: center; gap: 4px; padding: 3px 10px; border-radius: 99px; font-size: 0.7rem; font-weight: 600; }
+  .badge-green { background: rgba(80,200,120,0.15); color: #50C878; border: 1px solid rgba(80,200,120,0.3); }
+  .badge-red { background: rgba(220,53,69,0.15); color: #DC3545; border: 1px solid rgba(220,53,69,0.3); }
+  .badge-gold { background: rgba(255,215,0,0.12); color: #FFD700; border: 1px solid rgba(255,215,0,0.3); }
+  .badge-blue { background: rgba(0,51,153,0.3); color: #c5d0ef; border: 1px solid rgba(0,51,153,0.5); }
+
+  /* Glow */
+  .glow-gold { box-shadow: 0 0 30px rgba(255,215,0,0.2); }
+  .glow-green { box-shadow: 0 0 20px rgba(80,200,120,0.2); }
+
+  /* Fade in */
+  @keyframes fadeUp { from { opacity:0; transform:translateY(24px); } to { opacity:1; transform:translateY(0); } }
+  .fade-up { animation: fadeUp 0.7s ease forwards; }
+  .delay-1 { animation-delay: 0.15s; opacity:0; }
+  .delay-2 { animation-delay: 0.3s; opacity:0; }
+  .delay-3 { animation-delay: 0.45s; opacity:0; }
+  .delay-4 { animation-delay: 0.6s; opacity:0; }
+
+  /* Shimmer */
+  @keyframes shimmer { from { background-position: -200% center; } to { background-position: 200% center; } }
+  .shimmer-text { background: linear-gradient(90deg, #FFD700 0%, #fff 40%, #FFD700 80%); background-size: 200% auto; -webkit-background-clip: text; -webkit-text-fill-color: transparent; animation: shimmer 4s linear infinite; }
+
+  /* Responsive helpers */
+  @media(max-width:768px) {
+    .hide-mobile { display: none !important; }
+    .hero-title { font-size: 2.2rem !important; }
+  }
+</style>
+</head>
+<body class="font-inter">
+
+<!-- ═══════════════════════════════════════════════════
+     STICKY GLASSMORPHISM NAVIGATION
+══════════════════════════════════════════════════════ -->
+<nav id="navbar" class="fixed top-0 left-0 right-0 z-50 glass-nav transition-all duration-300">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex items-center justify-between h-16">
+      <!-- Logo -->
+      <a href="#home" class="flex items-center gap-3 group">
+        <div class="w-9 h-9 rounded-xl bg-gradient-to-br from-cobalt-light to-cobalt flex items-center justify-center border border-gold/30 glow-gold">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" stroke="#FFD700" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+        <span class="font-sora font-800 text-xl tracking-tight"><span class="text-white">Dealx</span><span class="text-gold">Test</span></span>
+      </a>
+
+      <!-- Desktop Nav -->
+      <div class="hidden md:flex items-center gap-1">
+        <a href="#home" class="nav-link px-3 py-2 text-sm">Home</a>
+        <a href="#features" class="nav-link px-3 py-2 text-sm">Features</a>
+        <a href="#how-it-works" class="nav-link px-3 py-2 text-sm">How It Works</a>
+        <a href="#exam-module" class="nav-link px-3 py-2 text-sm">CBT Demo</a>
+        <a href="#student-dashboard" class="nav-link px-3 py-2 text-sm">Dashboard</a>
+        <a href="#pricing" class="nav-link px-3 py-2 text-sm">Pricing</a>
+        <a href="#about" class="nav-link px-3 py-2 text-sm">About</a>
+      </div>
+
+      <!-- CTA Buttons -->
+      <div class="hidden md:flex items-center gap-3">
+        <button onclick="showModal('login-modal')" class="btn-outline px-4 py-2 text-sm">Sign In</button>
+        <button onclick="showModal('signup-modal')" class="btn-gold px-5 py-2 text-sm">Get Started</button>
+      </div>
+
+      <!-- Hamburger -->
+      <button id="hamburger" onclick="toggleMobileMenu()" class="md:hidden flex flex-col gap-1.5 p-2 rounded-xl hover:bg-white/10 transition-all">
+        <span id="ham1" class="w-5 h-0.5 bg-white rounded transition-all duration-300"></span>
+        <span id="ham2" class="w-5 h-0.5 bg-white rounded transition-all duration-300"></span>
+        <span id="ham3" class="w-4 h-0.5 bg-white rounded transition-all duration-300"></span>
+      </button>
+    </div>
+
+    <!-- Mobile Menu -->
+    <div id="mobile-menu" class="md:hidden max-h-0 opacity-0 overflow-hidden">
+      <div class="pb-4 pt-2 space-y-1">
+        <a href="#home" onclick="closeMobileMenu()" class="block px-4 py-3 text-sm font-medium text-white/80 hover:text-gold hover:bg-white/5 rounded-xl transition-all">🏠 Home</a>
+        <a href="#features" onclick="closeMobileMenu()" class="block px-4 py-3 text-sm font-medium text-white/80 hover:text-gold hover:bg-white/5 rounded-xl transition-all">✨ Features</a>
+        <a href="#how-it-works" onclick="closeMobileMenu()" class="block px-4 py-3 text-sm font-medium text-white/80 hover:text-gold hover:bg-white/5 rounded-xl transition-all">⚙️ How It Works</a>
+        <a href="#exam-module" onclick="closeMobileMenu()" class="block px-4 py-3 text-sm font-medium text-white/80 hover:text-gold hover:bg-white/5 rounded-xl transition-all">📝 CBT Demo</a>
+        <a href="#student-dashboard" onclick="closeMobileMenu()" class="block px-4 py-3 text-sm font-medium text-white/80 hover:text-gold hover:bg-white/5 rounded-xl transition-all">📊 Dashboard</a>
+        <a href="#pricing" onclick="closeMobileMenu()" class="block px-4 py-3 text-sm font-medium text-white/80 hover:text-gold hover:bg-white/5 rounded-xl transition-all">💰 Pricing</a>
+        <a href="#about" onclick="closeMobileMenu()" class="block px-4 py-3 text-sm font-medium text-white/80 hover:text-gold hover:bg-white/5 rounded-xl transition-all">ℹ️ About</a>
+        <div class="flex gap-3 px-4 pt-3">
+          <button onclick="showModal('login-modal');closeMobileMenu()" class="btn-outline flex-1 px-4 py-2.5 text-sm">Sign In</button>
+          <button onclick="showModal('signup-modal');closeMobileMenu()" class="btn-gold flex-1 px-4 py-2.5 text-sm">Get Started</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<!-- ═══════════════════════════════════════════════════
+     HERO SECTION
+══════════════════════════════════════════════════════ -->
+<section id="home" class="hero-bg min-h-screen flex items-center relative overflow-hidden pt-16">
+  <div class="orb orb-blue" style="top:-10%;left:-5%;"></div>
+  <div class="orb orb-green" style="bottom:10%;right:5%;"></div>
+  <div class="orb orb-gold" style="top:40%;left:60%;"></div>
+
+  <!-- Grid overlay -->
+  <div style="position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,0.02) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,0.02) 1px,transparent 1px);background-size:48px 48px;pointer-events:none;"></div>
+
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 relative z-10">
+    <div class="grid lg:grid-cols-2 gap-16 items-center">
+      <!-- Left: Text -->
+      <div>
+        <div class="section-badge fade-up">🏆 Results as a Service Platform</div>
+        <h1 class="hero-title font-sora font-800 text-5xl lg:text-6xl leading-tight mt-4 mb-6 fade-up delay-1">
+          Ace <span class="shimmer-text">JAMB, WAEC</span><br/>& NECO with<br/>
+          <span class="text-emerald">AI Precision</span>
+        </h1>
+        <p class="text-white/65 text-lg leading-relaxed mb-8 max-w-lg fade-up delay-2">
+          Nigeria's most intelligent CBT platform. 50,000+ curated questions, real-time AI feedback, predictive pass scores, and personal tutor matching — all in one place.
+        </p>
+        <div class="flex flex-wrap gap-4 mb-10 fade-up delay-3">
+          <button onclick="showModal('signup-modal')" class="btn-gold px-7 py-3.5 text-base">
+            🚀 Start Free Trial
+          </button>
+          <a href="#exam-module" class="btn-outline px-7 py-3.5 text-base flex items-center gap-2">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><polygon points="5,3 19,12 5,21" fill="#FFD700"/></svg>
+            Try CBT Demo
+          </a>
+        </div>
+        <!-- Stats -->
+        <div class="grid grid-cols-3 gap-4 fade-up delay-4">
+          <div class="text-center">
+            <div class="text-2xl font-sora font-700 text-gold">50K+</div>
+            <div class="text-xs text-white/50 mt-1">Questions</div>
+          </div>
+          <div class="text-center border-x border-white/10">
+            <div class="text-2xl font-sora font-700 text-emerald">98%</div>
+            <div class="text-xs text-white/50 mt-1">Pass Rate</div>
+          </div>
+          <div class="text-center">
+            <div class="text-2xl font-sora font-700 text-white">24/7</div>
+            <div class="text-xs text-white/50 mt-1">AI Support</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right: CBT Preview Card -->
+      <div class="relative fade-up delay-2">
+        <div class="glass-card p-6 relative">
+          <!-- Card Header -->
+          <div class="flex items-center justify-between mb-5">
+            <div>
+              <div class="badge badge-blue mb-1">JAMB 2025 · Mathematics</div>
+              <div class="text-white font-semibold">Question 12 of 50</div>
+            </div>
+            <!-- Mini Timer -->
+            <div class="timer-ring">
+              <svg width="56" height="56" viewBox="0 0 80 80">
+                <circle cx="40" cy="40" r="35" fill="none" stroke="rgba(255,255,255,0.08)" stroke-width="6"/>
+                <circle cx="40" cy="40" r="35" fill="none" stroke="#FFD700" stroke-width="6" stroke-dasharray="220" stroke-dashoffset="66" stroke-linecap="round"/>
+              </svg>
+              <div class="absolute text-center">
+                <div class="text-gold font-700 text-sm font-sora">34s</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Progress Bar -->
+          <div class="progress-bar mb-5">
+            <div class="progress-fill bg-gradient-to-r from-cobalt-light to-emerald" style="width:24%"></div>
+          </div>
+
+          <!-- Question -->
+          <div class="bg-white/5 rounded-xl p-4 mb-5 border border-white/08">
+            <p class="text-white/90 text-sm leading-relaxed">
+              If <strong class="text-gold">P = {x : 2 ≤ x ≤ 8}</strong> and <strong class="text-gold">Q = {x : 4 ≤ x ≤ 12}</strong> are subsets of <strong class="text-gold">U = {x : 1 ≤ x ≤ 15}</strong>, find <strong class="text-gold">P ∩ Q'</strong>.
+            </p>
+          </div>
+
+          <!-- Options -->
+          <div class="space-y-2.5">
+            <div class="option-btn flex items-center gap-3 p-3">
+              <span class="w-7 h-7 rounded-lg bg-cobalt/60 flex items-center justify-center text-xs font-700 text-gold shrink-0">A</span>
+              <span class="text-sm text-white/80">{2, 3}</span>
+            </div>
+            <div class="option-btn correct flex items-center gap-3 p-3">
+              <span class="w-7 h-7 rounded-lg bg-emerald/20 flex items-center justify-center text-xs font-700 text-emerald shrink-0">B</span>
+              <span class="text-sm text-white/80">{2, 3, 4}</span>
+              <span class="ml-auto">✅</span>
+            </div>
+            <div class="option-btn flex items-center gap-3 p-3">
+              <span class="w-7 h-7 rounded-lg bg-cobalt/60 flex items-center justify-center text-xs font-700 text-gold shrink-0">C</span>
+              <span class="text-sm text-white/80">{5, 6, 7, 8}</span>
+            </div>
+            <div class="option-btn flex items-center gap-3 p-3">
+              <span class="w-7 h-7 rounded-lg bg-cobalt/60 flex items-center justify-center text-xs font-700 text-gold shrink-0">D</span>
+              <span class="text-sm text-white/80">{1, 2, 3}</span>
+            </div>
+          </div>
+
+          <!-- Bottom Score -->
+          <div class="flex items-center justify-between mt-5 pt-4 border-t border-white/08">
+            <div class="flex items-center gap-2">
+              <div class="badge badge-green">+2 pts ✓</div>
+              <div class="text-white/50 text-xs">Score: 22/24</div>
+            </div>
+            <button class="btn-primary px-4 py-2 text-xs">Next →</button>
+          </div>
+        </div>
+
+        <!-- Floating badges -->
+        <div class="absolute -top-4 -right-4 glass-card px-3 py-2 text-xs font-600 text-emerald border-emerald/30 glow-green">
+          🧠 AI-Powered
+        </div>
+        <div class="absolute -bottom-4 -left-4 glass-card px-3 py-2 text-xs font-600 text-gold border-gold/30">
+          ⭐ 87% Pass Probability
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════
+     FEATURES SECTION
+══════════════════════════════════════════════════════ -->
+<section id="features" class="py-24 mesh-bg relative">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="text-center mb-16">
+      <div class="section-badge">Platform Features</div>
+      <h2 class="font-sora text-4xl font-700 text-white mt-3 mb-4">Everything You Need to <span class="text-gold">Pass</span></h2>
+      <p class="text-white/55 max-w-2xl mx-auto">A complete RaaS ecosystem combining AI intelligence with exam-focused tools designed for Nigerian secondary school and college students.</p>
+    </div>
+
+    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-5">
+      <!-- Feature Cards -->
+      <div class="feature-card p-6">
+        <div class="w-12 h-12 rounded-xl bg-cobalt/60 border border-cobalt-light/50 flex items-center justify-center mb-4">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M9 12l2 2 4-4M7 3H5a2 2 0 00-2 2v16a2 2 0 002 2h14a2 2 0 002-2V5a2 2 0 00-2-2h-2" stroke="#FFD700" stroke-width="2" stroke-linecap="round"/></svg>
+        </div>
+        <h3 class="text-white font-600 text-lg mb-2">Intelligent CBT Engine</h3>
+        <p class="text-white/55 text-sm leading-relaxed">50-question batches randomized per subject, exam type, and topic. Instant green/red feedback per answer. 50s countdown timer per question.</p>
+        <div class="mt-4 flex gap-2 flex-wrap">
+          <span class="badge badge-gold">JAMB</span>
+          <span class="badge badge-blue">WAEC</span>
+          <span class="badge badge-green">NECO</span>
+        </div>
+      </div>
+
+      <div class="feature-card p-6">
+        <div class="w-12 h-12 rounded-xl bg-emerald/10 border border-emerald/30 flex items-center justify-center mb-4">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M22 12h-4l-3 9L9 3l-3 9H2" stroke="#50C878" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+        <h3 class="text-white font-600 text-lg mb-2">AI Performance Analytics</h3>
+        <p class="text-white/55 text-sm leading-relaxed">Predictive pass probability cards, topic-level performance breakdown, performance meters and hour-tracking to measure study time investment.</p>
+        <div class="mt-4">
+          <div class="flex items-center justify-between text-xs mb-1.5">
+            <span class="text-white/50">Pass Probability</span>
+            <span class="text-emerald font-600">87%</span>
+          </div>
+          <div class="progress-bar">
+            <div class="progress-fill bg-emerald" style="width:87%"></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="feature-card p-6">
+        <div class="w-12 h-12 rounded-xl bg-gold/10 border border-gold/30 flex items-center justify-center mb-4">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" stroke="#FFD700" stroke-width="2" stroke-linejoin="round"/></svg>
+        </div>
+        <h3 class="text-white font-600 text-lg mb-2">Star Ratings & Awards</h3>
+        <p class="text-white/55 text-sm leading-relaxed">Earn achievement badges and star ratings for batches with 75%+ scores. Visual awards system motivates consistent performance and improvement.</p>
+        <div class="mt-4 flex gap-1">
+          <span class="text-gold text-lg">★★★★</span><span class="text-white/20 text-lg">★</span>
+          <span class="text-xs text-white/50 self-center ml-2">4.2 avg rating</span>
+        </div>
+      </div>
+
+      <div class="feature-card p-6">
+        <div class="w-12 h-12 rounded-xl bg-cobalt/60 border border-cobalt-light/50 flex items-center justify-center mb-4">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="8" r="4" stroke="#c5d0ef" stroke-width="2"/><path d="M4 20c0-4 3.58-7 8-7s8 3 8 7" stroke="#c5d0ef" stroke-width="2" stroke-linecap="round"/></svg>
+        </div>
+        <h3 class="text-white font-600 text-lg mb-2">Tutor Matching System</h3>
+        <p class="text-white/55 text-sm leading-relaxed">AI-automated tutor assignment based on subject needs and performance gaps. Tutors earn per subject, per hour, and per student through integrated wallet.</p>
+        <div class="mt-4 flex items-center gap-3">
+          <div class="flex -space-x-2">
+            <div class="w-7 h-7 rounded-full bg-cobalt-light border-2 border-cobalt-dark flex items-center justify-center text-xs text-white">T</div>
+            <div class="w-7 h-7 rounded-full bg-emerald/40 border-2 border-cobalt-dark flex items-center justify-center text-xs text-white">T</div>
+            <div class="w-7 h-7 rounded-full bg-gold/40 border-2 border-cobalt-dark flex items-center justify-center text-xs text-cobalt">T</div>
+          </div>
+          <span class="text-xs text-white/50">240+ approved tutors</span>
+        </div>
+      </div>
+
+      <div class="feature-card p-6">
+        <div class="w-12 h-12 rounded-xl bg-cobalt/60 border border-cobalt-light/50 flex items-center justify-center mb-4">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M4 19.5A2.5 2.5 0 016.5 17H20" stroke="#c5d0ef" stroke-width="2" stroke-linecap="round"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 014 19.5v-15A2.5 2.5 0 016.5 2z" stroke="#c5d0ef" stroke-width="2"/></svg>
+        </div>
+        <h3 class="text-white font-600 text-lg mb-2">AI Study Plans</h3>
+        <p class="text-white/55 text-sm leading-relaxed">Personalized study timelines generated from your uploaded academic reports. Topic learning modules, academic searches, and kickstart learning from dashboard.</p>
+        <div class="mt-4 space-y-2">
+          <div class="flex items-center gap-2 text-xs text-white/60">
+            <span class="w-2 h-2 rounded-full bg-emerald shrink-0"></span> Week 1-2: Number Theory
+          </div>
+          <div class="flex items-center gap-2 text-xs text-white/60">
+            <span class="w-2 h-2 rounded-full bg-gold shrink-0"></span> Week 3-4: Algebra & Sets
+          </div>
+          <div class="flex items-center gap-2 text-xs text-white/40">
+            <span class="w-2 h-2 rounded-full bg-white/20 shrink-0"></span> Week 5-6: Geometry
+          </div>
+        </div>
+      </div>
+
+      <div class="feature-card p-6">
+        <div class="w-12 h-12 rounded-xl bg-crimson/10 border border-crimson/30 flex items-center justify-center mb-4">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><rect x="3" y="3" width="18" height="18" rx="3" stroke="#DC3545" stroke-width="2"/><path d="M9 9h6M9 12h6M9 15h4" stroke="#DC3545" stroke-width="2" stroke-linecap="round"/></svg>
+        </div>
+        <h3 class="text-white font-600 text-lg mb-2">Automated Report Cards</h3>
+        <p class="text-white/55 text-sm leading-relaxed">Comprehensive auto-generated reports after each batch. Topic-level breakdowns showing strengths, weaknesses, scores, and detailed performance assessments.</p>
+        <div class="mt-4 flex gap-2">
+          <span class="badge badge-green">Score: 88/100</span>
+          <span class="badge badge-red">Improve: Geometry</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════
+     HOW IT WORKS
+══════════════════════════════════════════════════════ -->
+<section id="how-it-works" class="py-24 relative overflow-hidden">
+  <div class="orb orb-blue" style="top:0;right:-10%;opacity:0.12;"></div>
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="text-center mb-16">
+      <div class="section-badge">Process</div>
+      <h2 class="font-sora text-4xl font-700 text-white mt-3 mb-4">How <span class="text-gold">DealxTest</span> Works</h2>
+      <p class="text-white/55 max-w-xl mx-auto">From sign-up to exam readiness in four intelligent steps, powered by multi-agent AI orchestration.</p>
+    </div>
+
+    <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6 relative">
+      <!-- Connector line desktop -->
+      <div class="hidden lg:block absolute top-10 left-[12.5%] right-[12.5%] h-0.5 bg-gradient-to-r from-transparent via-gold/30 to-transparent z-0"></div>
+
+      <!-- Step 1 -->
+      <div class="glass-card p-6 text-center relative z-10">
+        <div class="w-14 h-14 rounded-full bg-gradient-to-br from-cobalt-light to-cobalt border-2 border-gold/40 flex items-center justify-center mx-auto mb-4 font-sora font-700 text-gold text-xl">1</div>
+        <h3 class="text-white font-600 mb-2">Sign Up & Profile</h3>
+        <p class="text-white/50 text-sm">Create your account, submit personal details, school info, and upload academic reports for AI personalization.</p>
+      </div>
+      <!-- Step 2 -->
+      <div class="glass-card p-6 text-center relative z-10">
+        <div class="w-14 h-14 rounded-full bg-gradient-to-br from-cobalt-light to-cobalt border-2 border-gold/40 flex items-center justify-center mx-auto mb-4 font-sora font-700 text-gold text-xl">2</div>
+        <h3 class="text-white font-600 mb-2">AI Setup</h3>
+        <p class="text-white/50 text-sm">Multi-agent system analyzes your profile, grounding questions against Nigerian curricula and your exam goals.</p>
+      </div>
+      <!-- Step 3 -->
+      <div class="glass-card p-6 text-center relative z-10">
+        <div class="w-14 h-14 rounded-full bg-gradient-to-br from-cobalt-light to-cobalt border-2 border-gold/40 flex items-center justify-center mx-auto mb-4 font-sora font-700 text-gold text-xl">3</div>
+        <h3 class="text-white font-600 mb-2">Take CBT Exams</h3>
+        <p class="text-white/50 text-sm">50-question batches, 50s timer per question, instant feedback. Track scores and earn awards for high performance.</p>
+      </div>
+      <!-- Step 4 -->
+      <div class="glass-card p-6 text-center relative z-10">
+        <div class="w-14 h-14 rounded-full bg-gradient-to-br from-cobalt-light to-cobalt border-2 border-gold/40 flex items-center justify-center mx-auto mb-4 font-sora font-700 text-gold text-xl">4</div>
+        <h3 class="text-white font-600 mb-2">Track & Improve</h3>
+        <p class="text-white/50 text-sm">Review AI report cards, follow study plans, request tutor support, and watch your pass probability grow.</p>
+      </div>
+    </div>
+
+    <!-- AI Agents Info -->
+    <div class="mt-16 glass-card p-8">
+      <div class="grid md:grid-cols-2 gap-10 items-center">
+        <div>
+          <div class="section-badge">Multi-Agent AI Engine</div>
+          <h3 class="font-sora text-2xl font-700 text-white mt-3 mb-4">Powered by 5 Specialized AI Agents</h3>
+          <p class="text-white/55 text-sm leading-relaxed mb-6">Our proprietary RaaS engine orchestrates intelligent agents that work in concert to generate, validate, and deliver curriculum-accurate examination content.</p>
+          <div class="space-y-3">
+            <div class="flex items-start gap-3">
+              <span class="w-8 h-8 rounded-lg bg-cobalt/60 border border-cobalt-light/50 flex items-center justify-center text-xs shrink-0">🎯</span>
+              <div><div class="text-white/80 text-sm font-500">Coordinator Agent</div><div class="text-white/40 text-xs">Orchestrates all agents and manages student intake flow</div></div>
+            </div>
+            <div class="flex items-start gap-3">
+              <span class="w-8 h-8 rounded-lg bg-cobalt/60 border border-cobalt-light/50 flex items-center justify-center text-xs shrink-0">📥</span>
+              <div><div class="text-white/80 text-sm font-500">Intake Agent</div><div class="text-white/40 text-xs">Extracts student level, subjects, and exam goals from reports</div></div>
+            </div>
+            <div class="flex items-start gap-3">
+              <span class="w-8 h-8 rounded-lg bg-cobalt/60 border border-cobalt-light/50 flex items-center justify-center text-xs shrink-0">🔬</span>
+              <div><div class="text-white/80 text-sm font-500">Researcher Agent</div><div class="text-white/40 text-xs">Pulls from Nigerian curricula RAG system with verified content</div></div>
+            </div>
+            <div class="flex items-start gap-3">
+              <span class="w-8 h-8 rounded-lg bg-gold/10 border border-gold/30 flex items-center justify-center text-xs shrink-0">✍️</span>
+              <div><div class="text-white/80 text-sm font-500">Question Composer</div><div class="text-white/40 text-xs">Generates randomized 50-question batches using COSTAR method</div></div>
+            </div>
+            <div class="flex items-start gap-3">
+              <span class="w-8 h-8 rounded-lg bg-emerald/10 border border-emerald/30 flex items-center justify-center text-xs shrink-0">✅</span>
+              <div><div class="text-white/80 text-sm font-500">Quality Evaluator</div><div class="text-white/40 text-xs">Ensures 90%+ grounding accuracy against West African curriculum</div></div>
+            </div>
+          </div>
+        </div>
+        <div class="space-y-4">
+          <div class="stat-card p-4 flex items-center gap-4">
+            <div class="w-10 h-10 rounded-xl bg-cobalt/60 flex items-center justify-center text-lg shrink-0">🎓</div>
+            <div><div class="text-white font-600">Google Vertex AI</div><div class="text-white/45 text-xs">Gemini 1.5 Pro multimodal reasoning</div></div>
+            <div class="ml-auto badge badge-green">Active</div>
+          </div>
+          <div class="stat-card p-4 flex items-center gap-4">
+            <div class="w-10 h-10 rounded-xl bg-cobalt/60 flex items-center justify-center text-lg shrink-0">⚡</div>
+            <div><div class="text-white font-600">Vertex AI Agent Builder</div><div class="text-white/45 text-xs">Scalable agentic workflow runtime</div></div>
+            <div class="ml-auto badge badge-green">Active</div>
+          </div>
+          <div class="stat-card p-4 flex items-center gap-4">
+            <div class="w-10 h-10 rounded-xl bg-cobalt/60 flex items-center justify-center text-lg shrink-0">💳</div>
+            <div><div class="text-white font-600">Stripe Billing</div><div class="text-white/45 text-xs">Naira payments & tutor wallet</div></div>
+            <div class="ml-auto badge badge-green">Active</div>
+          </div>
+          <div class="stat-card p-4 flex items-center gap-4">
+            <div class="w-10 h-10 rounded-xl bg-cobalt/60 flex items-center justify-center text-lg shrink-0">🗄️</div>
+            <div><div class="text-white font-600">Multi-Tenant RAG</div><div class="text-white/45 text-xs">Verified Nigerian curricula database</div></div>
+            <div class="ml-auto badge badge-green">Active</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════
+     CBT EXAM MODULE DEMO
+══════════════════════════════════════════════════════ -->
+<section id="exam-module" class="py-24 mesh-bg relative">
+  <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="text-center mb-12">
+      <div class="section-badge">Interactive CBT Demo</div>
+      <h2 class="font-sora text-4xl font-700 text-white mt-3 mb-4">Try the <span class="text-gold">CBT Experience</span></h2>
+      <p class="text-white/55">Experience DealxTest's exam interface. Select an answer and see instant AI feedback.</p>
+    </div>
+
+    <!-- Exam Interface -->
+    <div class="glass-card p-0 overflow-hidden">
+      <!-- Exam Header Bar -->
+      <div class="bg-cobalt/60 border-b border-white/08 px-6 py-4 flex flex-wrap gap-4 items-center justify-between">
+        <div class="flex items-center gap-4">
+          <div>
+            <div class="text-white/50 text-xs mb-0.5">Exam Type</div>
+            <div class="text-white font-600 text-sm">JAMB 2025 – Physics</div>
+          </div>
+          <div class="w-px h-8 bg-white/10"></div>
+          <div>
+            <div class="text-white/50 text-xs mb-0.5">Batch</div>
+            <div class="text-white font-600 text-sm">1 of 3</div>
+          </div>
+          <div class="w-px h-8 bg-white/10"></div>
+          <div>
+            <div class="text-white/50 text-xs mb-0.5">Score</div>
+            <div class="text-emerald font-700 text-sm" id="live-score">16 pts</div>
+          </div>
+        </div>
+        <!-- Timer -->
+        <div class="flex items-center gap-3">
+          <div class="timer-ring">
+            <svg width="52" height="52" viewBox="0 0 80 80">
+              <circle cx="40" cy="40" r="34" fill="none" stroke="rgba(255,255,255,0.08)" stroke-width="7"/>
+              <circle id="timer-circle" cx="40" cy="40" r="34" fill="none" stroke="#FFD700" stroke-width="7" stroke-dasharray="214" stroke-linecap="round" style="transform-origin:center;transform:rotate(-90deg);transition:stroke-dashoffset 1s linear;"/>
+            </svg>
+            <div class="absolute text-center">
+              <div class="text-gold font-700 text-sm font-sora" id="timer-display">50</div>
+            </div>
+          </div>
+          <div>
+            <div class="text-white/50 text-xs">Time left</div>
+            <div class="text-white text-xs font-500">per question</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Question Nav Strip -->
+      <div class="px-6 py-3 border-b border-white/08 flex gap-1.5 overflow-x-auto">
+        <div id="q-nav" class="flex gap-1.5">
+          <!-- Generated by JS -->
+        </div>
+      </div>
+
+      <!-- Question Body -->
+      <div class="p-6 md:p-8">
+        <!-- Progress -->
+        <div class="flex items-center justify-between text-xs text-white/50 mb-2">
+          <span id="q-label">Question 1 of 50</span>
+          <span id="q-pct">2% complete</span>
+        </div>
+        <div class="progress-bar mb-6">
+          <div class="progress-fill bg-gradient-to-r from-cobalt-light to-gold" id="q-progress" style="width:2%"></div>
+        </div>
+
+        <!-- Question Text -->
+        <div class="bg-white/04 rounded-xl p-5 border border-white/08 mb-6">
+          <div class="text-white/40 text-xs font-500 mb-2">QUESTION</div>
+          <p class="text-white/90 leading-relaxed" id="q-text">
+            A body of mass 5 kg is moving with a velocity of 4 m/s. A force is applied to it for 3 seconds, after which the velocity becomes 10 m/s. What is the magnitude of the applied force?
+          </p>
+        </div>
+
+        <!-- Options -->
+        <div id="options-container" class="space-y-3 mb-8">
+          <!-- Filled by JS -->
+        </div>
+
+        <!-- Feedback Banner -->
+        <div id="feedback-banner" class="hidden rounded-xl p-4 mb-6 text-sm font-500"></div>
+
+        <!-- Bottom Controls -->
+        <div class="flex items-center justify-between">
+          <button onclick="prevQuestion()" class="btn-outline px-5 py-2.5 text-sm flex items-center gap-2">
+            ← Previous
+          </button>
+          <div class="text-center">
+            <div class="text-white/30 text-xs" id="batch-info">Batch 1 · 50 Questions · 2pts each</div>
+          </div>
+          <button onclick="nextQuestion()" class="btn-primary px-5 py-2.5 text-sm flex items-center gap-2">
+            Next →
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════
+     STUDENT DASHBOARD PREVIEW
+══════════════════════════════════════════════════════ -->
+<section id="student-dashboard" class="py-24 relative">
+  <div class="orb orb-green" style="bottom:0;left:0;opacity:0.1;"></div>
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="text-center mb-12">
+      <div class="section-badge">Student Dashboard</div>
+      <h2 class="font-sora text-4xl font-700 text-white mt-3 mb-4">Your Personal <span class="text-gold">Results Hub</span></h2>
+      <p class="text-white/55 max-w-2xl mx-auto">Track every aspect of your exam preparation journey with real-time analytics and AI-driven insights.</p>
+    </div>
+
+    <!-- Dashboard Tabs -->
+    <div class="flex gap-2 flex-wrap mb-6">
+      <button class="tab-btn active px-4 py-2 text-sm" onclick="switchTab(this,'tab-overview')">📊 Overview</button>
+      <button class="tab-btn px-4 py-2 text-sm" onclick="switchTab(this,'tab-analytics')">📈 Analytics</button>
+      <button class="tab-btn px-4 py-2 text-sm" onclick="switchTab(this,'tab-study')">📚 Study Center</button>
+      <button class="tab-btn px-4 py-2 text-sm" onclick="switchTab(this,'tab-reports')">📋 Report Cards</button>
+      <button class="tab-btn px-4 py-2 text-sm" onclick="switchTab(this,'tab-tutor')">👨‍🏫 Tutor Support</button>
+    </div>
+
+    <!-- Tab: Overview -->
+    <div id="tab-overview" class="tab-content active">
+      <!-- Top Stats Row -->
+      <div class="grid grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
+        <div class="stat-card p-5">
+          <div class="text-white/50 text-xs mb-1">Total Study Hours</div>
+          <div class="text-3xl font-sora font-700 text-white">42<span class="text-lg text-white/50">h</span> 18<span class="text-sm text-white/50">m</span></div>
+          <div class="badge badge-green mt-2">↑ 6h this week</div>
+        </div>
+        <div class="stat-card p-5">
+          <div class="text-white/50 text-xs mb-1">Questions Answered</div>
+          <div class="text-3xl font-sora font-700 text-gold">1,850</div>
+          <div class="badge badge-gold mt-2">73% correct</div>
+        </div>
+        <div class="stat-card p-5">
+          <div class="text-white/50 text-xs mb-1">Batches Completed</div>
+          <div class="text-3xl font-sora font-700 text-white">37</div>
+          <div class="badge badge-blue mt-2">12 with ≥75%</div>
+        </div>
+        <div class="stat-card p-5">
+          <div class="text-white/50 text-xs mb-1">JAMB Pass Probability</div>
+          <div class="text-3xl font-sora font-700 text-emerald">87%</div>
+          <div class="badge badge-green mt-2">↑ 4% this month</div>
+        </div>
+      </div>
+
+      <!-- Main Dashboard Grid -->
+      <div class="grid lg:grid-cols-3 gap-5">
+        <!-- Predictive Insight Card -->
+        <div class="lg:col-span-2 glass-card p-6">
+          <div class="flex items-center justify-between mb-5">
+            <h3 class="text-white font-600">Predictive Pass Analysis</h3>
+            <span class="badge badge-gold">AI Powered</span>
+          </div>
+          <div class="space-y-4">
+            <div>
+              <div class="flex items-center justify-between text-sm mb-2">
+                <span class="text-white/70">Mathematics</span>
+                <span class="text-emerald font-600">91%</span>
+              </div>
+              <div class="progress-bar">
+                <div class="progress-fill bg-gradient-to-r from-emerald to-emerald/60" style="width:91%"></div>
+              </div>
+            </div>
+            <div>
+              <div class="flex items-center justify-between text-sm mb-2">
+                <span class="text-white/70">English Language</span>
+                <span class="text-emerald font-600">88%</span>
+              </div>
+              <div class="progress-bar">
+                <div class="progress-fill bg-gradient-to-r from-emerald to-emerald/60" style="width:88%"></div>
+              </div>
+            </div>
+            <div>
+              <div class="flex items-center justify-between text-sm mb-2">
+                <span class="text-white/70">Physics</span>
+                <span class="text-gold font-600">74%</span>
+              </div>
+              <div class="progress-bar">
+                <div class="progress-fill bg-gradient-to-r from-gold/80 to-gold/40" style="width:74%"></div>
+              </div>
+            </div>
+            <div>
+              <div class="flex items-center justify-between text-sm mb-2">
+                <span class="text-white/70">Chemistry</span>
+                <span class="text-crimson font-600">61%</span>
+              </div>
+              <div class="progress-bar">
+                <div class="progress-fill bg-gradient-to-r from-crimson to-crimson/50" style="width:61%"></div>
+              </div>
+            </div>
+            <div>
+              <div class="flex items-center justify-between text-sm mb-2">
+                <span class="text-white/70">Biology</span>
+                <span class="text-emerald font-600">82%</span>
+              </div>
+              <div class="progress-bar">
+                <div class="progress-fill bg-gradient-to-r from-emerald to-emerald/60" style="width:82%"></div>
+              </div>
+            </div>
+          </div>
+          <!-- AI Insight Box -->
+          <div class="mt-5 bg-cobalt/40 rounded-xl p-4 border border-cobalt-light/30">
+            <div class="text-xs text-gold font-600 mb-1">🤖 AI Insight</div>
+            <p class="text-white/65 text-xs leading-relaxed">Focus on <strong class="text-white">Chemistry – Organic Reactions</strong> and <strong class="text-white">Physics – Optics</strong>. Your pass probability would increase to <strong class="text-emerald">94%</strong> if you complete 3 more Chemistry batches this week.</p>
+          </div>
+        </div>
+
+        <!-- Right Column -->
+        <div class="space-y-5">
+          <!-- Performance Meter -->
+          <div class="glass-card p-5">
+            <h3 class="text-white font-600 mb-4 text-sm">Overall Performance</h3>
+            <div class="relative flex items-center justify-center">
+              <svg width="140" height="80" viewBox="0 0 140 80">
+                <path d="M10 70 A60 60 0 0 1 130 70" fill="none" stroke="rgba(255,255,255,0.07)" stroke-width="12" stroke-linecap="round"/>
+                <path d="M10 70 A60 60 0 0 1 130 70" fill="none" stroke="url(#meter-grad)" stroke-width="12" stroke-linecap="round" stroke-dasharray="188" stroke-dashoffset="47"/>
+                <defs>
+                  <linearGradient id="meter-grad" x1="0%" y1="0%" x2="100%" y2="0%">
+                    <stop offset="0%" stop-color="#DC3545"/>
+                    <stop offset="50%" stop-color="#FFD700"/>
+                    <stop offset="100%" stop-color="#50C878"/>
+                  </linearGradient>
+                </defs>
+              </svg>
+              <div class="absolute bottom-0 text-center">
+                <div class="text-3xl font-sora font-700 text-white">75%</div>
+                <div class="text-xs text-white/50">Overall Score</div>
+              </div>
+            </div>
+            <div class="flex justify-between text-xs text-white/40 mt-2">
+              <span>0%</span><span class="text-gold">75%</span><span>100%</span>
+            </div>
+          </div>
+
+          <!-- Awards -->
+          <div class="glass-card p-5">
+            <h3 class="text-white font-600 mb-3 text-sm">Recent Awards</h3>
+            <div class="space-y-2.5">
+              <div class="flex items-center gap-3 bg-gold/08 rounded-lg p-2.5 border border-gold/15">
+                <span class="text-xl">🏆</span>
+                <div><div class="text-white/80 text-xs font-500">Top Performer</div><div class="text-white/40 text-xs">Maths Batch #12</div></div>
+                <div class="ml-auto text-gold text-sm font-700">100%</div>
+              </div>
+              <div class="flex items-center gap-3 bg-cobalt/30 rounded-lg p-2.5">
+                <span class="text-xl">⭐</span>
+                <div><div class="text-white/80 text-xs font-500">5-Star Batch</div><div class="text-white/40 text-xs">English Batch #8</div></div>
+                <div class="ml-auto text-gold text-sm font-700">92%</div>
+              </div>
+              <div class="flex items-center gap-3 bg-cobalt/30 rounded-lg p-2.5">
+                <span class="text-xl">🎯</span>
+                <div><div class="text-white/80 text-xs font-500">Streak Master</div><div class="text-white/40 text-xs">7 days consecutive</div></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Next Batch Recommendation -->
+          <div class="glass-card p-5 border-gold/20 glow-gold">
+            <div class="text-xs text-gold font-600 mb-2">🎯 Recommended Next</div>
+            <div class="text-white font-600 mb-1">Chemistry – Organic Reactions</div>
+            <div class="text-white/50 text-xs mb-3">50 questions · ~42 mins · High priority</div>
+            <button onclick="showModal('signup-modal')" class="btn-gold w-full py-2.5 text-sm">Start Batch →</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Tab: Analytics -->
+    <div id="tab-analytics" class="tab-content">
+      <div class="grid lg:grid-cols-2 gap-5">
+        <div class="glass-card p-6">
+          <h3 class="text-white font-600 mb-5">Weekly Performance Trend</h3>
+          <div class="space-y-3">
+            <div class="flex items-end gap-2 h-32">
+              <div class="flex flex-col items-center gap-1 flex-1">
+                <div class="w-full rounded-t-lg bg-cobalt/60 relative" style="height:40%"><div class="w-full h-full rounded-t-lg bg-gradient-to-t from-cobalt-light to-cobalt opacity-80"></div></div>
+                <span class="text-white/40 text-xs">Mon</span>
+              </div>
+              <div class="flex flex-col items-center gap-1 flex-1">
+                <div class="w-full rounded-t-lg" style="height:65%"><div class="w-full h-full rounded-t-lg bg-gradient-to-t from-cobalt-light to-blue-400"></div></div>
+                <span class="text-white/40 text-xs">Tue</span>
+              </div>
+              <div class="flex flex-col items-center gap-1 flex-1">
+                <div class="w-full rounded-t-lg" style="height:55%"><div class="w-full h-full rounded-t-lg bg-gradient-to-t from-cobalt-light to-blue-400"></div></div>
+                <span class="text-white/40 text-xs">Wed</span>
+              </div>
+              <div class="flex flex-col items-center gap-1 flex-1">
+                <div class="w-full rounded-t-lg" style="height:80%"><div class="w-full h-full rounded-t-lg bg-gradient-to-t from-emerald/80 to-emerald/40"></div></div>
+                <span class="text-white/40 text-xs">Thu</span>
+              </div>
+              <div class="flex flex-col items-center gap-1 flex-1">
+                <div class="w-full rounded-t-lg" style="height:70%"><div class="w-full h-full rounded-t-lg bg-gradient-to-t from-cobalt-light to-blue-400"></div></div>
+                <span class="text-white/40 text-xs">Fri</span>
+              </div>
+              <div class="flex flex-col items-center gap-1 flex-1">
+                <div class="w-full rounded-t-lg" style="height:90%"><div class="w-full h-full rounded-t-lg bg-gradient-to-t from-gold/80 to-gold/40"></div></div>
+                <span class="text-white/40 text-xs">Sat</span>
+              </div>
+              <div class="flex flex-col items-center gap-1 flex-1">
+                <div class="w-full rounded-t-lg" style="height:75%"><div class="w-full h-full rounded-t-lg bg-gradient-to-t from-cobalt-light to-blue-400"></div></div>
+                <span class="text-white/40 text-xs">Sun</span>
+              </div>
+            </div>
+            <div class="flex items-center gap-4 text-xs text-white/40">
+              <span class="flex items-center gap-1"><span class="w-3 h-3 rounded bg-gradient-to-r from-cobalt-light to-blue-400"></span>Below Target</span>
+              <span class="flex items-center gap-1"><span class="w-3 h-3 rounded bg-gradient-to-r from-emerald/80 to-emerald/40"></span>On Target</span>
+              <span class="flex items-center gap-1"><span class="w-3 h-3 rounded bg-gradient-to-r from-gold/80 to-gold/40"></span>Exceeded</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="glass-card p-6">
+          <h3 class="text-white font-600 mb-5">Subject Performance Breakdown</h3>
+          <div class="overflow-x-auto">
+            <table class="w-full data-table">
+              <thead><tr><th class="text-left rounded-tl-lg">Subject</th><th class="text-center">Batches</th><th class="text-center">Avg Score</th><th class="text-center rounded-tr-lg">Trend</th></tr></thead>
+              <tbody class="text-sm text-white/70">
+                <tr><td class="font-500 text-white">Mathematics</td><td class="text-center">9</td><td class="text-center text-emerald font-600">88%</td><td class="text-center text-emerald">↑ +3%</td></tr>
+                <tr><td class="font-500 text-white">English</td><td class="text-center">8</td><td class="text-center text-emerald font-600">85%</td><td class="text-center text-emerald">↑ +5%</td></tr>
+                <tr><td class="font-500 text-white">Physics</td><td class="text-center">7</td><td class="text-center text-gold font-600">74%</td><td class="text-center text-gold">→ 0%</td></tr>
+                <tr><td class="font-500 text-white">Chemistry</td><td class="text-center">6</td><td class="text-center text-crimson font-600">61%</td><td class="text-center text-crimson">↓ -2%</td></tr>
+                <tr><td class="font-500 text-white">Biology</td><td class="text-center">7</td><td class="text-center text-emerald font-600">80%</td><td class="text-center text-emerald">↑ +7%</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="glass-card p-6 lg:col-span-2">
+          <h3 class="text-white font-600 mb-5">Time Spent Analysis</h3>
+          <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+            <div class="text-center bg-cobalt/30 rounded-xl p-4">
+              <div class="text-2xl font-sora font-700 text-white">42h</div>
+              <div class="text-xs text-white/50 mt-1">Total Hours</div>
+            </div>
+            <div class="text-center bg-cobalt/30 rounded-xl p-4">
+              <div class="text-2xl font-sora font-700 text-gold">6.0h</div>
+              <div class="text-xs text-white/50 mt-1">This Week</div>
+            </div>
+            <div class="text-center bg-cobalt/30 rounded-xl p-4">
+              <div class="text-2xl font-sora font-700 text-emerald">1.4h</div>
+              <div class="text-xs text-white/50 mt-1">Daily Average</div>
+            </div>
+            <div class="text-center bg-cobalt/30 rounded-xl p-4">
+              <div class="text-2xl font-sora font-700 text-white">14m</div>
+              <div class="text-xs text-white/50 mt-1">Per Batch Avg</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Tab: Study Center -->
+    <div id="tab-study" class="tab-content">
+      <div class="grid lg:grid-cols-3 gap-5">
+        <div class="lg:col-span-2 space-y-5">
+          <div class="glass-card p-6">
+            <div class="flex items-center justify-between mb-5">
+              <h3 class="text-white font-600">AI Study Plan – JAMB 2025</h3>
+              <span class="badge badge-gold">8 weeks left</span>
+            </div>
+            <div class="space-y-3">
+              <div class="flex items-start gap-4 p-3 bg-emerald/08 rounded-xl border border-emerald/20">
+                <div class="w-8 h-8 rounded-lg bg-emerald/20 flex items-center justify-center text-emerald text-sm shrink-0 font-700">✓</div>
+                <div class="flex-1">
+                  <div class="text-white/80 text-sm font-500">Week 1–2: Number Theory & Algebra</div>
+                  <div class="text-white/40 text-xs mt-0.5">Completed • Score: 88% avg</div>
+                  <div class="progress-bar mt-2"><div class="progress-fill bg-emerald" style="width:100%"></div></div>
+                </div>
+              </div>
+              <div class="flex items-start gap-4 p-3 bg-gold/06 rounded-xl border border-gold/20">
+                <div class="w-8 h-8 rounded-lg bg-gold/20 flex items-center justify-center text-gold text-sm shrink-0 font-700">▶</div>
+                <div class="flex-1">
+                  <div class="text-white/80 text-sm font-500">Week 3–4: Sets, Statistics & Probability</div>
+                  <div class="text-white/40 text-xs mt-0.5">In Progress • 3 batches remaining</div>
+                  <div class="progress-bar mt-2"><div class="progress-fill bg-gold" style="width:60%"></div></div>
+                </div>
+                <button class="btn-gold px-3 py-1.5 text-xs shrink-0">Continue</button>
+              </div>
+              <div class="flex items-start gap-4 p-3 bg-cobalt/30 rounded-xl">
+                <div class="w-8 h-8 rounded-lg bg-cobalt/40 flex items-center justify-center text-white/30 text-sm shrink-0 font-700">5</div>
+                <div class="flex-1">
+                  <div class="text-white/50 text-sm font-500">Week 5–6: Geometry & Trigonometry</div>
+                  <div class="text-white/30 text-xs mt-0.5">Upcoming • Starts Nov 18</div>
+                  <div class="progress-bar mt-2"><div class="progress-fill bg-cobalt-light/40" style="width:0%"></div></div>
+                </div>
+              </div>
+              <div class="flex items-start gap-4 p-3 bg-cobalt/30 rounded-xl">
+                <div class="w-8 h-8 rounded-lg bg-cobalt/40 flex items-center justify-center text-white/30 text-sm shrink-0 font-700">7</div>
+                <div class="flex-1">
+                  <div class="text-white/50 text-sm font-500">Week 7–8: Calculus & Coordinate Geometry</div>
+                  <div class="text-white/30 text-xs mt-0.5">Upcoming • Final stretch</div>
+                  <div class="progress-bar mt-2"><div class="progress-fill bg-cobalt-light/40" style="width:0%"></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- Kickstart Modules -->
+          <div class="glass-card p-6">
+            <h3 class="text-white font-600 mb-4">Kickstart Learning Modules</h3>
+            <div class="grid sm:grid-cols-2 gap-3">
+              <div class="feature-card p-4 flex items-center gap-3 cursor-pointer">
+                <span class="text-2xl">🧮</span>
+                <div><div class="text-white/80 text-sm font-500">Algebra Fundamentals</div><div class="text-white/40 text-xs">12 topics · 3h content</div></div>
+              </div>
+              <div class="feature-card p-4 flex items-center gap-3 cursor-pointer">
+                <span class="text-2xl">⚛️</span>
+                <div><div class="text-white/80 text-sm font-500">Physics Mechanics</div><div class="text-white/40 text-xs">10 topics · 2.5h content</div></div>
+              </div>
+              <div class="feature-card p-4 flex items-center gap-3 cursor-pointer">
+                <span class="text-2xl">🧪</span>
+                <div><div class="text-white/80 text-sm font-500">Organic Chemistry</div><div class="text-white/40 text-xs">8 topics · 2h content</div></div>
+              </div>
+              <div class="feature-card p-4 flex items-center gap-3 cursor-pointer">
+                <span class="text-2xl">📖</span>
+                <div><div class="text-white/80 text-sm font-500">English Comprehension</div><div class="text-white/40 text-xs">15 topics · 4h content</div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- Academic Search -->
+        <div class="space-y-5">
+          <div class="glass-card p-5">
+            <h3 class="text-white font-600 mb-3 text-sm">AI Academic Search</h3>
+            <div class="relative mb-3">
+              <input type="text" placeholder="Search topics, concepts..." class="w-full bg-cobalt/40 border border-white/10 rounded-xl px-4 py-2.5 text-sm text-white placeholder-white/30 focus:outline-none focus:border-gold/50"/>
+              <button class="absolute right-3 top-1/2 -translate-y-1/2 text-gold">🔍</button>
+            </div>
+            <div class="space-y-2">
+              <div class="p-2.5 rounded-lg bg-cobalt/30 text-xs text-white/60 cursor-pointer hover:bg-cobalt/50 transition-all">Newton's Laws of Motion</div>
+              <div class="p-2.5 rounded-lg bg-cobalt/30 text-xs text-white/60 cursor-pointer hover:bg-cobalt/50 transition-all">Quadratic Equations – JAMB</div>
+              <div class="p-2.5 rounded-lg bg-cobalt/30 text-xs text-white/60 cursor-pointer hover:bg-cobalt/50 transition-all">Cell Biology – WAEC topics</div>
+              <div class="p-2.5 rounded-lg bg-cobalt/30 text-xs text-white/60 cursor-pointer hover:bg-cobalt/50 transition-all">Nigerian History – NECO</div>
+            </div>
+          </div>
+          <div class="glass-card p-5">
+            <h3 class="text-white font-600 mb-3 text-sm">Study Streak</h3>
+            <div class="text-center mb-3">
+              <div class="text-4xl font-sora font-700 text-gold">7 🔥</div>
+              <div class="text-white/50 text-xs mt-1">Days in a row</div>
+            </div>
+            <div class="grid grid-cols-7 gap-1">
+              <div class="aspect-square rounded-lg bg-emerald/40 flex items-center justify-center text-xs text-white">M</div>
+              <div class="aspect-square rounded-lg bg-emerald/40 flex items-center justify-center text-xs text-white">T</div>
+              <div class="aspect-square rounded-lg bg-emerald/40 flex items-center justify-center text-xs text-white">W</div>
+              <div class="aspect-square rounded-lg bg-emerald/40 flex items-center justify-center text-xs text-white">T</div>
+              <div class="aspect-square rounded-lg bg-emerald/40 flex items-center justify-center text-xs text-white">F</div>
+              <div class="aspect-square rounded-lg bg-emerald/40 flex items-center justify-center text-xs text-white">S</div>
+              <div class="aspect-square rounded-lg bg-gold/40 flex items-center justify-center text-xs text-white">S</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Tab: Report Cards -->
+    <div id="tab-reports" class="tab-content">
+      <div class="space-y-4">
+        <div class="glass-card p-6">
+          <div class="flex flex-wrap gap-4 items-center justify-between mb-5">
+            <div>
+              <h3 class="text-white font-600">Report Card #37</h3>
+              <div class="text-white/40 text-xs mt-0.5">Mathematics – Batch 9 · Nov 3, 2025</div>
+            </div>
+            <div class="flex gap-3">
+              <div class="badge badge-green">Score: 44/50 (88%)</div>
+              <div class="badge badge-gold">⭐⭐⭐⭐⭐ Award</div>
+            </div>
+          </div>
+          <div class="grid md:grid-cols-3 gap-4 mb-4">
+            <div class="bg-cobalt/30 rounded-xl p-4 text-center">
+              <div class="text-3xl font-sora font-700 text-emerald">88%</div>
+              <div class="text-xs text-white/50 mt-1">Batch Score</div>
+            </div>
+            <div class="bg-cobalt/30 rounded-xl p-4 text-center">
+              <div class="text-3xl font-sora font-700 text-gold">44</div>
+              <div class="text-xs text-white/50 mt-1">Correct Answers</div>
+            </div>
+            <div class="bg-cobalt/30 rounded-xl p-4 text-center">
+              <div class="text-3xl font-sora font-700 text-white">88</div>
+              <div class="text-xs text-white/50 mt-1">Points Earned</div>
+            </div>
+          </div>
+          <div class="grid md:grid-cols-2 gap-4">
+            <div>
+              <div class="text-xs text-emerald font-600 mb-2">✅ Strong Topics</div>
+              <div class="space-y-1">
+                <div class="flex items-center gap-2 text-xs text-white/60"><span class="w-1.5 h-1.5 rounded-full bg-emerald"></span>Indices & Logarithms (100%)</div>
+                <div class="flex items-center gap-2 text-xs text-white/60"><span class="w-1.5 h-1.5 rounded-full bg-emerald"></span>Arithmetic Progression (90%)</div>
+                <div class="flex items-center gap-2 text-xs text-white/60"><span class="w-1.5 h-1.5 rounded-full bg-emerald"></span>Linear Equations (88%)</div>
+              </div>
+            </div>
+            <div>
+              <div class="text-xs text-crimson font-600 mb-2">⚠️ Needs Improvement</div>
+              <div class="space-y-1">
+                <div class="flex items-center gap-2 text-xs text-white/60"><span class="w-1.5 h-1.5 rounded-full bg-crimson"></span>Probability (60%)</div>
+                <div class="flex items-center gap-2 text-xs text-white/60"><span class="w-1.5 h-1.5 rounded-full bg-crimson"></span>Statistics (65%)</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Older Reports -->
+        <div class="overflow-x-auto glass-card">
+          <table class="w-full data-table text-sm">
+            <thead><tr><th class="text-left">Date</th><th class="text-left">Subject</th><th class="text-left">Exam</th><th class="text-center">Score</th><th class="text-center">Points</th><th class="text-center">Rating</th></tr></thead>
+            <tbody class="text-white/70">
+              <tr><td>Nov 1</td><td class="text-white">English Language</td><td>JAMB</td><td class="text-center text-emerald font-600">92%</td><td class="text-center">92</td><td class="text-center text-gold">⭐⭐⭐⭐⭐</td></tr>
+              <tr><td>Oct 29</td><td class="text-white">Biology</td><td>WAEC</td><td class="text-center text-emerald font-600">80%</td><td class="text-center">80</td><td class="text-center text-gold">⭐⭐⭐⭐</td></tr>
+              <tr><td>Oct 26</td><td class="text-white">Chemistry</td><td>JAMB</td><td class="text-center text-crimson font-600">60%</td><td class="text-center">60</td><td class="text-center text-gold">⭐⭐⭐</td></tr>
+              <tr><td>Oct 24</td><td class="text-white">Physics</td><td>JAMB</td><td class="text-center text-gold font-600">74%</td><td class="text-center">74</td><td class="text-center text-gold">⭐⭐⭐⭐</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <!-- Tab: Tutor Support -->
+    <div id="tab-tutor" class="tab-content">
+      <div class="grid lg:grid-cols-3 gap-5">
+        <div class="lg:col-span-2 space-y-5">
+          <div class="glass-card p-6">
+            <h3 class="text-white font-600 mb-5">Request Tutor Support</h3>
+            <div class="grid sm:grid-cols-2 gap-4">
+              <div>
+                <label class="text-xs text-white/50 mb-2 block">Subject</label>
+                <select class="w-full bg-cobalt/40 border border-white/10 rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:border-gold/50">
+                  <option>Chemistry – Organic Reactions</option>
+                  <option>Physics – Optics</option>
+                  <option>Mathematics – Statistics</option>
+                </select>
+              </div>
+              <div>
+                <label class="text-xs text-white/50 mb-2 block">Session Type</label>
+                <select class="w-full bg-cobalt/40 border border-white/10 rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:border-gold/50">
+                  <option>1-on-1 Tutoring</option>
+                  <option>Group Session</option>
+                  <option>Async Review</option>
+                </select>
+              </div>
+            </div>
+            <div class="mt-4">
+              <label class="text-xs text-white/50 mb-2 block">Describe your challenge</label>
+              <textarea rows="3" placeholder="E.g., I struggle with naming organic compounds and reaction mechanisms..." class="w-full bg-cobalt/40 border border-white/10 rounded-xl px-4 py-3 text-sm text-white placeholder-white/30 focus:outline-none focus:border-gold/50 resize-none"></textarea>
+            </div>
+            <button onclick="showModal('signup-modal')" class="btn-gold px-6 py-2.5 text-sm mt-4">🤖 AI Match Me with a Tutor</button>
+          </div>
+          <!-- Active Tutor -->
+          <div class="glass-card p-6">
+            <div class="flex items-center justify-between mb-4">
+              <h3 class="text-white font-600">My Assigned Tutor</h3>
+              <span class="badge badge-green">Synced ✓</span>
+            </div>
+            <div class="flex items-center gap-4 p-4 bg-cobalt/30 rounded-xl">
+              <div class="w-14 h-14 rounded-full bg-gradient-to-br from-cobalt-light to-emerald/40 flex items-center justify-center text-white text-xl font-700">DR</div>
+              <div class="flex-1">
+                <div class="text-white font-600">Dr. Rasheed Okafor</div>
+                <div class="text-white/50 text-xs">Chemistry & Biology · Kaduna State</div>
+                <div class="flex items-center gap-1 mt-1"><span class="text-gold text-xs">★★★★★</span><span class="text-white/40 text-xs ml-1">4.9 · 87 students</span></div>
+              </div>
+              <div class="text-right">
+                <button class="btn-outline px-3 py-1.5 text-xs mb-2 block w-full">💬 Chat</button>
+                <button class="bg-emerald/20 text-emerald border border-emerald/30 rounded-xl px-3 py-1.5 text-xs w-full hover:bg-emerald/30 transition-all">WhatsApp</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- Available Tutors -->
+        <div class="glass-card p-5">
+          <h3 class="text-white font-600 mb-4 text-sm">Available Tutors</h3>
+          <div class="space-y-3">
+            <div class="p-3 bg-cobalt/30 rounded-xl">
+              <div class="flex items-center gap-3 mb-2">
+                <div class="w-9 h-9 rounded-full bg-gradient-to-br from-gold/40 to-cobalt flex items-center justify-center text-xs font-700 text-white">AO</div>
+                <div><div class="text-white/80 text-sm font-500">Adaeze Onuoha</div><div class="text-white/40 text-xs">Mathematics · Lagos</div></div>
+              </div>
+              <div class="flex items-center justify-between">
+                <span class="text-gold text-xs">★★★★★ 5.0</span>
+                <button class="badge badge-gold cursor-pointer hover:bg-gold/20 transition-all">Request</button>
+              </div>
+            </div>
+            <div class="p-3 bg-cobalt/30 rounded-xl">
+              <div class="flex items-center gap-3 mb-2">
+                <div class="w-9 h-9 rounded-full bg-gradient-to-br from-emerald/40 to-cobalt flex items-center justify-center text-xs font-700 text-white">BM</div>
+                <div><div class="text-white/80 text-sm font-500">Babatunde Musa</div><div class="text-white/40 text-xs">Physics · Abuja</div></div>
+              </div>
+              <div class="flex items-center justify-between">
+                <span class="text-gold text-xs">★★★★☆ 4.7</span>
+                <button class="badge badge-gold cursor-pointer hover:bg-gold/20 transition-all">Request</button>
+              </div>
+            </div>
+            <div class="p-3 bg-cobalt/30 rounded-xl">
+              <div class="flex items-center gap-3 mb-2">
+                <div class="w-9 h-9 rounded-full bg-gradient-to-br from-crimson/40 to-cobalt flex items-center justify-center text-xs font-700 text-white">FI</div>
+                <div><div class="text-white/80 text-sm font-500">Fatima Ibrahim</div><div class="text-white/40 text-xs">English · Kano</div></div>
+              </div>
+              <div class="flex items-center justify-between">
+                <span class="text-gold text-xs">★★★★☆ 4.8</span>
+                <button class="badge badge-gold cursor-pointer hover:bg-gold/20 transition-all">Request</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════
+     TUTOR DASHBOARD PREVIEW
+══════════════════════════════════════════════════════ -->
+<section id="tutor-dashboard" class="py-24 mesh-bg relative">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="text-center mb-12">
+      <div class="section-badge">Tutor Dashboard</div>
+      <h2 class="font-sora text-4xl font-700 text-white mt-3 mb-4">Tutor <span class="text-gold">Professional Hub</span></h2>
+      <p class="text-white/55 max-w-xl mx-auto">Manage your students, track earnings, and leverage AI-powered teaching tools.</p>
+    </div>
+
+    <div class="grid lg:grid-cols-4 gap-4 mb-6">
+      <div class="stat-card p-5 text-center">
+        <div class="text-3xl font-sora font-700 text-white">12</div>
+        <div class="text-xs text-white/50 mt-1">Active Students</div>
+        <div class="badge badge-green mt-2 mx-auto">+3 this month</div>
+      </div>
+      <div class="stat-card p-5 text-center">
+        <div class="text-3xl font-sora font-700 text-gold">₦48,000</div>
+        <div class="text-xs text-white/50 mt-1">Wallet Balance</div>
+        <div class="badge badge-gold mt-2 mx-auto">+₦12,000 today</div>
+      </div>
+      <div class="stat-card p-5 text-center">
+        <div class="text-3xl font-sora font-700 text-emerald">64h</div>
+        <div class="text-xs text-white/50 mt-1">Hours Taught</div>
+        <div class="badge badge-blue mt-2 mx-auto">This month</div>
+      </div>
+      <div class="stat-card p-5 text-center">
+        <div class="text-3xl font-sora font-700 text-white">4.9</div>
+        <div class="text-xs text-white/50 mt-1">Avg Rating</div>
+        <div class="mt-2 text-gold text-sm">★★★★★</div>
+      </div>
+    </div>
+
+    <div class="grid lg:grid-cols-2 gap-5">
+      <!-- Assigned Students -->
+      <div class="glass-card p-6">
+        <div class="flex items-center justify-between mb-5">
+          <h3 class="text-white font-600">Student Performance Monitor</h3>
+          <span class="badge badge-gold">Admin Synced</span>
+        </div>
+        <div class="space-y-3">
+          <div class="flex items-center gap-4 p-3 bg-cobalt/30 rounded-xl">
+            <div class="w-9 h-9 rounded-full bg-cobalt-light/50 flex items-center justify-center text-sm font-700 text-white">CK</div>
+            <div class="flex-1">
+              <div class="text-white/80 text-sm font-500">Chinyere Kalu</div>
+              <div class="progress-bar mt-1.5 w-full"><div class="progress-fill bg-emerald" style="width:84%"></div></div>
+            </div>
+            <span class="text-emerald text-sm font-600 shrink-0">84%</span>
+          </div>
+          <div class="flex items-center gap-4 p-3 bg-cobalt/30 rounded-xl">
+            <div class="w-9 h-9 rounded-full bg-cobalt-light/50 flex items-center justify-center text-sm font-700 text-white">TA</div>
+            <div class="flex-1">
+              <div class="text-white/80 text-sm font-500">Tobi Adeyemi</div>
+              <div class="progress-bar mt-1.5 w-full"><div class="progress-fill bg-gold" style="width:71%"></div></div>
+            </div>
+            <span class="text-gold text-sm font-600 shrink-0">71%</span>
+          </div>
+          <div class="flex items-center gap-4 p-3 bg-cobalt/30 rounded-xl">
+            <div class="w-9 h-9 rounded-full bg-cobalt-light/50 flex items-center justify-center text-sm font-700 text-white">UA</div>
+            <div class="flex-1">
+              <div class="text-white/80 text-sm font-500">Usman Abubakar</div>
+              <div class="progress-bar mt-1.5 w-full"><div class="progress-fill bg-crimson" style="width:58%"></div></div>
+            </div>
+            <span class="text-crimson text-sm font-600 shrink-0">58%</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Earnings -->
+      <div class="glass-card p-6">
+        <h3 class="text-white font-600 mb-5">Earnings Breakdown</h3>
+        <div class="space-y-3 mb-5">
+          <div class="flex items-center justify-between text-sm">
+            <span class="text-white/60">Per Subject (3 subjects)</span>
+            <span class="text-white font-600">₦9,000</span>
+          </div>
+          <div class="flex items-center justify-between text-sm">
+            <span class="text-white/60">Per Hour (64 hours)</span>
+            <span class="text-white font-600">₦32,000</span>
+          </div>
+          <div class="flex items-center justify-between text-sm">
+            <span class="text-white/60">Per Student Bonus (12)</span>
+            <span class="text-white font-600">₦7,000</span>
+          </div>
+          <div class="border-t border-white/10 pt-3 flex items-center justify-between">
+            <span class="text-white font-700">Total Earned</span>
+            <span class="text-gold font-700 text-lg">₦48,000</span>
+          </div>
+        </div>
+        <button class="btn-primary w-full py-2.5 text-sm">💰 Withdraw to Bank</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════
+     PRICING SECTION
+══════════════════════════════════════════════════════ -->
+<section id="pricing" class="py-24 relative">
+  <div class="orb orb-gold" style="top:10%;right:0%;opacity:0.07;"></div>
+  <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="text-center mb-16">
+      <div class="section-badge">Transparent Pricing</div>
+      <h2 class="font-sora text-4xl font-700 text-white mt-3 mb-4">Simple, Results-Focused <span class="text-gold">Plans</span></h2>
+      <p class="text-white/55 max-w-xl mx-auto">One flat subscription per exam type. No hidden fees. Pay once, get full AI-powered exam preparation until your test date.</p>
+    </div>
+
+    <div class="grid md:grid-cols-3 gap-6">
+      <!-- Basic -->
+      <div class="glass-card p-7 flex flex-col">
+        <div class="badge badge-blue mb-4 self-start">Student – Single Exam</div>
+        <div class="text-4xl font-sora font-700 text-white mb-1">₦10,000</div>
+        <div class="text-white/40 text-sm mb-6">per exam type</div>
+        <ul class="space-y-3 flex-1 mb-8">
+          <li class="flex items-center gap-3 text-sm text-white/70"><span class="text-emerald">✓</span>Unlimited question batches</li>
+          <li class="flex items-center gap-3 text-sm text-white/70"><span class="text-emerald">✓</span>AI-generated study plan</li>
+          <li class="flex items-center gap-3 text-sm text-white/70"><span class="text-emerald">✓</span>Automated report cards</li>
+          <li class="flex items-center gap-3 text-sm text-white/70"><span class="text-emerald">✓</span>Pass probability analytics</li>
+          <li class="flex items-center gap-3 text-sm text-white/70"><span class="text-emerald">✓</span>Study Center modules</li>
+          <li class="flex items-center gap-3 text-sm text-white/40"><span class="text-white/20">✗</span>Tutor matching</li>
+        </ul>
+        <button onclick="showModal('signup-modal')" class="btn-outline py-3 text-sm w-full">Get Started</button>
+      </div>
+
+      <!-- Premium – Most Popular -->
+      <div class="relative glass-card p-7 flex flex-col border-gold/30 glow-gold" style="background:rgba(0,51,153,0.45)">
+        <div class="absolute -top-3 left-1/2 -translate-x-1/2">
+          <span class="bg-gradient-to-r from-gold to-gold/80 text-cobalt text-xs font-700 px-4 py-1 rounded-full">Most Popular</span>
+        </div>
+        <div class="badge badge-gold mb-4 self-start">Student + Tutor Support</div>
+        <div class="text-4xl font-sora font-700 text-gold mb-1">₦10,000</div>
+        <div class="text-white/40 text-sm mb-6">per exam type + tutor</div>
+        <ul class="space-y-3 flex-1 mb-8">
+          <li class="flex items-center gap-3 text-sm text-white/80"><span class="text-emerald">✓</span>Everything in Single Exam</li>
+          <li class="flex items-center gap-3 text-sm text-white/80"><span class="text-gold">★</span>AI tutor matching</li>
+          <li class="flex items-center gap-3 text-sm text-white/80"><span class="text-gold">★</span>1-on-1 teaching sessions</li>
+          <li class="flex items-center gap-3 text-sm text-white/80"><span class="text-gold">★</span>WhatsApp & platform chat</li>
+          <li class="flex items-center gap-3 text-sm text-white/80"><span class="text-gold">★</span>Synced tutor monitoring</li>
+          <li class="flex items-center gap-3 text-sm text-white/80"><span class="text-gold">★</span>Priority AI insights</li>
+        </ul>
+        <button onclick="showModal('signup-modal')" class="btn-gold py-3 text-sm w-full">Subscribe Now</button>
+      </div>
+
+      <!-- Tutor -->
+      <div class="glass-card p-7 flex flex-col">
+        <div class="badge badge-green mb-4 self-start">Tutor Registration</div>
+        <div class="text-4xl font-sora font-700 text-white mb-1">Free</div>
+        <div class="text-white/40 text-sm mb-6">earn per subject & hour</div>
+        <ul class="space-y-3 flex-1 mb-8">
+          <li class="flex items-center gap-3 text-sm text-white/70"><span class="text-emerald">✓</span>Free tutor registration</li>
+          <li class="flex items-center gap-3 text-sm text-white/70"><span class="text-emerald">✓</span>Admin approval process</li>
+          <li class="flex items-center gap-3 text-sm text-white/70"><span class="text-emerald">✓</span>AI-assisted teaching tools</li>
+          <li class="flex items-center gap-3 text-sm text-white/70"><span class="text-emerald">✓</span>Earnings wallet</li>
+          <li class="flex items-center gap-3 text-sm text-white/70"><span class="text-emerald">✓</span>Student progress monitoring</li>
+          <li class="flex items-center gap-3 text-sm text-white/70"><span class="text-emerald">✓</span>Resource creation tools</li>
+        </ul>
+        <button onclick="showModal('signup-modal')" class="btn-outline py-3 text-sm w-full">Join as Tutor</button>
+      </div>
+    </div>
+
+    <!-- FAQ -->
+    <div class="mt-16">
+      <h3 class="text-center font-sora text-2xl font-700 text-white mb-8">Frequently Asked Questions</h3>
+      <div class="max-w-3xl mx-auto space-y-3" id="faq-list">
+        <div class="accordion-item glass-card overflow-hidden">
+          <button class="w-full flex items-center justify-between px-6 py-4 text-left" onclick="toggleAccordion(this)">
+            <span class="text-white/80 font-500 text-sm">What exams does DealxTest cover?</span>
+            <svg class="accordion-arrow w-4 h-4 text-gold transition-transform duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+          </button>
+          <div class="accordion-content px-6">
+            <p class="text-white/55 text-sm pb-4 leading-relaxed">DealxTest currently covers JAMB UTME, WAEC SSCE, and NECO. All questions are curriculum-accurate and focused on Nigeria and West African academic standards. More exam types are being added regularly.</p>
+          </div>
+        </div>
+        <div class="accordion-item glass-card overflow-hidden">
+          <button class="w-full flex items-center justify-between px-6 py-4 text-left" onclick="toggleAccordion(this)">
+            <span class="text-white/80 font-500 text-sm">How does the ₦10,000 subscription work?</span>
+            <svg class="accordion-arrow w-4 h-4 text-gold transition-transform duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+          </button>
+          <div class="accordion-content px-6">
+            <p class="text-white/55 text-sm pb-4 leading-relaxed">Each ₦10,000 subscription covers one exam type (e.g., JAMB) until your exam date. If you want to prepare for multiple exams, each requires a separate subscription. Tutor support is an add-on charged per session or package.</p>
+          </div>
+        </div>
+        <div class="accordion-item glass-card overflow-hidden">
+          <button class="w-full flex items-center justify-between px-6 py-4 text-left" onclick="toggleAccordion(this)">
+            <span class="text-white/80 font-500 text-sm">Can I use DealxTest on my phone?</span>
+            <svg class="accordion-arrow w-4 h-4 text-gold transition-transform duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+          </button>
+          <div class="accordion-content px-6">
+            <p class="text-white/55 text-sm pb-4 leading-relaxed">Yes! DealxTest is 100% responsive and works on all devices — smartphones, tablets, laptops, and desktops. The CBT interface is specifically optimized for mobile use during timed practice sessions.</p>
+          </div>
+        </div>
+        <div class="accordion-item glass-card overflow-hidden">
+          <button class="w-full flex items-center justify-between px-6 py-4 text-left" onclick="toggleAccordion(this)">
+            <span class="text-white/80 font-500 text-sm">How does tutor matching work?</span>
+            <svg class="accordion-arrow w-4 h-4 text-gold transition-transform duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+          </button>
+          <div class="accordion-content px-6">
+            <p class="text-white/55 text-sm pb-4 leading-relaxed">Our AI automatically matches you with approved tutors based on your weak subjects, location, and availability. Once matched and approved by admin, the tutor gains read-only access to your performance data to guide their teaching. You can also communicate via the platform or WhatsApp.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════
+     ABOUT SECTION
+══════════════════════════════════════════════════════ -->
+<section id="about" class="py-24 mesh-bg relative">
+  <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="grid lg:grid-cols-2 gap-16 items-center">
+      <div>
+        <div class="section-badge">About DealxTest</div>
+        <h2 class="font-sora text-4xl font-700 text-white mt-3 mb-6">Built for Nigerian <span class="text-gold">Academic Excellence</span></h2>
+        <p class="text-white/65 leading-relaxed mb-5">DealxTest was founded with a singular mission: to transform how Nigerian students prepare for high-stakes national examinations. We believe every student deserves access to intelligent, personalized exam preparation — not just more questions.</p>
+        <p class="text-white/65 leading-relaxed mb-8">Our RaaS model delivers guaranteed exam readiness through AI-driven study paths, real-time performance analytics, and an ecosystem of vetted tutors — all deeply aligned with WAEC, JAMB, and NECO curricula.</p>
+        <div class="grid grid-cols-2 gap-4">
+          <div class="glass-card p-4">
+            <div class="text-2xl font-sora font-700 text-gold">50K+</div>
+            <div class="text-white/50 text-xs mt-1">Curriculum-verified questions</div>
+          </div>
+          <div class="glass-card p-4">
+            <div class="text-2xl font-sora font-700 text-emerald">240+</div>
+            <div class="text-white/50 text-xs mt-1">Approved tutors nationwide</div>
+          </div>
+          <div class="glass-card p-4">
+            <div class="text-2xl font-sora font-700 text-white">36</div>
+            <div class="text-white/50 text-xs mt-1">Nigerian states covered</div>
+          </div>
+          <div class="glass-card p-4">
+            <div class="text-2xl font-sora font-700 text-white">98%</div>
+            <div class="text-white/50 text-xs mt-1">Student pass rate</div>
+          </div>
+        </div>
+      </div>
+      <div class="space-y-4">
+        <div class="glass-card p-5 flex items-start gap-4">
+          <div class="w-10 h-10 rounded-xl bg-gold/10 border border-gold/30 flex items-center justify-center text-lg shrink-0">🎯</div>
+          <div>
+            <h4 class="text-white font-600 mb-1">Mission</h4>
+            <p class="text-white/55 text-sm">To be Nigeria's most trusted RaaS platform — delivering measurable academic results, not just access to questions.</p>
+          </div>
+        </div>
+        <div class="glass-card p-5 flex items-start gap-4">
+          <div class="w-10 h-10 rounded-xl bg-emerald/10 border border-emerald/30 flex items-center justify-center text-lg shrink-0">👁️</div>
+          <div>
+            <h4 class="text-white font-600 mb-1">Vision</h4>
+            <p class="text-white/55 text-sm">A West Africa where every student has a 24/7 personal academic coach powered by AI — regardless of geography or income.</p>
+          </div>
+        </div>
+        <div class="glass-card p-5 flex items-start gap-4">
+          <div class="w-10 h-10 rounded-xl bg-cobalt/60 border border-cobalt-light/50 flex items-center justify-center text-lg shrink-0">🤝</div>
+          <div>
+            <h4 class="text-white font-600 mb-1">Our Promise</h4>
+            <p class="text-white/55 text-sm">Curriculum accuracy, AI precision, tutor quality, and transparent pricing. We succeed only when our students succeed.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════
+     CTA BANNER
+══════════════════════════════════════════════════════ -->
+<section class="py-20 relative overflow-hidden">
+  <div style="position:absolute;inset:0;background:linear-gradient(135deg,rgba(0,51,153,0.8) 0%,rgba(0,35,102,0.95) 100%);"></div>
+  <div class="orb orb-green" style="top:-30%;left:10%;opacity:0.15;"></div>
+  <div class="orb orb-gold" style="bottom:-30%;right:10%;opacity:0.12;"></div>
+  <div class="relative z-10 max-w-4xl mx-auto px-4 text-center">
+    <div class="text-4xl mb-4">🚀</div>
+    <h2 class="font-sora text-4xl font-700 text-white mb-4">Ready to Ace Your <span class="shimmer-text">JAMB, WAEC & NECO?</span></h2>
+    <p class="text-white/65 text-lg mb-8 max-w-2xl mx-auto">Join thousands of Nigerian students already on track to pass their exams with DealxTest's AI-powered CBT platform.</p>
+    <div class="flex flex-wrap gap-4 justify-center">
+      <button onclick="showModal('signup-modal')" class="btn-gold px-8 py-4 text-base">🎓 Start for ₦10,000</button>
+      <a href="#exam-module" class="btn-outline px-8 py-4 text-base">Try Free Demo First</a>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════
+     FOOTER
+══════════════════════════════════════════════════════ -->
+<footer class="bg-cobalt-dark border-t border-white/05 pt-16 pb-8">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="grid md:grid-cols-4 gap-10 mb-12">
+      <div class="md:col-span-2">
+        <div class="flex items-center gap-3 mb-4">
+          <div class="w-9 h-9 rounded-xl bg-gradient-to-br from-cobalt-light to-cobalt flex items-center justify-center border border-gold/30">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" stroke="#FFD700" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+          <span class="font-sora font-800 text-xl"><span class="text-white">Dealx</span><span class="text-gold">Test</span></span>
+        </div>
+        <p class="text-white/45 text-sm leading-relaxed max-w-sm">Nigeria's leading AI-powered CBT platform. Results as a Service for JAMB, WAEC, and NECO exam preparation.</p>
+        <div class="flex gap-3 mt-4">
+          <a href="#" class="w-8 h-8 rounded-lg bg-cobalt/60 border border-white/10 flex items-center justify-center text-white/50 hover:text-gold hover:border-gold/30 transition-all text-xs">𝕏</a>
+          <a href="#" class="w-8 h-8 rounded-lg bg-cobalt/60 border border-white/10 flex items-center justify-center text-white/50 hover:text-gold hover:border-gold/30 transition-all text-xs">f</a>
+          <a href="#" class="w-8 h-8 rounded-lg bg-cobalt/60 border border-white/10 flex items-center justify-center text-white/50 hover:text-gold hover:border-gold/30 transition-all text-xs">in</a>
+          <a href="#" class="w-8 h-8 rounded-lg bg-cobalt/60 border border-white/10 flex items-center justify-center text-white/50 hover:text-gold hover:border-gold/30 transition-all text-xs">📱</a>
+        </div>
+      </div>
+      <div>
+        <h4 class="text-white/70 text-xs font-600 uppercase tracking-widest mb-4">Platform</h4>
+        <ul class="space-y-2">
+          <li><a href="#features" class="text-white/45 text-sm hover:text-gold transition-colors">Features</a></li>
+          <li><a href="#exam-module" class="text-white/45 text-sm hover:text-gold transition-colors">CBT Demo</a></li>
+          <li><a href="#student-dashboard" class="text-white/45 text-sm hover:text-gold transition-colors">Student Dashboard</a></li>
+          <li><a href="#tutor-dashboard" class="text-white/45 text-sm hover:text-gold transition-colors">Tutor Dashboard</a></li>
+          <li><a href="#pricing" class="text-white/45 text-sm hover:text-gold transition-colors">Pricing</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4 class="text-white/70 text-xs font-600 uppercase tracking-widest mb-4">Support</h4>
+        <ul class="space-y-2">
+          <li><a href="#about" class="text-white/45 text-sm hover:text-gold transition-colors">About Us</a></li>
+          <li><a href="#" class="text-white/45 text-sm hover:text-gold transition-colors">Contact</a></li>
+          <li><a href="#" class="text-white/45 text-sm hover:text-gold transition-colors">Privacy Policy</a></li>
+          <li><a href="#" class="text-white/45 text-sm hover:text-gold transition-colors">Terms of Service</a></li>
+          <li><a href="#" class="text-white/45 text-sm hover:text-gold transition-colors">WhatsApp Support</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="border-t border-white/05 pt-6 flex flex-wrap items-center justify-between gap-4">
+      <p class="text-white/30 text-xs">© 2025 DealxTest. All rights reserved. Built for Nigerian academic excellence.</p>
+      <div class="flex items-center gap-2">
+        <div class="w-2 h-2 rounded-full bg-emerald animate-pulse"></div>
+        <span class="text-white/30 text-xs">All systems operational</span>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- ═══════════════════════════════════════════════════
+     SIGN UP MODAL
+══════════════════════════════════════════════════════ -->
+<div id="signup-modal" class="fixed inset-0 z-[100] hidden items-center justify-center p-4">
+  <div class="absolute inset-0 bg-black/70 backdrop-blur-sm" onclick="hideModal('signup-modal')"></div>
+  <div class="glass relative w-full max-w-2xl max-h-[90vh] overflow-y-auto rounded-2xl border border-white/10 z-10">
+    <!-- Modal Header -->
+    <div class="flex items-center justify-between p-6 border-b border-white/08 sticky top-0 glass z-10">
+      <div>
+        <h2 class="font-sora text-xl font-700 text-white">Create Your Account</h2>
+        <p class="text-white/50 text-xs mt-0.5">Join DealxTest – Nigeria's #1 CBT Platform</p>
+      </div>
+      <button onclick="hideModal('signup-modal')" class="w-8 h-8 rounded-lg bg-white/05 hover:bg-white/10 flex items-center justify-center text-white/50 hover:text-white transition-all">✕</button>
+    </div>
+    <!-- Role Toggle -->
+    <div class="p-6 pb-0">
+      <div class="flex gap-3 mb-6">
+        <button id="role-student" onclick="setRole('student')" class="flex-1 py-3 rounded-xl text-sm font-600 bg-cobalt/60 border-2 border-gold text-gold transition-all">🎓 Student</button>
+        <button id="role-tutor" onclick="setRole('tutor')" class="flex-1 py-3 rounded-xl text-sm font-600 bg-transparent border-2 border-white/15 text-white/50 transition-all">👨‍🏫 Tutor</button>
+      </div>
+    </div>
+    <!-- Form -->
+    <div class="px-6 pb-6">
+      <div class="grid grid-cols-2 gap-4">
+        <div>
+          <label class="text-xs text-white/50 mb-1.5 block">Full Name *</label>
+          <input type="text" placeholder="Chinyere Okonkwo" class="w-full bg-cobalt/40 border border-white/10 rounded-xl px-4 py-2.5 text-sm text-white placeholder-white/30 focus:outline-none focus:border-gold/50"/>
+        </div>
+        <div>
+          <label class="text-xs text-white/50 mb-1.5 block">Email Address *</label>
+          <input type="email" placeholder="chinyere@email.com" class="w-full bg-cobalt/40 border border-white/10 rounded-xl px-4 py-2.5 text-sm text-white placeholder-white/30 focus:outline-none focus:border-gold/50"/>
+        </div>
+        <div>
+          <label class="text-xs text-white/50 mb-1.5 block">Phone Number *</label>
+          <input type="tel" placeholder="+234 800 000 0000" class="w-full bg-cobalt/40 border border-white/10 rounded-xl px-4 py-2.5 text-sm text-white placeholder-white/30 focus:outline-none focus:border-gold/50"/>
+        </div>
+        <div>
+          <label class="text-xs text-white/50 mb-1.5 block">WhatsApp Number</label>
+          <input type="tel" placeholder="+234 800 000 0000" class="w-full bg-cobalt/40 border border-white/10 rounded-xl px-4 py-2.5 text-sm text-white placeholder-white/30 focus:outline-none focus:border-gold/50"/>
+        </div>
+        <div>
+          <label class="text-xs text-white/50 mb-1.5 block">Date of Birth *</label>
+          <input type="date" class="w-full bg-cobalt/40 border border-white/10 rounded-xl px-4 py-2.5 text-sm text-white focus:outline-none focus:border-gold/50"/>
+        </div>
+        <div>
+          <label class="text-xs text-white/50 mb-1.5 block">NIN *</label>
+          <input type="text" placeholder="12345678901" class="w-full bg-cobalt/40 border border-white/10 rounded-xl px-4 py-2.5 text-sm text-white placeholder-white/30 focus:outline-none focus:border-gold/50"/>
+        </div>
+        <div>
+          <label class="text-xs text-white/50 mb-1.5 block">State of Residence *</label>
+          <select class="w-full bg-cobalt/40 border border-white/10 rounded-xl px-4 py-2.5 text-sm text-white focus:outline-none focus:border-gold/50">
+            <option value="" class="bg-cobalt-dark">Select State</option>
+            <option class="bg-cobalt-dark">Abia</option><option class="bg-cobalt-dark">Adamawa</option><option class="bg-cobalt-dark">Akwa Ibom</option><option class="bg-cobalt-dark">Anambra</option><option class="bg-cobalt-dark">Bauchi</option><option class="bg-cobalt-dark">Bayelsa</option><option class="bg-cobalt-dark">Benue</option><option class="bg-cobalt-dark">Borno</option><option class="bg-cobalt-dark">Cross River</option><option class="bg-cobalt-dark">Delta</option><option class="bg-cobalt-dark">Ebonyi</option><option class="bg-cobalt-dark">Edo</option><option class="bg-cobalt-dark">Ekiti</option><option class="bg-cobalt-dark">Enugu</option><option class="bg-cobalt-dark">FCT</option><option class="bg-cobalt-dark">Gombe</option><option class="bg-cobalt-dark">Imo</option><option class="bg-cobalt-dark">Jigawa</option><option class="bg-cobalt-dark">Kaduna</option><option class="bg-cobalt-dark">Kano</option><option class="bg-cobalt-dark">Katsina</option><option class="bg-cobalt-dark">Kebbi</option><option class="bg-cobalt-dark">Kogi</option><option class="bg-cobalt-dark">Kwara</option><option class="bg-cobalt-dark">Lagos</option><option class="bg-cobalt-dark">Nasarawa</option><option class="bg-cobalt-dark">Niger</option><option class="bg-cobalt-dark">Ogun</option><option class="bg-cobalt-dark">Ondo</option><option class="bg-cobalt-dark">Osun</option><option class="bg-cobalt-dark">Oyo</option><option class="bg-cobalt-dark">Plateau</option><option class="bg-cobalt-dark">Rivers</option><option class="bg-cobalt-dark">Sokoto</option><option class="bg-cobalt-dark">Taraba</option><option class="bg-cobalt-dark">Yobe</option><option class="bg-cobalt-dark">Zamfara</option>
+          </select>
+        </div>
+        <div>
+          <label class="text-xs text-white/50 mb-1.5 block">State of Origin *</label>
+          <select class="w-full bg-cobalt/40 border border-white/10 rounded-xl px-4 py-2.5 text-sm text-white focus:outline-none focus:border-gold/50">
+            <option value="" class="bg-cobalt-dark">Select State</option>
+            <option class="bg-cobalt-dark">Lagos</option><option class="bg-cobalt-dark">Kaduna</option><option class="bg-cobalt-dark">Kano</option><option class="bg-cobalt-dark">Rivers</option><option class="bg-cobalt-dark">Ogun</option><option class="bg-cobalt-dark">FCT</option>
+          </select>
+        </div>
+        <div class="col-span-2">
+          <label class="text-xs text-white/50 mb-1.5 block">LGA *</label>
+          <input type="text" placeholder="Local Government Area" class="w-full bg-cobalt/40 border border-white/10 rounded-xl px-4 py-2.5 text-sm text-white placeholder-white/30 focus:outline-none focus:border-gold/50"/>
+        </div>
+        <div class="col-span-2">
+          <label class="text-xs text-white/50 mb-1.5 block">Address</label>
+          <input type="text" placeholder="123 Ahmadu Bello Way, Kaduna" class="w-full bg-cobalt/40 border border-white/10 rounded-xl px-4 py-2.5 text-sm text-white placeholder-white/30 focus:outline-none focus:border-gold/50"/>
+        </div>
+        <!-- Student-only fields -->
+        <div class="col-span-2 student-field">
+          <label class="text-xs text-white/50 mb-1.5 block">Exam Type *</label>
+          <div class="flex gap-3 flex-wrap">
+            <label class="flex items-center gap-2 cursor-pointer"><input type="checkbox" class="accent-gold"/> <span class="text-sm text-white/70">JAMB UTME (₦10,000)</span></label>
+            <label class="flex items-center gap-2 cursor-pointer"><input type="checkbox" class="accent-gold"/> <span class="text-sm text-white/70">WAEC SSCE (₦10,000)</span></label>
+            <label class="flex items-center gap-2 cursor-pointer"><input type="checkbox" class="accent-gold"/> <span class="text-sm text-white/70">NECO (₦10,000)</span></label>
+          </div>
+        </div>
+        <div>
+          <label class="text-xs text-white/50 mb-1.5 block">Password *</label>
+          <input type="password" placeholder="••••••••" class="w-full bg-cobalt/40 border border-white/10 rounded-xl px-4 py-2.5 text-sm text-white placeholder-white/30 focus:outline-none focus:border-gold/50"/>
+        </div>
+        <div>
+          <label class="text-xs text-white/50 mb-1.5 block">Confirm Password *</label>
+          <input type="password" placeholder="••••••••" class="w-full bg-cobalt/40 border border-white/10 rounded-xl px-4 py-2.5 text-sm text-white placeholder-white/30 focus:outline-none focus:border-gold/50"/>
+        </div>
+      </div>
+      <div class="mt-5 p-4 bg-cobalt/30 rounded-xl border border-cobalt-light/30 text-xs text-white/50">
+        <strong class="text-white/70">Upload Academic Report:</strong> After signup, you'll be prompted to upload your academic report to help our AI personalize your study plan and question batches.
+      </div>
+      <button class="btn-gold w-full py-3.5 mt-5 text-sm font-600" onclick="submitSignup()">
+        🚀 Create Account & Continue to Payment
+      </button>
+      <p class="text-center text-white/40 text-xs mt-3">Already have an account? <button onclick="hideModal('signup-modal');showModal('login-modal')" class="text-gold hover:underline">Sign In</button></p>
+    </div>
+  </div>
+</div>
+
+<!-- LOGIN MODAL -->
+<div id="login-modal" class="fixed inset-0 z-[100] hidden items-center justify-center p-4">
+  <div class="absolute inset-0 bg-black/70 backdrop-blur-sm" onclick="hideModal('login-modal')"></div>
+  <div class="glass relative w-full max-w-md rounded-2xl border border-white/10 z-10 p-8">
+    <button onclick="hideModal('login-modal')" class="absolute top-4 right-4 w-8 h-8 rounded-lg bg-white/05 hover:bg-white/10 flex items-center justify-center text-white/50 hover:text-white transition-all">✕</button>
+    <div class="text-center mb-6">
+      <div class="w-14 h-14 rounded-2xl bg-cobalt border border-gold/30 flex items-center justify-center mx-auto mb-4">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" stroke="#FFD700" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </div>
+      <h2 class="font-sora text-xl font-700 text-white">Welcome Back</h2>
+      <p class="text-white/40 text-xs mt-1">Sign in to your DealxTest account</p>
+    </div>
+    <div class="space-y-4">
+      <div>
+        <label class="text-xs text-white/50 mb-1.5 block">Email or Phone</label>
+        <input type="text" placeholder="chinyere@email.com" class="w-full bg-cobalt/40 border border-white/10 rounded-xl px-4 py-3 text-sm text-white placeholder-white/30 focus:outline-none focus:border-gold/50"/>
+      </div>
+      <div>
+        <label class="text-xs text-white/50 mb-1.5 block">Password</label>
+        <input type="password" placeholder="••••••••" class="w-full bg-cobalt/40 border border-white/10 rounded-xl px-4 py-3 text-sm text-white placeholder-white/30 focus:outline-none focus:border-gold/50"/>
+      </div>
+      <div class="flex items-center justify-between text-xs">
+        <label class="flex items-center gap-2 cursor-pointer text-white/50"><input type="checkbox" class="accent-gold"/> Remember me</label>
+        <a href="#" class="text-gold hover:underline">Forgot password?</a>
+      </div>
+      <button class="btn-gold w-full py-3.5 text-sm font-600">Sign In →</button>
+      <p class="text-center text-white/40 text-xs">Don't have an account? <button onclick="hideModal('login-modal');showModal('signup-modal')" class="text-gold hover:underline">Register</button></p>
+    </div>
+  </div>
+</div>
+
+<!-- SUCCESS TOAST -->
+<div id="toast" class="fixed bottom-6 right-6 z-[200] opacity-0 transition-all duration-500 pointer-events-none transform translate-y-4">
+  <div class="glass-card px-5 py-3 flex items-center gap-3 border-emerald/30 glow-green min-w-[240px]">
+    <span class="text-emerald text-lg">✅</span>
+    <div><div class="text-white font-500 text-sm" id="toast-msg">Success!</div></div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════
+     JAVASCRIPT
+══════════════════════════════════════════════════════ -->
+<script>
+// ─── NAV ───────────────────────────────────────
+let menuOpen = false;
+function toggleMobileMenu() {
+  menuOpen = !menuOpen;
+  const menu = document.getElementById('mobile-menu');
+  const h1 = document.getElementById('ham1');
+  const h2 = document.getElementById('ham2');
+  const h3 = document.getElementById('ham3');
+  if (menuOpen) {
+    menu.style.maxHeight = '400px';
+    menu.style.opacity = '1';
+    h1.style.transform = 'rotate(45deg) translate(5px,5px)';
+    h2.style.opacity = '0';
+    h3.style.transform = 'rotate(-45deg) translate(5px,-5px)';
+    h3.style.width = '20px';
+  } else {
+    menu.style.maxHeight = '0';
+    menu.style.opacity = '0';
+    h1.style.transform = '';
+    h2.style.opacity = '1';
+    h3.style.transform = '';
+    h3.style.width = '16px';
+  }
+}
+function closeMobileMenu() {
+  menuOpen = true;
+  toggleMobileMenu();
+}
+// Navbar scroll shadow
+window.addEventListener('scroll', () => {
+  const nav = document.getElementById('navbar');
+  if (window.scrollY > 20) {
+    nav.style.boxShadow = '0 4px 40px rgba(0,0,0,0.5)';
+  } else {
+    nav.style.boxShadow = '';
+  }
+});
+
+// ─── MODALS ────────────────────────────────────
+function showModal(id) {
+  const m = document.getElementById(id);
+  m.classList.remove('hidden');
+  m.classList.add('flex');
+  document.body.style.overflow = 'hidden';
+}
+function hideModal(id) {
+  const m = document.getElementById(id);
+  m.classList.add('hidden');
+  m.classList.remove('flex');
+  document.body.style.overflow = '';
+}
+function setRole(role) {
+  const stu = document.getElementById('role-student');
+  const tut = document.getElementById('role-tutor');
+  if (role === 'student') {
+    stu.className = 'flex-1 py-3 rounded-xl text-sm font-600 bg-cobalt/60 border-2 border-gold text-gold transition-all';
+    tut.className = 'flex-1 py-3 rounded-xl text-sm font-600 bg-transparent border-2 border-white/15 text-white/50 transition-all';
+    document.querySelectorAll('.student-field').forEach(el=>el.style.display='');
+  } else {
+    tut.className = 'flex-1 py-3 rounded-xl text-sm font-600 bg-cobalt/60 border-2 border-gold text-gold transition-all';
+    stu.className = 'flex-1 py-3 rounded-xl text-sm font-600 bg-transparent border-2 border-white/15 text-white/50 transition-all';
+    document.querySelectorAll('.student-field').forEach(el=>el.style.display='none');
+  }
+}
+function submitSignup() {
+  hideModal('signup-modal');
+  showToast('Account created! Check your email for OTP verification. 🎉');
+}
+
+// ─── TOAST ─────────────────────────────────────
+function showToast(msg) {
+  const t = document.getElementById('toast');
+  document.getElementById('toast-msg').textContent = msg;
+  t.style.opacity = '1';
+  t.style.transform = 'translateY(0)';
+  t.style.pointerEvents = 'auto';
+  setTimeout(() => {
+    t.style.opacity = '0';
+    t.style.transform = 'translateY(16px)';
+    t.style.pointerEvents = 'none';
+  }, 3500);
+}
+
+// ─── TABS ──────────────────────────────────────
+function switchTab(btn, tabId) {
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+  btn.classList.add('active');
+  document.getElementById(tabId).classList.add('active');
+}
+
+// ─── ACCORDION ─────────────────────────────────
+function toggleAccordion(btn) {
+  const item = btn.closest('.accordion-item');
+  const isOpen = item.classList.contains('open');
+  document.querySelectorAll('.accordion-item').forEach(i => i.classList.remove('open'));
+  if (!isOpen) item.classList.add('open');
+}
+
+// ─── CBT DEMO ENGINE ───────────────────────────
+const questions = [
+  {
+    q: "A body of mass 5 kg is moving with a velocity of 4 m/s. A force is applied to it for 3 seconds, after which the velocity becomes 10 m/s. What is the magnitude of the applied force?",
+    options: ["8 N","10 N","12 N","15 N"],
+    correct: 1
+  },
+  {
+    q: "Which of the following is NOT a vector quantity?",
+    options: ["Velocity","Force","Speed","Displacement"],
+    correct: 2
+  },
+  {
+    q: "In a closed system, the total momentum before a collision is equal to the total momentum after. This statement describes:",
+    options: ["Newton's Second Law","Conservation of Energy","Conservation of Momentum","Hooke's Law"],
+    correct: 2
+  },
+  {
+    q: "A wave has a frequency of 5 Hz and a wavelength of 2 m. What is its speed?",
+    options: ["5 m/s","2 m/s","10 m/s","0.4 m/s"],
+    correct: 2
+  },
+  {
+    q: "The SI unit of electric charge is:",
+    options: ["Ampere","Watt","Coulomb","Volt"],
+    correct: 2
+  }
+];
+
+let currentQ = 0;
+let answered = new Array(questions.length).fill(null);
+let score = 0;
+let timerInterval;
+let timeLeft = 50;
+
+function initExam() {
+  // Build nav strip
+  const nav = document.getElementById('q-nav');
+  nav.innerHTML = '';
+  questions.forEach((_, i) => {
+    const btn = document.createElement('button');
+    btn.id = `qnav-${i}`;
+    btn.className = `w-7 h-7 rounded-lg text-xs font-600 border transition-all ${i===0?'bg-cobalt border-gold text-gold':'bg-cobalt/30 border-white/10 text-white/40'}`;
+    btn.textContent = i+1;
+    btn.onclick = () => jumpToQ(i);
+    nav.appendChild(btn);
+  });
+  renderQuestion();
+  startTimer();
+}
+
+function renderQuestion() {
+  const q = questions[currentQ];
+  document.getElementById('q-label').textContent = `Question ${currentQ+1} of ${questions.length}`;
+  document.getElementById('q-pct').textContent = `${Math.round(((currentQ)/questions.length)*100)}% complete`;
+  document.getElementById('q-progress').style.width = `${Math.round(((currentQ)/questions.length)*100)+2}%`;
+  document.getElementById('q-text').textContent = q.q;
+  const container = document.getElementById('options-container');
+  const labels = ['A','B','C','D'];
+  container.innerHTML = '';
+  q.options.forEach((opt, i) => {
+    const div = document.createElement('div');
+    let cls = 'option-btn flex items-center gap-3 p-3 cursor-pointer';
+    let icon = '';
+    if (answered[currentQ] !== null) {
+      if (i === q.correct) { cls += ' correct'; icon = '✅'; }
+      else if (i === answered[currentQ] && i !== q.correct) { cls += ' wrong'; icon = '❌'; }
+    }
+    div.className = cls;
+    div.innerHTML = `<span class="w-7 h-7 rounded-lg bg-cobalt/60 flex items-center justify-center text-xs font-700 text-gold shrink-0">${labels[i]}</span><span class="text-sm text-white/80 flex-1">${opt}</span><span>${icon}</span>`;
+    if (answered[currentQ] === null) div.onclick = () => selectAnswer(i);
+    container.appendChild(div);
+  });
+  // Update nav buttons
+  questions.forEach((_,i) => {
+    const nb = document.getElementById(`qnav-${i}`);
+    if (!nb) return;
+    if (i === currentQ) nb.className = 'w-7 h-7 rounded-lg text-xs font-600 border bg-cobalt border-gold text-gold transition-all';
+    else if (answered[i] !== null) {
+      const correct = answered[i] === questions[i].correct;
+      nb.className = `w-7 h-7 rounded-lg text-xs font-600 border transition-all ${correct?'bg-emerald/20 border-emerald text-emerald':'bg-crimson/20 border-crimson text-crimson'}`;
+    } else nb.className = 'w-7 h-7 rounded-lg text-xs font-600 border bg-cobalt/30 border-white/10 text-white/40 transition-all';
+  });
+  // Hide feedback
+  document.getElementById('feedback-banner').classList.add('hidden');
+}
+
+function selectAnswer(i) {
+  if (answered[currentQ] !== null) return;
+  answered[currentQ] = i;
+  const q = questions[currentQ];
+  const correct = i === q.correct;
+  if (correct) score += 2;
+  document.getElementById('live-score').textContent = `${score} pts`;
+  const fb = document.getElementById('feedback-banner');
+  if (correct) {
+    fb.className = 'rounded-xl p-4 mb-6 text-sm font-500 bg-emerald/10 border border-emerald/30 text-emerald';
+    fb.textContent = '✅ Correct! +2 points added to your score.';
+  } else {
+    fb.className = 'rounded-xl p-4 mb-6 text-sm font-500 bg-crimson/10 border border-crimson/30 text-crimson';
+    fb.textContent = `❌ Wrong. The correct answer is: ${['A','B','C','D'][q.correct]}. ${q.options[q.correct]}`;
+  }
+  fb.classList.remove('hidden');
+  renderQuestion();
+  resetTimer();
+}
+
+function nextQuestion() {
+  if (currentQ < questions.length - 1) {
+    currentQ++;
+    renderQuestion();
+    resetTimer();
+  } else {
+    showBatchComplete();
+  }
+}
+function prevQuestion() {
+  if (currentQ > 0) { currentQ--; renderQuestion(); }
+}
+function jumpToQ(i) { currentQ = i; renderQuestion(); }
+
+function showBatchComplete() {
+  const pct = Math.round((score/(questions.length*2))*100);
+  document.getElementById('options-container').innerHTML = `
+    <div class="text-center py-8">
+      <div class="text-5xl mb-4">${pct>=75?'🏆':'📊'}</div>
+      <h3 class="font-sora text-2xl font-700 text-white mb-2">Batch Complete!</h3>
+      <div class="text-5xl font-sora font-800 text-gold my-4">${score}/${questions.length*2}</div>
+      <div class="text-white/60 mb-4">${pct}% Score${pct>=75?' · ⭐ Award Earned!':''}</div>
+      <div class="${pct>=75?'bg-emerald/10 border-emerald/30 text-emerald':'bg-cobalt/30 border-cobalt-light/30 text-white/60'} border rounded-xl p-4 text-sm mb-6">${pct>=75?'🎉 Excellent! You earned a badge for this batch.':'Keep practicing! Review your weak areas in the Study Center.'}</div>
+      <button onclick="restartDemo()" class="btn-gold px-8 py-3 text-sm">Try Again</button>
+    </div>`;
+  document.getElementById('feedback-banner').classList.add('hidden');
+  clearInterval(timerInterval);
+}
+
+function restartDemo() {
+  currentQ = 0;
+  answered = new Array(questions.length).fill(null);
+  score = 0;
+  document.getElementById('live-score').textContent = '0 pts';
+  initExam();
+}
+
+// Timer
+function startTimer() {
+  timeLeft = 50;
+  updateTimerDisplay();
+  timerInterval = setInterval(() => {
+    timeLeft--;
+    updateTimerDisplay();
+    if (timeLeft <= 0) {
+      if (answered[currentQ] === null) answered[currentQ] = -1; // void
+      setTimeout(nextQuestion, 300);
+    }
+  }, 1000);
+}
+function resetTimer() {
+  clearInterval(timerInterval);
+  startTimer();
+}
+function updateTimerDisplay() {
+  document.getElementById('timer-display').textContent = timeLeft;
+  const circ = document.getElementById('timer-circle');
+  if (circ) {
+    const dashOffset = 214 - (214 * timeLeft / 50);
+    circ.style.strokeDashoffset = dashOffset;
+    circ.style.stroke = timeLeft <= 10 ? '#DC3545' : timeLeft <= 20 ? '#FFD700' : '#FFD700';
+  }
+}
+
+// Init on load
+window.addEventListener('DOMContentLoaded', () => {
+  initExam();
+  // Animate hero elements
+  document.querySelectorAll('.fade-up').forEach(el => {
+    el.style.animationFillMode = 'forwards';
+  });
+});
+
+// Close modal on ESC
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape') {
+    ['signup-modal','login-modal'].forEach(hideModal);
+  }
+});
+</script>
+</body>
+</html>
