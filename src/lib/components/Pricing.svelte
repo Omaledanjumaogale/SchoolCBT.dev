@@ -114,9 +114,9 @@
 					Student + Tutor
 				</div>
 				<div class="mb-1 flex items-baseline gap-1">
-					<span class="text-foreground text-4xl font-black">₦35,000</span>
+					<span class="text-foreground text-4xl font-black">₦25,000</span>
 				</div>
-				<p class="text-muted-foreground mb-8 text-sm">per exam + dedicated AI-matched tutor</p>
+				<p class="text-muted-foreground mb-8 text-sm">for three months per exam + dedicated AI-matched tutor</p>
 
 				<ul class="mb-8 flex-grow space-y-3.5">
 					{#each ['Everything in Single Exam', 'Intelligent AI tutor matching', '1-on-1 virtual teaching sessions', 'WhatsApp & platform chat', 'Live tutor performance monitoring', 'Priority AI support queue'] as feature, i}
