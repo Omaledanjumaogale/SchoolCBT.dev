@@ -1,0 +1,44 @@
+Loading svelte-check in workspace: c:\Users\OMALE DANJUMA OGALE\Downloads\PLATFORMS IN DEVELOPMENT\Schoolcbt.dev\SchoolCBT.dev
+Getting Svelte diagnostics...
+
+c:\Users\OMALE DANJUMA OGALE\Downloads\PLATFORMS IN DEVELOPMENT\Schoolcbt.dev\SchoolCBT.dev\[32msrc\lib\components\Footer.svelte[39m:52:18
+[33mWarn[39m: '#' is not a valid href attribute
+https://svelte.dev/e/a11y_invalid_attribute (svelte)
+[36m          <li><a href="/terms" class="text-muted-foreground hover:text-primary transition-colors">Terms of Service</a></li>
+          <li><a [35mhref="#"[36m class="text-muted-foreground hover:text-primary transition-colors flex items-center gap-2"><Smartphone class="w-4 h-4"/> WhatsApp Help</a></li>
+        </ul>[39m
+
+c:\Users\OMALE DANJUMA OGALE\Downloads\PLATFORMS IN DEVELOPMENT\Schoolcbt.dev\SchoolCBT.dev\[32msrc\lib\components\Footer.svelte[39m:2:12
+[31mError[39m: Module '"lucide-svelte"' has no exported member 'Twitter'. (ts)
+[36m<script lang="ts">
+  import { [35mTwitter[36m, Facebook, Linkedin, Smartphone, Mail, ArrowRight } from 'lucide-svelte';
+</script>[39m
+
+c:\Users\OMALE DANJUMA OGALE\Downloads\PLATFORMS IN DEVELOPMENT\Schoolcbt.dev\SchoolCBT.dev\[32msrc\lib\components\Footer.svelte[39m:2:21
+[31mError[39m: Module '"lucide-svelte"' has no exported member 'Facebook'. (ts)
+[36m<script lang="ts">
+  import { Twitter, [35mFacebook[36m, Linkedin, Smartphone, Mail, ArrowRight } from 'lucide-svelte';
+</script>[39m
+
+c:\Users\OMALE DANJUMA OGALE\Downloads\PLATFORMS IN DEVELOPMENT\Schoolcbt.dev\SchoolCBT.dev\[32msrc\lib\components\Footer.svelte[39m:2:31
+[31mError[39m: Module '"lucide-svelte"' has no exported member 'Linkedin'. (ts)
+[36m<script lang="ts">
+  import { Twitter, Facebook, [35mLinkedin[36m, Smartphone, Mail, ArrowRight } from 'lucide-svelte';
+</script>[39m
+
+c:\Users\OMALE DANJUMA OGALE\Downloads\PLATFORMS IN DEVELOPMENT\Schoolcbt.dev\SchoolCBT.dev\[32msrc\routes\+layout.svelte[39m:28:58
+[31mError[39m: Type 'true' is not assignable to type '"" | "anonymous" | "use-credentials" | null | undefined'. (ts)
+[36m	<link rel="preconnect" href="https://fonts.googleapis.com" />
+	<link rel="preconnect" href="https://fonts.gstatic.com" [35mcrossorigin[36m />
+	<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />[39m
+
+c:\Users\OMALE DANJUMA OGALE\Downloads\PLATFORMS IN DEVELOPMENT\Schoolcbt.dev\SchoolCBT.dev\[32msrc\routes\tutor\+page.svelte[39m:108:18
+[33mWarn[39m: '#' is not a valid href attribute
+https://svelte.dev/e/a11y_invalid_attribute (svelte)
+[36m              <h3 class="text-lg font-bold text-foreground">Upcoming Sessions</h3>
+              <a [35mhref="#"[36m class="text-sm font-bold text-primary hover:underline">View Calendar</a>
+            </div>[39m
+
+====================================
+[31msvelte-check found 4 errors and 2 warnings in 3 files
+[39m

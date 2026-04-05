@@ -29,7 +29,7 @@
 	];
 </script>
 
-<SEO 
+<SEO
 	title="SchoolCBT - Nigeria Elite Question Bank | 1.2M+ Practice Questions"
 	description="Access over 1.2 million curriculum-grounded questions for WAEC, NECO, JAMB, and NABTEB. Nigeria's premier elite question bank."
 />
@@ -38,26 +38,43 @@
 
 <main class="pt-20">
 	<!-- Hero Section -->
-	<section class="relative py-24 bg-hero overflow-hidden">
-		<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-			<div class="grid lg:grid-cols-2 gap-16 items-center">
+	<section class="bg-hero relative overflow-hidden py-24">
+		<div class="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+			<div class="grid items-center gap-16 lg:grid-cols-2">
 				<div class="text-left">
-					<div in:fade class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-gold/10 border border-gold/20 text-gold text-xs font-bold uppercase tracking-widest mb-8">
+					<div
+						in:fade
+						class="bg-gold/10 border-gold/20 text-gold mb-8 inline-flex items-center gap-2 rounded-full border px-4 py-2 text-xs font-bold tracking-widest uppercase"
+					>
 						<span>⚡</span> Elite Question Bank
 					</div>
-					<h1 in:fly={{ y: 20, duration: 600 }} class="text-4xl sm:text-6xl font-sora font-900 text-white mb-6 tracking-tight leading-[1.1]">
+					<h1
+						in:fly={{ y: 20, duration: 600 }}
+						class="font-sora font-900 mb-6 text-4xl leading-[1.1] tracking-tight text-white sm:text-6xl"
+					>
 						The <span class="text-gold">Ultimate Vault</span> of Knowledge 🏛️
 					</h1>
-					<p in:fly={{ y: 20, duration: 600, delay: 200 }} class="text-white/50 text-lg sm:text-xl leading-relaxed mb-12 max-w-xl">
-						Access over 1.2 million verified, curriculum-grounded questions across all secondary school subjects. 
-						Our AI agents ensure precision and relevance for WAEC, NECO, and JAMB success.
+					<p
+						in:fly={{ y: 20, duration: 600, delay: 200 }}
+						class="mb-12 max-w-xl text-lg leading-relaxed text-white/50 sm:text-xl"
+					>
+						Access over 1.2 million verified, curriculum-grounded questions across all secondary
+						school subjects. Our AI agents ensure precision and relevance for WAEC, NECO, and JAMB
+						success.
 					</p>
-					
-					<div in:fly={{ y: 20, duration: 600, delay: 400 }} class="flex flex-col sm:flex-row gap-4">
-						<button class="btn-gold px-10 py-5 rounded-2xl font-black uppercase tracking-widest shadow-xl shadow-gold/20 hover:scale-[1.05] active:scale-95 transition-all">
+
+					<div
+						in:fly={{ y: 20, duration: 600, delay: 400 }}
+						class="flex flex-col gap-4 sm:flex-row"
+					>
+						<button
+							class="btn-gold shadow-gold/20 rounded-2xl px-10 py-5 font-black tracking-widest uppercase shadow-xl transition-all hover:scale-[1.05] active:scale-95"
+						>
 							🚀 Start Exploring
 						</button>
-						<button class="btn-outline px-10 py-5 rounded-2xl font-black uppercase tracking-widest backdrop-blur-sm hover:bg-white/05 transition-all">
+						<button
+							class="btn-outline hover:bg-white/05 rounded-2xl px-10 py-5 font-black tracking-widest uppercase backdrop-blur-sm transition-all"
+						>
 							📄 Download PDFs
 						</button>
 					</div>
@@ -66,10 +83,16 @@
 				<!-- Stats Grid -->
 				<div in:fade={{ delay: 600 }} class="grid grid-cols-2 gap-4 sm:gap-6">
 					{#each stats as stat}
-						<div class="glass-card p-5 sm:p-8 lg:p-10 text-center border-white/05 hover:border-gold/30 hover:-translate-y-2 transition-all group">
-							<div class="text-4xl mb-4 group-hover:scale-125 transition-transform">{stat.icon}</div>
-							<div class="text-3xl sm:text-4xl font-sora font-900 text-white mb-2">{stat.val}</div>
-							<div class="text-white/40 text-[10px] font-black uppercase tracking-[0.2em]">{stat.label}</div>
+						<div
+							class="glass-card border-white/05 hover:border-gold/30 group p-5 text-center transition-all hover:-translate-y-2 sm:p-8 lg:p-10"
+						>
+							<div class="mb-4 text-4xl transition-transform group-hover:scale-125">
+								{stat.icon}
+							</div>
+							<div class="font-sora font-900 mb-2 text-3xl text-white sm:text-4xl">{stat.val}</div>
+							<div class="text-[10px] font-black tracking-[0.2em] text-white/40 uppercase">
+								{stat.label}
+							</div>
 						</div>
 					{/each}
 				</div>
@@ -78,35 +101,49 @@
 	</section>
 
 	<!-- Subjects Explorer -->
-	<section class="py-24 bg-cobalt-xdark/30 relative">
-		<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-			<div class="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-16">
+	<section class="bg-cobalt-xdark/30 relative py-24">
+		<div class="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+			<div class="mb-16 flex flex-col justify-between gap-6 md:flex-row md:items-end">
 				<div class="text-left">
-					<div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-jade/10 border border-jade/20 text-jade text-xs font-bold uppercase tracking-widest mb-6">
+					<div
+						class="bg-jade/10 border-jade/20 text-jade mb-6 inline-flex items-center gap-2 rounded-full border px-4 py-2 text-xs font-bold tracking-widest uppercase"
+					>
 						<span>📂</span> Subject Explorer
 					</div>
-					<h2 class="font-sora text-3xl sm:text-4xl font-900 text-white tracking-tight">
+					<h2 class="font-sora font-900 text-3xl tracking-tight text-white sm:text-4xl">
 						Browse by <span class="text-gold">Subject Area</span> 🔍
 					</h2>
 				</div>
 				<div class="flex items-center gap-4">
-					<input 
-						type="text" 
-						placeholder="Search subjects..." 
-						class="bg-white/05 border border-white/10 rounded-2xl px-6 py-4 text-white outline-none focus:border-gold/50 transition-all w-full md:w-80"
+					<input
+						type="text"
+						placeholder="Search subjects..."
+						class="bg-white/05 focus:border-gold/50 w-full rounded-2xl border border-white/10 px-6 py-4 text-white transition-all outline-none md:w-80"
 					/>
 				</div>
 			</div>
 
-			<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+			<div class="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
 				{#each subjects as subject}
-					<div class="glass-card p-8 hover:border-gold/40 hover:bg-white/07 transition-all group cursor-pointer hover:-translate-y-2">
-						<div class="w-16 h-16 rounded-2xl bg-cobalt/40 border border-white/10 flex items-center justify-center text-4xl group-hover:scale-110 group-hover:rotate-3 transition-transform shadow-lg mb-8">
+					<div
+						class="glass-card hover:border-gold/40 hover:bg-white/07 group cursor-pointer p-8 transition-all hover:-translate-y-2"
+					>
+						<div
+							class="bg-cobalt/40 mb-8 flex h-16 w-16 items-center justify-center rounded-2xl border border-white/10 text-4xl shadow-lg transition-transform group-hover:scale-110 group-hover:rotate-3"
+						>
 							{subject.icon}
 						</div>
-						<h3 class="text-white font-sora font-800 text-xl group-hover:text-gold transition-colors mb-2">{subject.name}</h3>
-						<p class="text-white/40 text-sm font-bold uppercase tracking-widest mb-6">{subject.qCount} questions</p>
-						<button class="w-full py-3 rounded-xl bg-white/05 border border-white/10 text-white/60 text-[10px] font-black uppercase tracking-widest hover:bg-white/10 hover:text-white transition-all">
+						<h3
+							class="font-sora font-800 group-hover:text-gold mb-2 text-xl text-white transition-colors"
+						>
+							{subject.name}
+						</h3>
+						<p class="mb-6 text-sm font-bold tracking-widest text-white/40 uppercase">
+							{subject.qCount} questions
+						</p>
+						<button
+							class="bg-white/05 w-full rounded-xl border border-white/10 py-3 text-[10px] font-black tracking-widest text-white/60 uppercase transition-all hover:bg-white/10 hover:text-white"
+						>
 							Enter Vault ➡️
 						</button>
 					</div>
@@ -116,33 +153,43 @@
 	</section>
 
 	<!-- Live Activity & AI Insights -->
-	<section class="py-24 relative overflow-hidden">
-		<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-			<div class="grid lg:grid-cols-3 gap-12 items-start">
+	<section class="relative overflow-hidden py-24">
+		<div class="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+			<div class="grid items-start gap-12 lg:grid-cols-3">
 				<!-- Live Activity Feed -->
-				<div class="lg:col-span-2 glass-card p-8 sm:p-12">
-					<div class="flex items-center justify-between mb-10 border-b border-white/05 pb-8">
-						<h3 class="text-white font-sora font-900 text-2xl flex items-center gap-3">
+				<div class="glass-card p-8 sm:p-12 lg:col-span-2">
+					<div class="border-white/05 mb-10 flex items-center justify-between border-b pb-8">
+						<h3 class="font-sora font-900 flex items-center gap-3 text-2xl text-white">
 							<span class="text-2xl">📡</span> Live Activity Vault
 						</h3>
 						<div class="flex items-center gap-2">
-							<span class="w-2 h-2 rounded-full bg-jade animate-pulse"></span>
-							<span class="text-jade text-[10px] font-black uppercase tracking-widest">Real-time Stream</span>
+							<span class="bg-jade h-2 w-2 animate-pulse rounded-full"></span>
+							<span class="text-jade text-[10px] font-black tracking-widest uppercase"
+								>Real-time Stream</span
+							>
 						</div>
 					</div>
 					<div class="space-y-6">
 						{#each recentActivity as item}
-							<div class="flex items-center justify-between p-6 rounded-3xl bg-white/03 border border-white/05 hover:bg-white/05 transition-all group">
+							<div
+								class="bg-white/03 border-white/05 hover:bg-white/05 group flex items-center justify-between rounded-3xl border p-6 transition-all"
+							>
 								<div class="flex items-center gap-6">
-									<div class="w-12 h-12 rounded-full bg-cobalt-light/20 flex items-center justify-center text-white/50 font-black text-xs">
+									<div
+										class="bg-cobalt-light/20 flex h-12 w-12 items-center justify-center rounded-full text-xs font-black text-white/50"
+									>
 										{item.user.split('#')[1]}
 									</div>
 									<div>
-										<div class="text-white font-bold group-hover:text-gold transition-colors">{item.action}</div>
-										<div class="text-white/30 text-xs mt-1">{item.user} • {item.time}</div>
+										<div class="group-hover:text-gold font-bold text-white transition-colors">
+											{item.action}
+										</div>
+										<div class="mt-1 text-xs text-white/30">{item.user} • {item.time}</div>
 									</div>
 								</div>
-								<div class="px-4 py-1.5 rounded-lg bg-jade/10 border border-jade/20 text-jade text-[10px] font-black uppercase tracking-widest">
+								<div
+									class="bg-jade/10 border-jade/20 text-jade rounded-lg border px-4 py-1.5 text-[10px] font-black tracking-widest uppercase"
+								>
 									{item.score}
 								</div>
 							</div>
@@ -152,43 +199,56 @@
 
 				<!-- AI Insight Sidebar -->
 				<div class="space-y-6">
-					<div class="glass-card p-8 sm:p-10 border-gold/30 glow-gold relative overflow-hidden group">
-						<div class="absolute top-0 right-0 p-4 text-5xl opacity-10 group-hover:scale-125 transition-transform">🤖</div>
-						<h4 class="text-gold font-black text-[10px] uppercase tracking-[0.2em] mb-4">AI Grounding Protocol</h4>
-						<p class="text-white/60 text-sm leading-relaxed mb-8">
-							Every question in our vault undergoes a rigorous multi-agent verification process. 
+					<div
+						class="glass-card border-gold/30 glow-gold group relative overflow-hidden p-8 sm:p-10"
+					>
+						<div
+							class="absolute top-0 right-0 p-4 text-5xl opacity-10 transition-transform group-hover:scale-125"
+						>
+							🤖
+						</div>
+						<h4 class="text-gold mb-4 text-[10px] font-black tracking-[0.2em] uppercase">
+							AI Grounding Protocol
+						</h4>
+						<p class="mb-8 text-sm leading-relaxed text-white/60">
+							Every question in our vault undergoes a rigorous multi-agent verification process.
 							99.8% grounding accuracy against Nigerian National Curriculum standards.
 						</p>
-						<ul class="space-y-3 mb-8">
+						<ul class="mb-8 space-y-3">
 							{#each ['NERDC Alignment Check', 'JAMB Pattern Analysis', 'Bloom Taxonomy Tagging', 'Multimodal Verification'] as check}
-								<li class="flex items-center gap-3 text-white/80 text-xs font-bold">
-									<span class="text-jade text-lg">✅</span> {check}
+								<li class="flex items-center gap-3 text-xs font-bold text-white/80">
+									<span class="text-jade text-lg">✅</span>
+									{check}
 								</li>
 							{/each}
 						</ul>
-						<button class="w-full py-4 rounded-2xl bg-gold text-cobalt font-black text-xs uppercase tracking-widest shadow-xl shadow-gold/20 hover:scale-[1.02] active:scale-95 transition-all">
+						<button
+							class="bg-gold text-cobalt shadow-gold/20 w-full rounded-2xl py-4 text-xs font-black tracking-widest uppercase shadow-xl transition-all hover:scale-[1.02] active:scale-95"
+						>
 							Learn About Our AI 🧪
 						</button>
 					</div>
 
 					<div class="glass-card p-8 sm:p-10">
-						<h4 class="text-white/40 font-black text-[10px] uppercase tracking-[0.2em] mb-6">Vault Summary</h4>
+						<h4 class="mb-6 text-[10px] font-black tracking-[0.2em] text-white/40 uppercase">
+							Vault Summary
+						</h4>
 						<div class="space-y-6">
-							<div class="flex justify-between items-end border-b border-white/05 pb-4">
-								<span class="text-white/60 text-xs font-bold">WAEC/NECO (SSCE)</span>
-								<span class="text-white font-black">450K+</span>
+							<div class="border-white/05 flex items-end justify-between border-b pb-4">
+								<span class="text-xs font-bold text-white/60">WAEC/NECO (SSCE)</span>
+								<span class="font-black text-white">450K+</span>
 							</div>
-							<div class="flex justify-between items-end border-b border-white/05 pb-4">
-								<span class="text-white/60 text-xs font-bold">JAMB (UTME)</span>
-								<span class="text-white font-black">380K+</span>
+							<div class="border-white/05 flex items-end justify-between border-b pb-4">
+								<span class="text-xs font-bold text-white/60">JAMB (UTME)</span>
+								<span class="font-black text-white">380K+</span>
 							</div>
-							<div class="flex justify-between items-end border-b border-white/05 pb-4">
-								<span class="text-white/60 text-xs font-bold">JSS (JSCE/BECE)</span>
-								<span class="text-white font-black">280K+</span>
+							<div class="border-white/05 flex items-end justify-between border-b pb-4">
+								<span class="text-xs font-bold text-white/60">JSS (JSCE/BECE)</span>
+								<span class="font-black text-white">280K+</span>
 							</div>
-							<div class="flex justify-between items-end">
-								<span class="text-white/60 text-xs font-bold">Technical/Others</span>
-								<span class="text-white font-black">120K+</span>
+							<div class="flex items-end justify-between">
+								<span class="text-xs font-bold text-white/60">Technical/Others</span>
+								<span class="font-black text-white">120K+</span>
 							</div>
 						</div>
 					</div>

@@ -1,0 +1,282 @@
+Parsing c:/Users/OMALE DANJUMA OGALE/Downloads/PLATFORMS IN DEVELOPMENT/Schoolcbt.dev/SchoolCBT.dev/src/lib/components/Pricing.svelte failed. No preprocess config found but lang tag exists. Skip showing error because they likely use other preprocessors.
+Loading svelte-check in workspace: c:\Users\OMALE DANJUMA OGALE\Downloads\PLATFORMS IN DEVELOPMENT\Schoolcbt.dev\SchoolCBT.dev
+Getting Svelte diagnostics...
+
+c:\Users\OMALE DANJUMA OGALE\Downloads\PLATFORMS IN DEVELOPMENT\Schoolcbt.dev\SchoolCBT.dev\[32msrc\lib\components\Pricing.svelte[39m:8:91
+[31mError[39m: ',' expected. (ts)
+[36m  const testimonials: Testimonial[] = [
+    { name: 'Adaeze Okafor', school: 'FGGC Onitsha', exam: 'WAEC 2024', quote: 'SchoolCBT'[35ms[36m AI feedback explained every mistake clearly. I went from 52% to 91% in Chemistry in 6 weeks.', score: 'A1 in Chemistry' },
+    { name: 'Emeka Nwosu', school: 'Government College Umuahia', exam: 'JAMB 2025', quote: 'The pass probability feature kept me motivated. When my chance hit 85%, I knew I was ready. Scored 298!', score: '298 in JAMB' },[39m
+
+c:\Users\OMALE DANJUMA OGALE\Downloads\PLATFORMS IN DEVELOPMENT\Schoolcbt.dev\SchoolCBT.dev\[32msrc\lib\components\Pricing.svelte[39m:8:93
+[31mError[39m: ',' expected. (ts)
+[36m  const testimonials: Testimonial[] = [
+    { name: 'Adaeze Okafor', school: 'FGGC Onitsha', exam: 'WAEC 2024', quote: 'SchoolCBT's [35mAI[36m feedback explained every mistake clearly. I went from 52% to 91% in Chemistry in 6 weeks.', score: 'A1 in Chemistry' },
+    { name: 'Emeka Nwosu', school: 'Government College Umuahia', exam: 'JAMB 2025', quote: 'The pass probability feature kept me motivated. When my chance hit 85%, I knew I was ready. Scored 298!', score: '298 in JAMB' },[39m
+
+c:\Users\OMALE DANJUMA OGALE\Downloads\PLATFORMS IN DEVELOPMENT\Schoolcbt.dev\SchoolCBT.dev\[32msrc\lib\components\Pricing.svelte[39m:8:96
+[31mError[39m: ',' expected. (ts)
+[36m  const testimonials: Testimonial[] = [
+    { name: 'Adaeze Okafor', school: 'FGGC Onitsha', exam: 'WAEC 2024', quote: 'SchoolCBT's AI [35mfeedback[36m explained every mistake clearly. I went from 52% to 91% in Chemistry in 6 weeks.', score: 'A1 in Chemistry' },
+    { name: 'Emeka Nwosu', school: 'Government College Umuahia', exam: 'JAMB 2025', quote: 'The pass probability feature kept me motivated. When my chance hit 85%, I knew I was ready. Scored 298!', score: '298 in JAMB' },[39m
+
+c:\Users\OMALE DANJUMA OGALE\Downloads\PLATFORMS IN DEVELOPMENT\Schoolcbt.dev\SchoolCBT.dev\[32msrc\lib\components\Pricing.svelte[39m:8:105
+[31mError[39m: ',' expected. (ts)
+[36m  const testimonials: Testimonial[] = [
+    { name: 'Adaeze Okafor', school: 'FGGC Onitsha', exam: 'WAEC 2024', quote: 'SchoolCBT's AI feedback [35mexplained[36m every mistake clearly. I went from 52% to 91% in Chemistry in 6 weeks.', score: 'A1 in Chemistry' },
+    { name: 'Emeka Nwosu', school: 'Government College Umuahia', exam: 'JAMB 2025', quote: 'The pass probability feature kept me motivated. When my chance hit 85%, I knew I was ready. Scored 298!', score: '298 in JAMB' },[39m
+
+c:\Users\OMALE DANJUMA OGALE\Downloads\PLATFORMS IN DEVELOPMENT\Schoolcbt.dev\SchoolCBT.dev\[32msrc\lib\components\Pricing.svelte[39m:8:115
+[31mError[39m: ',' expected. (ts)
+[36m  const testimonials: Testimonial[] = [
+    { name: 'Adaeze Okafor', school: 'FGGC Onitsha', exam: 'WAEC 2024', quote: 'SchoolCBT's AI feedback explained [35mevery[36m mistake clearly. I went from 52% to 91% in Chemistry in 6 weeks.', score: 'A1 in Chemistry' },
+    { name: 'Emeka Nwosu', school: 'Government College Umuahia', exam: 'JAMB 2025', quote: 'The pass probability feature kept me motivated. When my chance hit 85%, I knew I was ready. Scored 298!', score: '298 in JAMB' },[39m
+
+c:\Users\OMALE DANJUMA OGALE\Downloads\PLATFORMS IN DEVELOPMENT\Schoolcbt.dev\SchoolCBT.dev\[32msrc\lib\components\Pricing.svelte[39m:8:121
+[31mError[39m: ',' expected. (ts)
+[36m  const testimonials: Testimonial[] = [
+    { name: 'Adaeze Okafor', school: 'FGGC Onitsha', exam: 'WAEC 2024', quote: 'SchoolCBT's AI feedback explained every [35mmistake[36m clearly. I went from 52% to 91% in Chemistry in 6 weeks.', score: 'A1 in Chemistry' },
+    { name: 'Emeka Nwosu', school: 'Government College Umuahia', exam: 'JAMB 2025', quote: 'The pass probability feature kept me motivated. When my chance hit 85%, I knew I was ready. Scored 298!', score: '298 in JAMB' },[39m
+
+c:\Users\OMALE DANJUMA OGALE\Downloads\PLATFORMS IN DEVELOPMENT\Schoolcbt.dev\SchoolCBT.dev\[32msrc\lib\components\Pricing.svelte[39m:8:129
+[31mError[39m: ',' expected. (ts)
+[36m  const testimonials: Testimonial[] = [
+    { name: 'Adaeze Okafor', school: 'FGGC Onitsha', exam: 'WAEC 2024', quote: 'SchoolCBT's AI feedback explained every mistake [35mclearly[36m. I went from 52% to 91% in Chemistry in 6 weeks.', score: 'A1 in Chemistry' },
+    { name: 'Emeka Nwosu', school: 'Government College Umuahia', exam: 'JAMB 2025', quote: 'The pass probability feature kept me motivated. When my chance hit 85%, I knew I was ready. Scored 298!', score: '298 in JAMB' },[39m
+
+c:\Users\OMALE DANJUMA OGALE\Downloads\PLATFORMS IN DEVELOPMENT\Schoolcbt.dev\SchoolCBT.dev\[32msrc\lib\components\Pricing.svelte[39m:8:136
+[31mError[39m: ',' expected. (ts)
+[36m  const testimonials: Testimonial[] = [
+    { name: 'Adaeze Okafor', school: 'FGGC Onitsha', exam: 'WAEC 2024', quote: 'SchoolCBT's AI feedback explained every mistake clearly[35m.[36m I went from 52% to 91% in Chemistry in 6 weeks.', score: 'A1 in Chemistry' },
+    { name: 'Emeka Nwosu', school: 'Government College Umuahia', exam: 'JAMB 2025', quote: 'The pass probability feature kept me motivated. When my chance hit 85%, I knew I was ready. Scored 298!', score: '298 in JAMB' },[39m
+
+c:\Users\OMALE DANJUMA OGALE\Downloads\PLATFORMS IN DEVELOPMENT\Schoolcbt.dev\SchoolCBT.dev\[32msrc\lib\components\Pricing.svelte[39m:8:140
+[31mError[39m: ',' expected. (ts)
+[36m  const testimonials: Testimonial[] = [
+    { name: 'Adaeze Okafor', school: 'FGGC Onitsha', exam: 'WAEC 2024', quote: 'SchoolCBT's AI feedback explained every mistake clearly. I [35mwent[36m from 52% to 91% in Chemistry in 6 weeks.', score: 'A1 in Chemistry' },
+    { name: 'Emeka Nwosu', school: 'Government College Umuahia', exam: 'JAMB 2025', quote: 'The pass probability feature kept me motivated. When my chance hit 85%, I knew I was ready. Scored 298!', score: '298 in JAMB' },[39m
+
+c:\Users\OMALE DANJUMA OGALE\Downloads\PLATFORMS IN DEVELOPMENT\Schoolcbt.dev\SchoolCBT.dev\[32msrc\lib\components\Pricing.svelte[39m:8:145
+[31mError[39m: ',' expected. (ts)
+[36m  const testimonials: Testimonial[] = [
+    { name: 'Adaeze Okafor', school: 'FGGC Onitsha', exam: 'WAEC 2024', quote: 'SchoolCBT's AI feedback explained every mistake clearly. I went [35mfrom[36m 52% to 91% in Chemistry in 6 weeks.', score: 'A1 in Chemistry' },
+    { name: 'Emeka Nwosu', school: 'Government College Umuahia', exam: 'JAMB 2025', quote: 'The pass probability feature kept me motivated. When my chance hit 85%, I knew I was ready. Scored 298!', score: '298 in JAMB' },[39m
+
+c:\Users\OMALE DANJUMA OGALE\Downloads\PLATFORMS IN DEVELOPMENT\Schoolcbt.dev\SchoolCBT.dev\[32msrc\lib\components\Pricing.svelte[39m:8:150
+[31mError[39m: ',' expected. (ts)
+[36m  const testimonials: Testimonial[] = [
+    { name: 'Adaeze Okafor', school: 'FGGC Onitsha', exam: 'WAEC 2024', quote: 'SchoolCBT's AI feedback explained every mistake clearly. I went from [35m52[36m% to 91% in Chemistry in 6 weeks.', score: 'A1 in Chemistry' },
+    { name: 'Emeka Nwosu', school: 'Government College Umuahia', exam: 'JAMB 2025', quote: 'The pass probability feature kept me motivated. When my chance hit 85%, I knew I was ready. Scored 298!', score: '298 in JAMB' },[39m
+
+c:\Users\OMALE DANJUMA OGALE\Downloads\PLATFORMS IN DEVELOPMENT\Schoolcbt.dev\SchoolCBT.dev\[32msrc\lib\components\Pricing.svelte[39m:8:152
+[31mError[39m: ':' expected. (ts)
+[36m  const testimonials: Testimonial[] = [
+    { name: 'Adaeze Okafor', school: 'FGGC Onitsha', exam: 'WAEC 2024', quote: 'SchoolCBT's AI feedback explained every mistake clearly. I went from 52[35m%[36m to 91% in Chemistry in 6 weeks.', score: 'A1 in Chemistry' },
+    { name: 'Emeka Nwosu', school: 'Government College Umuahia', exam: 'JAMB 2025', quote: 'The pass probability feature kept me motivated. When my chance hit 85%, I knew I was ready. Scored 298!', score: '298 in JAMB' },[39m
+
+c:\Users\OMALE DANJUMA OGALE\Downloads\PLATFORMS IN DEVELOPMENT\Schoolcbt.dev\SchoolCBT.dev\[32msrc\lib\components\Pricing.svelte[39m:8:157
+[31mError[39m: ',' expected. (ts)
+[36m  const testimonials: Testimonial[] = [
+    { name: 'Adaeze Okafor', school: 'FGGC Onitsha', exam: 'WAEC 2024', quote: 'SchoolCBT's AI feedback explained every mistake clearly. I went from 52% to [35m91[36m% in Chemistry in 6 weeks.', score: 'A1 in Chemistry' },
+    { name: 'Emeka Nwosu', school: 'Government College Umuahia', exam: 'JAMB 2025', quote: 'The pass probability feature kept me motivated. When my chance hit 85%, I knew I was ready. Scored 298!', score: '298 in JAMB' },[39m
+
+c:\Users\OMALE DANJUMA OGALE\Downloads\PLATFORMS IN DEVELOPMENT\Schoolcbt.dev\SchoolCBT.dev\[32msrc\lib\components\Pricing.svelte[39m:8:159
+[31mError[39m: ':' expected. (ts)
+[36m  const testimonials: Testimonial[] = [
+    { name: 'Adaeze Okafor', school: 'FGGC Onitsha', exam: 'WAEC 2024', quote: 'SchoolCBT's AI feedback explained every mistake clearly. I went from 52% to 91[35m%[36m in Chemistry in 6 weeks.', score: 'A1 in Chemistry' },
+    { name: 'Emeka Nwosu', school: 'Government College Umuahia', exam: 'JAMB 2025', quote: 'The pass probability feature kept me motivated. When my chance hit 85%, I knew I was ready. Scored 298!', score: '298 in JAMB' },[39m
+
+c:\Users\OMALE DANJUMA OGALE\Downloads\PLATFORMS IN DEVELOPMENT\Schoolcbt.dev\SchoolCBT.dev\[32msrc\lib\components\Pricing.svelte[39m:8:161
+[31mError[39m: Expression expected. (ts)
+[36m  const testimonials: Testimonial[] = [
+    { name: 'Adaeze Okafor', school: 'FGGC Onitsha', exam: 'WAEC 2024', quote: 'SchoolCBT's AI feedback explained every mistake clearly. I went from 52% to 91% [35min[36m Chemistry in 6 weeks.', score: 'A1 in Chemistry' },
+    { name: 'Emeka Nwosu', school: 'Government College Umuahia', exam: 'JAMB 2025', quote: 'The pass probability feature kept me motivated. When my chance hit 85%, I knew I was ready. Scored 298!', score: '298 in JAMB' },[39m
+
+c:\Users\OMALE DANJUMA OGALE\Downloads\PLATFORMS IN DEVELOPMENT\Schoolcbt.dev\SchoolCBT.dev\[32msrc\lib\components\Pricing.svelte[39m:8:179
+[31mError[39m: ',' expected. (ts)
+[36m  const testimonials: Testimonial[] = [
+    { name: 'Adaeze Okafor', school: 'FGGC Onitsha', exam: 'WAEC 2024', quote: 'SchoolCBT's AI feedback explained every mistake clearly. I went from 52% to 91% in Chemistry in 6 [35mweeks[36m.', score: 'A1 in Chemistry' },
+    { name: 'Emeka Nwosu', school: 'Government College Umuahia', exam: 'JAMB 2025', quote: 'The pass probability feature kept me motivated. When my chance hit 85%, I knew I was ready. Scored 298!', score: '298 in JAMB' },[39m
+
+c:\Users\OMALE DANJUMA OGALE\Downloads\PLATFORMS IN DEVELOPMENT\Schoolcbt.dev\SchoolCBT.dev\[32msrc\lib\components\Pricing.svelte[39m:8:184
+[31mError[39m: ',' expected. (ts)
+[36m  const testimonials: Testimonial[] = [
+    { name: 'Adaeze Okafor', school: 'FGGC Onitsha', exam: 'WAEC 2024', quote: 'SchoolCBT's AI feedback explained every mistake clearly. I went from 52% to 91% in Chemistry in 6 weeks[35m.[36m', score: 'A1 in Chemistry' },
+    { name: 'Emeka Nwosu', school: 'Government College Umuahia', exam: 'JAMB 2025', quote: 'The pass probability feature kept me motivated. When my chance hit 85%, I knew I was ready. Scored 298!', score: '298 in JAMB' },[39m
+
+c:\Users\OMALE DANJUMA OGALE\Downloads\PLATFORMS IN DEVELOPMENT\Schoolcbt.dev\SchoolCBT.dev\[32msrc\lib\components\Pricing.svelte[39m:8:185
+[31mError[39m: Identifier expected. (ts)
+[36m  const testimonials: Testimonial[] = [
+    { name: 'Adaeze Okafor', school: 'FGGC Onitsha', exam: 'WAEC 2024', quote: 'SchoolCBT's AI feedback explained every mistake clearly. I went from 52% to 91% in Chemistry in 6 weeks.[35m', score: '[36mA1 in Chemistry' },
+    { name: 'Emeka Nwosu', school: 'Government College Umuahia', exam: 'JAMB 2025', quote: 'The pass probability feature kept me motivated. When my chance hit 85%, I knew I was ready. Scored 298!', score: '298 in JAMB' },[39m
+
+c:\Users\OMALE DANJUMA OGALE\Downloads\PLATFORMS IN DEVELOPMENT\Schoolcbt.dev\SchoolCBT.dev\[32msrc\lib\components\Pricing.svelte[39m:8:196
+[31mError[39m: ':' expected. (ts)
+[36m  const testimonials: Testimonial[] = [
+    { name: 'Adaeze Okafor', school: 'FGGC Onitsha', exam: 'WAEC 2024', quote: 'SchoolCBT's AI feedback explained every mistake clearly. I went from 52% to 91% in Chemistry in 6 weeks.', score: '[35mA1[36m in Chemistry' },
+    { name: 'Emeka Nwosu', school: 'Government College Umuahia', exam: 'JAMB 2025', quote: 'The pass probability feature kept me motivated. When my chance hit 85%, I knew I was ready. Scored 298!', score: '298 in JAMB' },[39m
+
+c:\Users\OMALE DANJUMA OGALE\Downloads\PLATFORMS IN DEVELOPMENT\Schoolcbt.dev\SchoolCBT.dev\[32msrc\lib\components\Pricing.svelte[39m:8:211
+[31mError[39m: ',' expected. (ts)
+[36m  const testimonials: Testimonial[] = [
+    { name: 'Adaeze Okafor', school: 'FGGC Onitsha', exam: 'WAEC 2024', quote: 'SchoolCBT's AI feedback explained every mistake clearly. I went from 52% to 91% in Chemistry in 6 weeks.', score: 'A1 in Chemistry[35m' },[36m
+    { name: 'Emeka Nwosu', school: 'Government College Umuahia', exam: 'JAMB 2025', quote: 'The pass probability feature kept me motivated. When my chance hit 85%, I knew I was ready. Scored 298!', score: '298 in JAMB' },[39m
+
+c:\Users\OMALE DANJUMA OGALE\Downloads\PLATFORMS IN DEVELOPMENT\Schoolcbt.dev\SchoolCBT.dev\[32msrc\lib\components\Pricing.svelte[39m:8:215
+[31mError[39m: Unterminated string literal. (ts)
+[36m  const testimonials: Testimonial[] = [
+    { name: 'Adaeze Okafor', school: 'FGGC Onitsha', exam: 'WAEC 2024', quote: 'SchoolCBT's AI feedback explained every mistake clearly. I went from 52% to 91% in Chemistry in 6 weeks.', score: 'A1 in Chemistry' },[35m[36m
+    { name: 'Emeka Nwosu', school: 'Government College Umuahia', exam: 'JAMB 2025', quote: 'The pass probability feature kept me motivated. When my chance hit 85%, I knew I was ready. Scored 298!', score: '298 in JAMB' },[39m
+
+c:\Users\OMALE DANJUMA OGALE\Downloads\PLATFORMS IN DEVELOPMENT\Schoolcbt.dev\SchoolCBT.dev\[32msrc\lib\components\Pricing.svelte[39m:9:5
+[31mError[39m: ':' expected. (ts)
+[36m    { name: 'Adaeze Okafor', school: 'FGGC Onitsha', exam: 'WAEC 2024', quote: 'SchoolCBT's AI feedback explained every mistake clearly. I went from 52% to 91% in Chemistry in 6 weeks.', score: 'A1 in Chemistry' },
+    [35m{[36m name: 'Emeka Nwosu', school: 'Government College Umuahia', exam: 'JAMB 2025', quote: 'The pass probability feature kept me motivated. When my chance hit 85%, I knew I was ready. Scored 298!', score: '298 in JAMB' },
+    { name: 'Fatimah Bello', school: 'GGSS Kaduna', exam: 'NECO 2024', quote: 'My tutor matched by SchoolCBT specifically for my Physics weakness was brilliant. Distinction in every science subject.', score: 'Distinction in 5 subjects' },[39m
+
+c:\Users\OMALE DANJUMA OGALE\Downloads\PLATFORMS IN DEVELOPMENT\Schoolcbt.dev\SchoolCBT.dev\[32msrc\lib\components\Pricing.svelte[39m:10:5
+[31mError[39m: Property assignment expected. (ts)
+[36m    { name: 'Emeka Nwosu', school: 'Government College Umuahia', exam: 'JAMB 2025', quote: 'The pass probability feature kept me motivated. When my chance hit 85%, I knew I was ready. Scored 298!', score: '298 in JAMB' },
+    [35m{[36m name: 'Fatimah Bello', school: 'GGSS Kaduna', exam: 'NECO 2024', quote: 'My tutor matched by SchoolCBT specifically for my Physics weakness was brilliant. Distinction in every science subject.', score: 'Distinction in 5 subjects' },
+  ];[39m
+
+c:\Users\OMALE DANJUMA OGALE\Downloads\PLATFORMS IN DEVELOPMENT\Schoolcbt.dev\SchoolCBT.dev\[32msrc\lib\components\Pricing.svelte[39m:8:91
+[31mError[39m: Object literal may only specify known properties, and 's' does not exist in type 'Testimonial'. (ts)
+[36m  const testimonials: Testimonial[] = [
+    { name: 'Adaeze Okafor', school: 'FGGC Onitsha', exam: 'WAEC 2024', quote: 'SchoolCBT'[35ms[36m AI feedback explained every mistake clearly. I went from 52% to 91% in Chemistry in 6 weeks.', score: 'A1 in Chemistry' },
+    { name: 'Emeka Nwosu', school: 'Government College Umuahia', exam: 'JAMB 2025', quote: 'The pass probability feature kept me motivated. When my chance hit 85%, I knew I was ready. Scored 298!', score: '298 in JAMB' },[39m
+
+c:\Users\OMALE DANJUMA OGALE\Downloads\PLATFORMS IN DEVELOPMENT\Schoolcbt.dev\SchoolCBT.dev\[32msrc\lib\components\Pricing.svelte[39m:8:91
+[31mError[39m: No value exists in scope for the shorthand property 's'. Either declare one or provide an initializer. (ts)
+[36m  const testimonials: Testimonial[] = [
+    { name: 'Adaeze Okafor', school: 'FGGC Onitsha', exam: 'WAEC 2024', quote: 'SchoolCBT'[35ms[36m AI feedback explained every mistake clearly. I went from 52% to 91% in Chemistry in 6 weeks.', score: 'A1 in Chemistry' },
+    { name: 'Emeka Nwosu', school: 'Government College Umuahia', exam: 'JAMB 2025', quote: 'The pass probability feature kept me motivated. When my chance hit 85%, I knew I was ready. Scored 298!', score: '298 in JAMB' },[39m
+
+c:\Users\OMALE DANJUMA OGALE\Downloads\PLATFORMS IN DEVELOPMENT\Schoolcbt.dev\SchoolCBT.dev\[32msrc\lib\components\Pricing.svelte[39m:8:93
+[31mError[39m: No value exists in scope for the shorthand property 'AI'. Either declare one or provide an initializer. (ts)
+[36m  const testimonials: Testimonial[] = [
+    { name: 'Adaeze Okafor', school: 'FGGC Onitsha', exam: 'WAEC 2024', quote: 'SchoolCBT's [35mAI[36m feedback explained every mistake clearly. I went from 52% to 91% in Chemistry in 6 weeks.', score: 'A1 in Chemistry' },
+    { name: 'Emeka Nwosu', school: 'Government College Umuahia', exam: 'JAMB 2025', quote: 'The pass probability feature kept me motivated. When my chance hit 85%, I knew I was ready. Scored 298!', score: '298 in JAMB' },[39m
+
+c:\Users\OMALE DANJUMA OGALE\Downloads\PLATFORMS IN DEVELOPMENT\Schoolcbt.dev\SchoolCBT.dev\[32msrc\lib\components\Pricing.svelte[39m:8:96
+[31mError[39m: No value exists in scope for the shorthand property 'feedback'. Either declare one or provide an initializer. (ts)
+[36m  const testimonials: Testimonial[] = [
+    { name: 'Adaeze Okafor', school: 'FGGC Onitsha', exam: 'WAEC 2024', quote: 'SchoolCBT's AI [35mfeedback[36m explained every mistake clearly. I went from 52% to 91% in Chemistry in 6 weeks.', score: 'A1 in Chemistry' },
+    { name: 'Emeka Nwosu', school: 'Government College Umuahia', exam: 'JAMB 2025', quote: 'The pass probability feature kept me motivated. When my chance hit 85%, I knew I was ready. Scored 298!', score: '298 in JAMB' },[39m
+
+c:\Users\OMALE DANJUMA OGALE\Downloads\PLATFORMS IN DEVELOPMENT\Schoolcbt.dev\SchoolCBT.dev\[32msrc\lib\components\Pricing.svelte[39m:8:105
+[31mError[39m: No value exists in scope for the shorthand property 'explained'. Either declare one or provide an initializer. (ts)
+[36m  const testimonials: Testimonial[] = [
+    { name: 'Adaeze Okafor', school: 'FGGC Onitsha', exam: 'WAEC 2024', quote: 'SchoolCBT's AI feedback [35mexplained[36m every mistake clearly. I went from 52% to 91% in Chemistry in 6 weeks.', score: 'A1 in Chemistry' },
+    { name: 'Emeka Nwosu', school: 'Government College Umuahia', exam: 'JAMB 2025', quote: 'The pass probability feature kept me motivated. When my chance hit 85%, I knew I was ready. Scored 298!', score: '298 in JAMB' },[39m
+
+c:\Users\OMALE DANJUMA OGALE\Downloads\PLATFORMS IN DEVELOPMENT\Schoolcbt.dev\SchoolCBT.dev\[32msrc\lib\components\Pricing.svelte[39m:8:115
+[31mError[39m: No value exists in scope for the shorthand property 'every'. Either declare one or provide an initializer. (ts)
+[36m  const testimonials: Testimonial[] = [
+    { name: 'Adaeze Okafor', school: 'FGGC Onitsha', exam: 'WAEC 2024', quote: 'SchoolCBT's AI feedback explained [35mevery[36m mistake clearly. I went from 52% to 91% in Chemistry in 6 weeks.', score: 'A1 in Chemistry' },
+    { name: 'Emeka Nwosu', school: 'Government College Umuahia', exam: 'JAMB 2025', quote: 'The pass probability feature kept me motivated. When my chance hit 85%, I knew I was ready. Scored 298!', score: '298 in JAMB' },[39m
+
+c:\Users\OMALE DANJUMA OGALE\Downloads\PLATFORMS IN DEVELOPMENT\Schoolcbt.dev\SchoolCBT.dev\[32msrc\lib\components\Pricing.svelte[39m:8:121
+[31mError[39m: No value exists in scope for the shorthand property 'mistake'. Either declare one or provide an initializer. (ts)
+[36m  const testimonials: Testimonial[] = [
+    { name: 'Adaeze Okafor', school: 'FGGC Onitsha', exam: 'WAEC 2024', quote: 'SchoolCBT's AI feedback explained every [35mmistake[36m clearly. I went from 52% to 91% in Chemistry in 6 weeks.', score: 'A1 in Chemistry' },
+    { name: 'Emeka Nwosu', school: 'Government College Umuahia', exam: 'JAMB 2025', quote: 'The pass probability feature kept me motivated. When my chance hit 85%, I knew I was ready. Scored 298!', score: '298 in JAMB' },[39m
+
+c:\Users\OMALE DANJUMA OGALE\Downloads\PLATFORMS IN DEVELOPMENT\Schoolcbt.dev\SchoolCBT.dev\[32msrc\lib\components\Pricing.svelte[39m:8:129
+[31mError[39m: No value exists in scope for the shorthand property 'clearly'. Either declare one or provide an initializer. (ts)
+[36m  const testimonials: Testimonial[] = [
+    { name: 'Adaeze Okafor', school: 'FGGC Onitsha', exam: 'WAEC 2024', quote: 'SchoolCBT's AI feedback explained every mistake [35mclearly[36m. I went from 52% to 91% in Chemistry in 6 weeks.', score: 'A1 in Chemistry' },
+    { name: 'Emeka Nwosu', school: 'Government College Umuahia', exam: 'JAMB 2025', quote: 'The pass probability feature kept me motivated. When my chance hit 85%, I knew I was ready. Scored 298!', score: '298 in JAMB' },[39m
+
+c:\Users\OMALE DANJUMA OGALE\Downloads\PLATFORMS IN DEVELOPMENT\Schoolcbt.dev\SchoolCBT.dev\[32msrc\lib\components\Pricing.svelte[39m:8:140
+[31mError[39m: No value exists in scope for the shorthand property 'went'. Either declare one or provide an initializer. (ts)
+[36m  const testimonials: Testimonial[] = [
+    { name: 'Adaeze Okafor', school: 'FGGC Onitsha', exam: 'WAEC 2024', quote: 'SchoolCBT's AI feedback explained every mistake clearly. I [35mwent[36m from 52% to 91% in Chemistry in 6 weeks.', score: 'A1 in Chemistry' },
+    { name: 'Emeka Nwosu', school: 'Government College Umuahia', exam: 'JAMB 2025', quote: 'The pass probability feature kept me motivated. When my chance hit 85%, I knew I was ready. Scored 298!', score: '298 in JAMB' },[39m
+
+c:\Users\OMALE DANJUMA OGALE\Downloads\PLATFORMS IN DEVELOPMENT\Schoolcbt.dev\SchoolCBT.dev\[32msrc\lib\components\Pricing.svelte[39m:8:145
+[31mError[39m: No value exists in scope for the shorthand property 'from'. Either declare one or provide an initializer. (ts)
+[36m  const testimonials: Testimonial[] = [
+    { name: 'Adaeze Okafor', school: 'FGGC Onitsha', exam: 'WAEC 2024', quote: 'SchoolCBT's AI feedback explained every mistake clearly. I went [35mfrom[36m 52% to 91% in Chemistry in 6 weeks.', score: 'A1 in Chemistry' },
+    { name: 'Emeka Nwosu', school: 'Government College Umuahia', exam: 'JAMB 2025', quote: 'The pass probability feature kept me motivated. When my chance hit 85%, I knew I was ready. Scored 298!', score: '298 in JAMB' },[39m
+
+c:\Users\OMALE DANJUMA OGALE\Downloads\PLATFORMS IN DEVELOPMENT\Schoolcbt.dev\SchoolCBT.dev\[32msrc\lib\components\Pricing.svelte[39m:8:154
+[31mError[39m: Cannot find name 'to'. (ts)
+[36m  const testimonials: Testimonial[] = [
+    { name: 'Adaeze Okafor', school: 'FGGC Onitsha', exam: 'WAEC 2024', quote: 'SchoolCBT's AI feedback explained every mistake clearly. I went from 52% [35mto[36m 91% in Chemistry in 6 weeks.', score: 'A1 in Chemistry' },
+    { name: 'Emeka Nwosu', school: 'Government College Umuahia', exam: 'JAMB 2025', quote: 'The pass probability feature kept me motivated. When my chance hit 85%, I knew I was ready. Scored 298!', score: '298 in JAMB' },[39m
+
+c:\Users\OMALE DANJUMA OGALE\Downloads\PLATFORMS IN DEVELOPMENT\Schoolcbt.dev\SchoolCBT.dev\[32msrc\lib\components\Pricing.svelte[39m:8:159
+[31mError[39m: Type 'boolean' is not assignable to type 'string | number | symbol'. (ts)
+[36m  const testimonials: Testimonial[] = [
+    { name: 'Adaeze Okafor', school: 'FGGC Onitsha', exam: 'WAEC 2024', quote: 'SchoolCBT's AI feedback explained every mistake clearly. I went from 52% to 91[35m% in Chemistry[36m in 6 weeks.', score: 'A1 in Chemistry' },
+    { name: 'Emeka Nwosu', school: 'Government College Umuahia', exam: 'JAMB 2025', quote: 'The pass probability feature kept me motivated. When my chance hit 85%, I knew I was ready. Scored 298!', score: '298 in JAMB' },[39m
+
+c:\Users\OMALE DANJUMA OGALE\Downloads\PLATFORMS IN DEVELOPMENT\Schoolcbt.dev\SchoolCBT.dev\[32msrc\lib\components\Pricing.svelte[39m:8:164
+[31mError[39m: Cannot find name 'Chemistry'. (ts)
+[36m  const testimonials: Testimonial[] = [
+    { name: 'Adaeze Okafor', school: 'FGGC Onitsha', exam: 'WAEC 2024', quote: 'SchoolCBT's AI feedback explained every mistake clearly. I went from 52% to 91% in [35mChemistry[36m in 6 weeks.', score: 'A1 in Chemistry' },
+    { name: 'Emeka Nwosu', school: 'Government College Umuahia', exam: 'JAMB 2025', quote: 'The pass probability feature kept me motivated. When my chance hit 85%, I knew I was ready. Scored 298!', score: '298 in JAMB' },[39m
+
+c:\Users\OMALE DANJUMA OGALE\Downloads\PLATFORMS IN DEVELOPMENT\Schoolcbt.dev\SchoolCBT.dev\[32msrc\lib\components\Pricing.svelte[39m:8:177
+[31mError[39m: Type 'number' is not assignable to type 'object'. (ts)
+[36m  const testimonials: Testimonial[] = [
+    { name: 'Adaeze Okafor', school: 'FGGC Onitsha', exam: 'WAEC 2024', quote: 'SchoolCBT's AI feedback explained every mistake clearly. I went from 52% to 91% in Chemistry in [35m6[36m weeks.', score: 'A1 in Chemistry' },
+    { name: 'Emeka Nwosu', school: 'Government College Umuahia', exam: 'JAMB 2025', quote: 'The pass probability feature kept me motivated. When my chance hit 85%, I knew I was ready. Scored 298!', score: '298 in JAMB' },[39m
+
+c:\Users\OMALE DANJUMA OGALE\Downloads\PLATFORMS IN DEVELOPMENT\Schoolcbt.dev\SchoolCBT.dev\[32msrc\lib\components\Pricing.svelte[39m:8:179
+[31mError[39m: No value exists in scope for the shorthand property 'weeks'. Either declare one or provide an initializer. (ts)
+[36m  const testimonials: Testimonial[] = [
+    { name: 'Adaeze Okafor', school: 'FGGC Onitsha', exam: 'WAEC 2024', quote: 'SchoolCBT's AI feedback explained every mistake clearly. I went from 52% to 91% in Chemistry in 6 [35mweeks[36m.', score: 'A1 in Chemistry' },
+    { name: 'Emeka Nwosu', school: 'Government College Umuahia', exam: 'JAMB 2025', quote: 'The pass probability feature kept me motivated. When my chance hit 85%, I knew I was ready. Scored 298!', score: '298 in JAMB' },[39m
+
+c:\Users\OMALE DANJUMA OGALE\Downloads\PLATFORMS IN DEVELOPMENT\Schoolcbt.dev\SchoolCBT.dev\[32msrc\lib\components\Pricing.svelte[39m:8:196
+[31mError[39m: Cannot find name 'A1'. (ts)
+[36m  const testimonials: Testimonial[] = [
+    { name: 'Adaeze Okafor', school: 'FGGC Onitsha', exam: 'WAEC 2024', quote: 'SchoolCBT's AI feedback explained every mistake clearly. I went from 52% to 91% in Chemistry in 6 weeks.', score: '[35mA1[36m in Chemistry' },
+    { name: 'Emeka Nwosu', school: 'Government College Umuahia', exam: 'JAMB 2025', quote: 'The pass probability feature kept me motivated. When my chance hit 85%, I knew I was ready. Scored 298!', score: '298 in JAMB' },[39m
+
+c:\Users\OMALE DANJUMA OGALE\Downloads\PLATFORMS IN DEVELOPMENT\Schoolcbt.dev\SchoolCBT.dev\[32msrc\lib\components\Pricing.svelte[39m:8:202
+[31mError[39m: Cannot find name 'Chemistry'. (ts)
+[36m  const testimonials: Testimonial[] = [
+    { name: 'Adaeze Okafor', school: 'FGGC Onitsha', exam: 'WAEC 2024', quote: 'SchoolCBT's AI feedback explained every mistake clearly. I went from 52% to 91% in Chemistry in 6 weeks.', score: 'A1 in [35mChemistry[36m' },
+    { name: 'Emeka Nwosu', school: 'Government College Umuahia', exam: 'JAMB 2025', quote: 'The pass probability feature kept me motivated. When my chance hit 85%, I knew I was ready. Scored 298!', score: '298 in JAMB' },[39m
+
+c:\Users\OMALE DANJUMA OGALE\Downloads\PLATFORMS IN DEVELOPMENT\Schoolcbt.dev\SchoolCBT.dev\[32msrc\routes\auth\signup\+page.svelte[39m:11:42
+[33mWarn[39m: This reference only captures the initial value of `urlRole`. Did you mean to reference it inside a derived instead?
+https://svelte.dev/e/state_referenced_locally (svelte)
+[36m
+  let role = $state<'student' | 'tutor'>([35murlRole[36m === 'tutor' ? 'tutor' : 'student');
+  let fullName = $state('');[39m
+
+c:\Users\OMALE DANJUMA OGALE\Downloads\PLATFORMS IN DEVELOPMENT\Schoolcbt.dev\SchoolCBT.dev\[32msrc\routes\auth\signup\+page.svelte[39m:265:17
+[33mWarn[39m: A form label must be associated with a control
+https://svelte.dev/e/a11y_label_has_associated_control (svelte)
+[36m              <div>
+                [35m<label class="mb-2 block text-sm font-semibold text-foreground">Education Level</label>[36m
+                <div class="grid grid-cols-2 gap-3">[39m
+
+c:\Users\OMALE DANJUMA OGALE\Downloads\PLATFORMS IN DEVELOPMENT\Schoolcbt.dev\SchoolCBT.dev\[32msrc\routes\auth\signup\+page.svelte[39m:280:17
+[33mWarn[39m: A form label must be associated with a control
+https://svelte.dev/e/a11y_label_has_associated_control (svelte)
+[36m              <div>
+                [35m<label class="mb-2 block text-sm font-semibold text-foreground">Target Exam</label>[36m
+                <div class="grid grid-cols-1 gap-2">[39m
+
+c:\Users\OMALE DANJUMA OGALE\Downloads\PLATFORMS IN DEVELOPMENT\Schoolcbt.dev\SchoolCBT.dev\[32msrc\routes\auth\signup\+page.svelte[39m:303:17
+[33mWarn[39m: A form label must be associated with a control
+https://svelte.dev/e/a11y_label_has_associated_control (svelte)
+[36m              <div>
+                [35m<label class="mb-2 block text-sm font-semibold text-foreground">Primary Teaching Subjects</label>[36m
+                <input type="text" placeholder="e.g. Mathematics, Physics, Chemistry" class="input-field rounded-xl" />[39m
+
+c:\Users\OMALE DANJUMA OGALE\Downloads\PLATFORMS IN DEVELOPMENT\Schoolcbt.dev\SchoolCBT.dev\[32msrc\routes\auth\signup\+page.svelte[39m:307:17
+[33mWarn[39m: A form label must be associated with a control
+https://svelte.dev/e/a11y_label_has_associated_control (svelte)
+[36m              <div>
+                [35m<label class="mb-2 block text-sm font-semibold text-foreground">Years of Teaching Experience</label>[36m
+                <select class="input-field rounded-xl">[39m
+
+====================================
+[31msvelte-check found 40 errors and 5 warnings in 2 files
+[39m

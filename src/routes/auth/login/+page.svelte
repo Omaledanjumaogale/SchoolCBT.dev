@@ -1,93 +1,211 @@
 <script lang="ts">
-	import Header from '$lib/components/Header.svelte';
-	import Footer from '$lib/components/Footer.svelte';
-	import SEO from '$lib/components/SEO.svelte';
-	import { fade, fly } from 'svelte/transition';
+	import { Mail, Lock, ArrowRight, Eye, EyeOff, AlertCircle } from 'lucide-svelte';
+	import { goto } from '$app/navigation';
+	import { browser } from '$app/environment';
 
 	let email = $state('');
 	let password = $state('');
-	let isLoading = $state(false);
+	let showPassword = $state(false);
+	let loading = $state(false);
+	let error = $state('');
 
-	function handleLogin() {
-		isLoading = true;
-		setTimeout(() => (isLoading = false), 2000);
+	async function handleLogin(e: Event) {
+		e.preventDefault();
+		if (!browser) return;
+		error = '';
+		loading = true;
+		try {
+			const { auth } = await import('$lib/firebase');
+			const { signInWithEmailAndPassword } = await import('firebase/auth');
+			if (!auth) throw new Error('Auth not initialized');
+			await signInWithEmailAndPassword(auth, email, password);
+			goto('/dashboard');
+		} catch (err: unknown) {
+			const code = (err as { code?: string })?.code ?? '';
+			if (
+				code === 'auth/user-not-found' ||
+				code === 'auth/wrong-password' ||
+				code === 'auth/invalid-credential'
+			) {
+				error = 'Incorrect email or password. Please try again.';
+			} else if (code === 'auth/too-many-requests') {
+				error = 'Too many attempts. Please wait and try again.';
+			} else {
+				error = 'Sign in failed. Please try again.';
+			}
+		} finally {
+			loading = false;
+		}
+	}
+
+	async function handleGoogleSignIn() {
+		if (!browser) return;
+		loading = true;
+		try {
+			const { auth } = await import('$lib/firebase');
+			const { signInWithPopup, GoogleAuthProvider } = await import('firebase/auth');
+			if (!auth) throw new Error('Auth not initialized');
+			const provider = new GoogleAuthProvider();
+			await signInWithPopup(auth, provider);
+			goto('/dashboard');
+		} catch (err) {
+			error = 'Google sign-in failed. Please try again.';
+		} finally {
+			loading = false;
+		}
 	}
 </script>
 
-<SEO 
-	title="Sign In | SchoolCBT Enterprise"
-	description="Access your personalized exam dashboard and AI-powered performance insights."
-/>
+<svelte:head>
+	<title>Sign In – SchoolCBT</title>
+	<meta
+		name="description"
+		content="Sign in to your SchoolCBT account and continue your AI-powered exam preparation."
+	/>
+</svelte:head>
 
-<Header />
+<div class="flex min-h-[calc(100vh-64px)] items-center justify-center px-4 py-12">
+	<!-- Background decoration -->
+	<div class="pointer-events-none absolute inset-0 overflow-hidden">
+		<div
+			class="absolute top-0 right-0 h-[500px] w-[500px] rounded-full bg-[hsl(var(--primary)/0.06)] blur-[100px]"
+		></div>
+		<div
+			class="absolute bottom-0 left-0 h-[400px] w-[400px] rounded-full bg-[hsl(var(--accent)/0.05)] blur-[80px]"
+		></div>
+	</div>
 
-<main class="pt-24 min-h-screen bg-hero pb-20 flex items-center justify-center">
-	<div class="max-w-md w-full px-4 relative z-10">
-		<div in:fade class="glass-card p-8 sm:p-12 relative overflow-hidden group">
-			<div class="absolute top-0 right-0 p-10 text-9xl opacity-[0.03] group-hover:scale-110 transition-transform">🔑</div>
-			<div class="relative z-10">
-				<div class="text-center mb-10">
-					<div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-gold/10 border border-gold/20 text-gold text-[10px] font-black uppercase tracking-widest mb-6">
-						<span>🛡️</span> Secure Login
-					</div>
-					<h1 class="text-3xl font-sora font-900 text-white mb-2 tracking-tight">Welcome <span class="text-gold">Back</span></h1>
-					<p class="text-white/40 text-sm font-medium">Continue your journey to academic excellence.</p>
-				</div>
-
-				<form onsubmit={handleLogin} class="space-y-6">
-					<div class="space-y-2">
-						<label class="text-white/40 text-[10px] font-bold uppercase tracking-widest ml-1" for="email">Student Email</label>
-						<input 
-							id="email" 
-							type="email" 
-							bind:value={email}
-							placeholder="scholar@email.com"
-							inputmode="email"
-							class="w-full bg-white/05 border border-white/10 rounded-2xl p-4 text-white outline-none focus:border-gold/50 transition-all placeholder:text-white/10"
-							required
-						/>
-					</div>
-					<div class="space-y-2">
-						<div class="flex justify-between items-center ml-1">
-							<label class="text-white/40 text-[10px] font-bold uppercase tracking-widest" for="password">Password</label>
-							<a href="/auth/forgot-password" class="text-gold text-[10px] font-bold uppercase tracking-widest hover:underline">Forgot?</a>
-						</div>
-						<input 
-							id="password" 
-							type="password" 
-							bind:value={password}
-							placeholder="••••••••"
-							class="w-full bg-white/05 border border-white/10 rounded-2xl p-4 text-white outline-none focus:border-gold/50 transition-all placeholder:text-white/10"
-							required
-						/>
-					</div>
-
-					<button 
-						type="submit"
-						disabled={isLoading}
-						class="w-full btn-gold py-5 rounded-2xl font-black uppercase tracking-widest shadow-xl shadow-gold/20 active:scale-[0.98] transition-all disabled:opacity-50 flex items-center justify-center gap-3"
+	<div class="relative w-full max-w-md">
+		<!-- Card -->
+		<div class="glass-panel border-t-2 border-t-[hsl(var(--primary)/0.4)] p-8 shadow-2xl md:p-10">
+			<!-- Header -->
+			<div class="mb-8 text-center">
+				<a href="/" class="mb-6 inline-flex items-center gap-2">
+					<div
+						class="flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-to-br from-[hsl(145,100%,39%)] to-[hsl(160,80%,30%)] shadow-md"
 					>
-						{#if isLoading}
-							<span class="w-5 h-5 border-4 border-cobalt/30 border-t-cobalt rounded-full animate-spin"></span>
-							Verifying...
-						{:else}
-							🚀 Sign In Now
-						{/if}
-					</button>
-				</form>
-
-				<div class="mt-10 pt-8 border-t border-white/05 text-center">
-					<p class="text-white/40 text-xs mb-6 font-medium">New to SchoolCBT?</p>
-					<a 
-						href="/auth/signup" 
-						class="w-full btn-outline py-4 rounded-2xl font-black uppercase tracking-widest flex items-center justify-center gap-3 hover:bg-white/05 transition-all"
+						<span class="text-sm font-black text-white">SC</span>
+					</div>
+					<span class="text-foreground text-lg font-black"
+						>School<span class="text-[hsl(var(--primary))]">CBT</span></span
 					>
-						✨ Create Scholar Account
-					</a>
-				</div>
+				</a>
+				<h1 class="text-foreground mb-2 text-2xl font-black">Welcome back</h1>
+				<p class="text-muted-foreground text-sm">Sign in to continue your exam preparation</p>
 			</div>
+
+			<!-- Error -->
+			{#if error}
+				<div
+					class="mb-6 flex items-center gap-3 rounded-xl border border-red-200 bg-red-50 px-4 py-3"
+				>
+					<AlertCircle class="h-4 w-4 shrink-0 text-red-500" />
+					<p class="text-sm font-medium text-red-700">{error}</p>
+				</div>
+			{/if}
+
+			<!-- Google sign in -->
+			<button
+				class="btn-outline mb-4 w-full gap-3 rounded-xl py-3.5 text-sm font-semibold"
+				onclick={handleGoogleSignIn}
+				disabled={loading}
+			>
+				<svg class="h-5 w-5" viewBox="0 0 24 24">
+					<path
+						d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"
+						fill="#4285F4"
+					/>
+					<path
+						d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"
+						fill="#34A853"
+					/>
+					<path
+						d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"
+						fill="#FBBC05"
+					/>
+					<path
+						d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"
+						fill="#EA4335"
+					/>
+				</svg>
+				Continue with Google
+			</button>
+
+			<div class="divider my-5 text-xs">or sign in with email</div>
+
+			<!-- Form -->
+			<form onsubmit={handleLogin} class="space-y-5">
+				<div>
+					<label for="email" class="text-foreground mb-2 block text-sm font-semibold"
+						>Email Address</label
+					>
+					<div class="input-icon-wrap">
+						<Mail class="input-icon h-4 w-4" />
+						<input
+							id="email"
+							type="email"
+							bind:value={email}
+							placeholder="student@example.com"
+							class="input-field rounded-xl"
+							required
+							autocomplete="email"
+						/>
+					</div>
+				</div>
+
+				<div>
+					<div class="mb-2 flex items-center justify-between">
+						<label for="password" class="text-foreground text-sm font-semibold">Password</label>
+						<a
+							href="/auth/forgot-password"
+							class="text-xs font-semibold text-[hsl(var(--primary))] hover:underline"
+							>Forgot password?</a
+						>
+					</div>
+					<div class="input-icon-wrap relative">
+						<Lock class="input-icon h-4 w-4" />
+						<input
+							id="password"
+							type={showPassword ? 'text' : 'password'}
+							bind:value={password}
+							placeholder="Your password"
+							class="input-field rounded-xl pr-12"
+							required
+							autocomplete="current-password"
+						/>
+						<button
+							type="button"
+							class="text-muted-foreground hover:text-foreground absolute top-1/2 right-3 -translate-y-1/2 p-1 transition-colors"
+							onclick={() => (showPassword = !showPassword)}
+							aria-label="Toggle password visibility"
+						>
+							{#if showPassword}<EyeOff class="h-4 w-4" />{:else}<Eye class="h-4 w-4" />{/if}
+						</button>
+					</div>
+				</div>
+
+				<button
+					type="submit"
+					class="btn-primary mt-2 w-full rounded-xl py-3.5 text-sm"
+					disabled={loading}
+				>
+					{#if loading}
+						<span
+							class="inline-block h-4 w-4 animate-spin rounded-full border-2 border-white/30 border-t-white"
+						></span>
+						Signing in…
+					{:else}
+						Sign In <ArrowRight class="h-4 w-4" />
+					{/if}
+				</button>
+			</form>
+
+			<p class="text-muted-foreground mt-6 text-center text-sm">
+				Don't have an account?
+				<a href="/auth/signup" class="ml-1 font-bold text-[hsl(var(--primary))] hover:underline"
+					>Create Account</a
+				>
+			</p>
 		</div>
 	</div>
-</main>
-
-<Footer />
+</div>

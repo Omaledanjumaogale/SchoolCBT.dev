@@ -1,39 +1,44 @@
 <script lang="ts">
-	import { page } from '$app/state';
+	import { page } from '$app/stores';
+	import { Home, BookOpen, FileText, LayoutDashboard, DollarSign } from 'lucide-svelte';
 
 	const items = [
-		{ name: 'Home', href: '/', emoji: '🏠' },
-		{ name: 'Curriculum', href: '/curriculum', emoji: '📚' },
-		{ name: 'Exam', href: '/exam', emoji: '📝' },
-		{ name: 'Dashboard', href: '/dashboard', emoji: '📊' },
-		{ name: 'Pricing', href: '/pricing', emoji: '💳' }
+		{ name: 'Home', href: '/', icon: Home },
+		{ name: 'Curriculum', href: '/curriculum', icon: BookOpen },
+		{ name: 'CBT Demo', href: '/exam', icon: FileText },
+		{ name: 'Dashboard', href: '/dashboard', icon: LayoutDashboard },
+		{ name: 'Pricing', href: '/pricing', icon: DollarSign }
 	];
 
 	function isActive(href: string) {
-		if (href === '/') return page.url.pathname === '/';
-		return page.url.pathname.startsWith(href);
+		if (href === '/') return $page.url.pathname === '/';
+		return $page.url.pathname.startsWith(href);
 	}
 </script>
 
-<nav class="md:hidden fixed bottom-0 left-0 right-0 z-[100] glass-nav pb-safe">
-	<div class="flex items-center justify-around h-16 px-2">
+<!-- Mobile-only bottom navigation bar -->
+<nav
+	class="glass-nav border-border fixed right-0 bottom-0 left-0 z-[100] border-t md:hidden"
+	style="padding-bottom: env(safe-area-inset-bottom, 0px);"
+	aria-label="Mobile bottom navigation"
+>
+	<div class="flex h-16 items-stretch justify-around">
 		{#each items as item}
 			<a
 				href={item.href}
-				class="flex flex-col items-center justify-center gap-1 min-w-[64px] min-h-[44px] transition-all {isActive(item.href) ? 'text-gold scale-105' : 'text-white/40'}"
+				class="flex min-h-[44px] flex-1 flex-col items-center justify-center gap-0.5 px-1 transition-all
+					{isActive(item.href)
+					? 'text-[hsl(var(--primary))]'
+					: 'text-muted-foreground hover:text-foreground'}"
+				aria-current={isActive(item.href) ? 'page' : undefined}
 			>
-				<span class="text-xl">{item.emoji}</span>
-				<span class="text-[10px] font-bold uppercase tracking-tighter">{item.name}</span>
+				<!-- Active indicator dot -->
 				{#if isActive(item.href)}
-					<div class="absolute -bottom-1 w-1 h-1 rounded-full bg-gold glow-gold"></div>
+					<div class="absolute top-1 h-1 w-1 rounded-full bg-[hsl(var(--primary))]"></div>
 				{/if}
+				<item.icon class="h-5 w-5 shrink-0 {isActive(item.href) ? 'stroke-[2.5]' : 'stroke-2'}" />
+				<span class="text-[10px] leading-none font-semibold">{item.name}</span>
 			</a>
 		{/each}
 	</div>
 </nav>
-
-<style>
-	.pb-safe {
-		padding-bottom: env(safe-area-inset-bottom);
-	}
-</style>

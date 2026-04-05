@@ -7,8 +7,8 @@
 		image?: string;
 	}
 
-	let { 
-		title = 'SchoolCBT - Nigeria\'s Premier AI-Powered CBT Platform', 
+	let {
+		title = "SchoolCBT - Nigeria's Premier AI-Powered CBT Platform",
 		description = 'Guaranteed exam readiness for JAMB, WAEC & NECO through AI-orchestrated practice batches.',
 		url = 'https://schoolcbt.ewinproject.org',
 		type = 'website',
@@ -16,23 +16,23 @@
 	}: Props = $props();
 
 	const schemaData = $derived({
-		"@context": "https://schema.org",
-		"@type": "WebApplication",
-		"name": "SchoolCBT",
-		"url": url,
-		"description": description,
-		"applicationCategory": "EducationalApplication",
-		"operatingSystem": "Web",
-		"offers": {
-			"@type": "Offer",
-			"price": "0",
-			"priceCurrency": "NGN"
+		'@context': 'https://schema.org',
+		'@type': 'WebApplication',
+		name: 'SchoolCBT',
+		url: url,
+		description: description,
+		applicationCategory: 'EducationalApplication',
+		operatingSystem: 'Web',
+		offers: {
+			'@type': 'Offer',
+			price: '0',
+			priceCurrency: 'NGN'
 		},
-		"educationalLevel": ["JSS", "SSS"],
-		"provider": {
-			"@type": "Organization",
-			"name": "SchoolCBT Enterprise",
-			"url": "https://schoolcbt.ewinproject.org"
+		educationalLevel: ['JSS', 'SSS'],
+		provider: {
+			'@type': 'Organization',
+			name: 'SchoolCBT Enterprise',
+			url: 'https://schoolcbt.ewinproject.org'
 		}
 	});
 </script>
@@ -40,7 +40,7 @@
 <svelte:head>
 	<title>{title}</title>
 	<meta name="description" content={description} />
-	
+
 	<!-- Open Graph -->
 	<meta property="og:title" content={title} />
 	<meta property="og:description" content={description} />

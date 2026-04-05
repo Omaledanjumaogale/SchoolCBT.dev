@@ -39,32 +39,37 @@
 
 <nav
 	id="navbar"
-	class="fixed top-0 left-0 right-0 z-[100] transition-all duration-500 {isScrolled
+	class="fixed top-0 right-0 left-0 z-[100] transition-all duration-500 {isScrolled
 		? 'glass-nav py-2'
 		: 'bg-transparent py-5'}"
 >
-	<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-		<div class="flex items-center justify-between h-16">
+	<div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+		<div class="flex h-16 items-center justify-between">
 			<!-- Logo -->
-			<a href="/" class="flex items-center gap-3 group shrink-0 relative z-[110]">
+			<a href="/" class="group relative z-[110] flex shrink-0 items-center gap-3">
 				<div
-					class="w-10 h-10 rounded-xl bg-gradient-to-br from-cobalt-light to-cobalt flex items-center justify-center border border-gold/30 glow-gold transition-all group-hover:scale-110 group-hover:rotate-3"
+					class="from-cobalt-light to-cobalt border-gold/30 glow-gold flex h-10 w-10 items-center justify-center rounded-xl border bg-gradient-to-br transition-all group-hover:scale-110 group-hover:rotate-3"
 				>
 					<span class="text-xl">🎓</span>
 				</div>
 				<div class="flex flex-col">
-					<span class="font-sora font-900 text-xl tracking-tighter leading-none">
+					<span class="font-sora font-900 text-xl leading-none tracking-tighter">
 						<span class="text-white">School</span><span class="text-gold">CBT</span>
 					</span>
-					<span class="text-[10px] text-jade font-bold tracking-widest uppercase mt-0.5">Enterprise RaaS</span>
+					<span class="text-jade mt-0.5 text-[10px] font-bold tracking-widest uppercase"
+						>Enterprise RaaS</span
+					>
 				</div>
 			</a>
 
 			<!-- CTA & Hamburger -->
-			<div class="flex items-center gap-4 relative z-[110]">
+			<div class="relative z-[110] flex items-center gap-4">
 				<!-- Desktop CTAs (Still visible on desktop for better conversion) -->
-				<div class="hidden md:flex items-center gap-3 mr-2">
-					<a href="/auth/login" class="text-white/70 hover:text-white text-sm font-bold transition-colors">Sign In</a>
+				<div class="mr-2 hidden items-center gap-3 md:flex">
+					<a
+						href="/auth/login"
+						class="text-sm font-bold text-white/70 transition-colors hover:text-white">Sign In</a
+					>
 					<a href="/auth/signup" class="btn-gold px-6 py-2.5 text-sm font-bold">Get Started →</a>
 				</div>
 
@@ -72,22 +77,22 @@
 				<button
 					id="hamburger"
 					onclick={toggleMenu}
-					class="flex flex-col items-end justify-center gap-1.5 p-3 min-h-[44px] min-w-[44px] rounded-2xl bg-white/05 hover:bg-white/10 border border-white/10 transition-all active:scale-90"
+					class="bg-white/05 flex min-h-[44px] min-w-[44px] flex-col items-end justify-center gap-1.5 rounded-2xl border border-white/10 p-3 transition-all hover:bg-white/10 active:scale-90"
 					aria-label="Toggle Menu"
 				>
 					<span
-						class="h-0.5 bg-white rounded-full transition-all duration-300 block {isMenuOpen
-							? 'w-6 rotate-45 translate-y-2'
+						class="block h-0.5 rounded-full bg-white transition-all duration-300 {isMenuOpen
+							? 'w-6 translate-y-2 rotate-45'
 							: 'w-6'}"
 					></span>
 					<span
-						class="h-0.5 bg-white rounded-full transition-all duration-300 block {isMenuOpen
+						class="block h-0.5 rounded-full bg-white transition-all duration-300 {isMenuOpen
 							? 'opacity-0'
 							: 'w-4'}"
 					></span>
 					<span
-						class="h-0.5 bg-white rounded-full transition-all duration-300 block {isMenuOpen
-							? 'w-6 -rotate-45 -translate-y-2'
+						class="block h-0.5 rounded-full bg-white transition-all duration-300 {isMenuOpen
+							? 'w-6 -translate-y-2 -rotate-45'
 							: 'w-5'}"
 					></span>
 				</button>
@@ -99,16 +104,16 @@
 	{#if isMenuOpen}
 		<div
 			transition:fade={{ duration: 300 }}
-			class="fixed inset-0 z-[90] bg-cobalt-xdark/95 backdrop-blur-2xl flex flex-col items-center justify-center p-6"
+			class="bg-cobalt-xdark/95 fixed inset-0 z-[90] flex flex-col items-center justify-center p-6 backdrop-blur-2xl"
 		>
 			<!-- Animated Background Orbs for the Menu -->
-			<div class="absolute inset-0 overflow-hidden pointer-events-none opacity-20">
+			<div class="pointer-events-none absolute inset-0 overflow-hidden opacity-20">
 				<div class="orb orb-blue top-[-10%] left-[-10%]"></div>
-				<div class="orb orb-green bottom-[-10%] right-[-10%]"></div>
+				<div class="orb orb-green right-[-10%] bottom-[-10%]"></div>
 			</div>
 
-			<div class="w-full max-w-2xl mx-auto relative z-10">
-				<div class="grid md:grid-cols-2 gap-4 md:gap-6">
+			<div class="relative z-10 mx-auto w-full max-w-2xl">
+				<div class="grid gap-4 md:grid-cols-2 md:gap-6">
 					{#each navLinks as link, i}
 						<div
 							in:fly={{ y: 20, delay: 100 + i * 50, duration: 500 }}
@@ -117,14 +122,20 @@
 							<a
 								href={link.href}
 								onclick={toggleMenu}
-								class="group flex items-center gap-5 p-5 rounded-3xl bg-white/03 border border-white/05 hover:bg-white/07 hover:border-gold/30 transition-all"
+								class="group bg-white/03 border-white/05 hover:bg-white/07 hover:border-gold/30 flex items-center gap-5 rounded-3xl border p-5 transition-all"
 							>
-								<div class="w-14 h-14 rounded-2xl bg-cobalt/40 border border-white/10 flex items-center justify-center text-3xl group-hover:scale-110 group-hover:rotate-3 transition-transform">
+								<div
+									class="bg-cobalt/40 flex h-14 w-14 items-center justify-center rounded-2xl border border-white/10 text-3xl transition-transform group-hover:scale-110 group-hover:rotate-3"
+								>
 									{link.name.split(' ')[0]}
 								</div>
 								<div>
-									<div class="text-white font-sora font-bold text-lg group-hover:text-gold transition-colors">{link.name.split(' ').slice(1).join(' ')}</div>
-									<div class="text-white/40 text-xs mt-1">{link.desc}</div>
+									<div
+										class="font-sora group-hover:text-gold text-lg font-bold text-white transition-colors"
+									>
+										{link.name.split(' ').slice(1).join(' ')}
+									</div>
+									<div class="mt-1 text-xs text-white/40">{link.desc}</div>
 								</div>
 							</a>
 						</div>
@@ -132,19 +143,22 @@
 				</div>
 
 				<!-- Mobile-only CTAs inside menu -->
-				<div 
+				<div
 					in:fly={{ y: 20, delay: 500, duration: 500 }}
-					class="md:hidden mt-10 grid grid-cols-2 gap-4"
+					class="mt-10 grid grid-cols-2 gap-4 md:hidden"
 				>
-					<a href="/auth/login" onclick={toggleMenu} class="btn-outline py-4 font-bold text-center">Sign In</a>
-					<a href="/auth/signup" onclick={toggleMenu} class="btn-gold py-4 font-bold text-center">Sign Up</a>
+					<a href="/auth/login" onclick={toggleMenu} class="btn-outline py-4 text-center font-bold"
+						>Sign In</a
+					>
+					<a href="/auth/signup" onclick={toggleMenu} class="btn-gold py-4 text-center font-bold"
+						>Sign Up</a
+					>
 				</div>
-				
-				<div 
-					in:fade={{ delay: 700 }}
-					class="mt-12 text-center"
-				>
-					<p class="text-white/20 text-[10px] uppercase tracking-[0.3em] font-bold">© 2026 SchoolCBT Enterprise • All Rights Reserved</p>
+
+				<div in:fade={{ delay: 700 }} class="mt-12 text-center">
+					<p class="text-[10px] font-bold tracking-[0.3em] text-white/20 uppercase">
+						© 2026 SchoolCBT Enterprise • All Rights Reserved
+					</p>
 				</div>
 			</div>
 		</div>

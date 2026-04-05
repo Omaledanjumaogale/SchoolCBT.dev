@@ -63,7 +63,13 @@ export const CURRICULUM = {
 			'Statistics & Probability',
 			'Vectors & Matrices'
 		],
-		Physics: ['Mechanics', 'Thermal Physics', 'Waves & Optics', 'Electricity & Magnetism', 'Modern Physics'],
+		Physics: [
+			'Mechanics',
+			'Thermal Physics',
+			'Waves & Optics',
+			'Electricity & Magnetism',
+			'Modern Physics'
+		],
 		Chemistry: [
 			'Atomic Structure & Periodic Table',
 			'States of Matter & Kinetic Theory',
@@ -86,21 +92,80 @@ export const CURRICULUM = {
 			'Regional Geography — Nigeria & Africa',
 			'Map Reading & Field Work'
 		],
-		Economics: ['Microeconomics', 'Macroeconomics', 'International Trade & Finance', 'Nigerian Economy'],
-		'Financial Accounting': ['Bookkeeping Fundamentals', 'Financial Statements', 'Special Accounts & Organisations', 'Costing'],
-		Commerce: ['Trade & Distribution', 'Commercial Documents', 'Banking & Finance', 'Business Organisations'],
-		Government: ['Basic Concepts', 'Political Institutions', 'Nigerian Government & Politics', 'International Relations'],
-		History: ['Pre-Colonial Nigeria', 'Colonial Nigeria', 'Post-Colonial Nigeria & Africa', 'World History'],
+		Economics: [
+			'Microeconomics',
+			'Macroeconomics',
+			'International Trade & Finance',
+			'Nigerian Economy'
+		],
+		'Financial Accounting': [
+			'Bookkeeping Fundamentals',
+			'Financial Statements',
+			'Special Accounts & Organisations',
+			'Costing'
+		],
+		Commerce: [
+			'Trade & Distribution',
+			'Commercial Documents',
+			'Banking & Finance',
+			'Business Organisations'
+		],
+		Government: [
+			'Basic Concepts',
+			'Political Institutions',
+			'Nigerian Government & Politics',
+			'International Relations'
+		],
+		History: [
+			'Pre-Colonial Nigeria',
+			'Colonial Nigeria',
+			'Post-Colonial Nigeria & Africa',
+			'World History'
+		],
 		'Literature in English': ['Prose', 'Poetry', 'Drama', 'Prescribed Texts'],
 		'Christian Religious Studies': ['Old Testament', 'New Testament', 'Christian Ethics & Living'],
-		'Islamic Religious Studies': ['Qur\'an & Hadith', 'Islamic History', 'Islamic Jurisprudence & Practice'],
-		'Agricultural Science': ['Soil Science', 'Crop Production', 'Animal Production', 'Agricultural Economics & Extension'],
-		'Technical Drawing': ['Plane Geometry', 'Orthographic Projection', 'Isometric & Pictorial Drawing', 'Building Drawing'],
-		'Computer Science': ['Computer Hardware & Software', 'Data & Information Processing', 'Programming & Algorithms', 'Networking & Internet'],
-		'Fine Arts': ['Art Theory & Appreciation', 'Drawing & Painting', 'Sculpture & Ceramics', 'Graphics & Crafts'],
-		'Music': ['Music Theory', 'History & Appreciation', 'Performance & Composition'],
-		'French Language': ['Oral Communication & Listening', 'Grammar (Advanced)', 'Reading & Comprehension', 'Written Expression'],
-		'Home Economics': ['Food & Nutrition (Advanced)', 'Clothing & Textiles (Advanced)', 'Child Development & Care', 'Home Management & Consumer Education']
+		'Islamic Religious Studies': [
+			"Qur'an & Hadith",
+			'Islamic History',
+			'Islamic Jurisprudence & Practice'
+		],
+		'Agricultural Science': [
+			'Soil Science',
+			'Crop Production',
+			'Animal Production',
+			'Agricultural Economics & Extension'
+		],
+		'Technical Drawing': [
+			'Plane Geometry',
+			'Orthographic Projection',
+			'Isometric & Pictorial Drawing',
+			'Building Drawing'
+		],
+		'Computer Science': [
+			'Computer Hardware & Software',
+			'Data & Information Processing',
+			'Programming & Algorithms',
+			'Networking & Internet'
+		],
+		'Fine Arts': [
+			'Art Theory & Appreciation',
+			'Drawing & Painting',
+			'Sculpture & Ceramics',
+			'Graphics & Crafts'
+		],
+		Music: ['Music Theory', 'History & Appreciation', 'Performance & Composition'],
+		'French Language': [
+			'Oral Communication & Listening',
+			'Grammar (Advanced)',
+			'Reading & Comprehension',
+			'Written Expression'
+		],
+		'Home Economics': [
+			'Food & Nutrition (Advanced)',
+			'Clothing & Textiles (Advanced)',
+			'Child Development & Care',
+			'Home Management & Consumer Education'
+		]
 	}
 };
 

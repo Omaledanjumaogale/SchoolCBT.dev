@@ -1,87 +1,153 @@
 <script lang="ts">
-	import Header from '$lib/components/Header.svelte';
-	import Footer from '$lib/components/Footer.svelte';
-	import SEO from '$lib/components/SEO.svelte';
-	import { fade, fly } from 'svelte/transition';
+	import { Heart, Globe2, ShieldCheck, Zap, Brain, Users, ArrowRight } from 'lucide-svelte';
 
-	const mission = [
-		{ emoji: '🇳🇬', title: 'Nigerian Focus', desc: 'Exclusively built for the Nigerian secondary school curriculum.' },
-		{ emoji: '🤖', title: 'AI-First', desc: 'Powered by 5 specialized agents for grounding and precision.' },
-		{ emoji: '⚡', title: 'RaaS Model', desc: 'Results as a Service — guaranteed exam readiness for every student.' },
-		{ emoji: '🎓', title: 'Scholar Empowerment', desc: 'Democratizing access to high-quality exam preparation.' }
+	const values = [
+		{
+			icon: Brain,
+			title: 'AI-First Education',
+			desc: 'Multi-agent orchestration ensures every student gets personalized, curriculum-accurate practice — never generic content.',
+			color: 'hsl(145,100%,39%)'
+		},
+		{
+			icon: ShieldCheck,
+			title: 'Accuracy Guaranteed',
+			desc: '99.1% curriculum-grounding rate validated by a dedicated Quality Evaluator agent against NERDC, WAEC, and JAMB syllabuses.',
+			color: 'hsl(174,60%,28%)'
+		},
+		{
+			icon: Heart,
+			title: 'Nigerian Students First',
+			desc: 'Built specifically for JSS and SSS students navigating the Nigerian examination system — not adapted from foreign platforms.',
+			color: 'hsl(0,70%,55%)'
+		},
+		{
+			icon: Users,
+			title: 'Community of Success',
+			desc: "Students, tutors, and parents in one platform. Every stakeholder has a role in the student's journey to exam success.",
+			color: 'hsl(262,80%,60%)'
+		},
+		{
+			icon: Zap,
+			title: 'Results as a Service',
+			desc: "We don't just give you practice tests — we orchestrate your entire path to exam readiness through AI intelligence.",
+			color: 'hsl(var(--accent))'
+		},
+		{
+			icon: Globe2,
+			title: 'Global Infrastructure',
+			desc: 'Powered by Google Vertex AI, Firebase, and Cloudflare CDN delivering fast, reliable access across Nigeria and beyond.',
+			color: 'hsl(210,80%,55%)'
+		}
 	];
 
 	const team = [
-		{ name: 'Danjuma Ogale', role: 'Founder & Architect', icon: '👤' },
-		{ name: 'Elite Dev Team', role: 'Full-Stack Engineering', icon: '💻' },
-		{ name: 'Curriculum Experts', role: 'Grounding & Accuracy', icon: '📚' }
+		{ name: 'EwinProject Team', role: 'Product & Engineering', avatar: 'EP' },
+		{ name: 'AI Research', role: 'Curriculum & Accuracy', avatar: 'AI' },
+		{ name: 'Education Board', role: 'NERDC Advisors', avatar: 'EB' }
 	];
 </script>
 
-<SEO 
-	title="About Our Mission | SchoolCBT Enterprise"
-	description="Learn about SchoolCBT's mission to revolutionize exam preparation in Nigeria through AI-orchestrated Results as a Service (RaaS)."
-/>
+<svelte:head>
+	<title>About SchoolCBT – Our Mission & Story</title>
+	<meta
+		name="description"
+		content="SchoolCBT is Nigeria's premier AI-powered Results-as-a-Service CBT platform. Learn about our mission and AI architecture."
+	/>
+</svelte:head>
 
-<Header />
-
-<main class="pt-24 min-h-screen bg-hero pb-20">
-	<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
-		<div in:fade class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-jade/10 border border-jade/20 text-jade text-xs font-bold uppercase tracking-widest mb-8">
-			<span>ℹ️</span> About SchoolCBT
+<div class="bg-background min-h-[calc(100vh-64px)] py-16">
+	<div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+		<!-- Hero -->
+		<div class="mx-auto mb-20 max-w-4xl text-center">
+			<div class="section-badge mb-5">Our Story</div>
+			<h1
+				class="text-foreground mb-6 text-4xl leading-[1.15] font-black tracking-tight md:text-5xl"
+			>
+				Built to <span class="gradient-text-primary">Guarantee</span> Exam Success<br />for Every
+				Nigerian Student
+			</h1>
+			<p class="text-muted-foreground mx-auto max-w-2xl text-lg leading-relaxed">
+				SchoolCBT was born from a simple observation: Nigerian students have access to thousands of
+				practice questions, but very few get the intelligent, personalized feedback needed to
+				actually improve. We built the missing layer — an AI engine that doesn't just test, it
+				teaches.
+			</p>
 		</div>
-		<h1 in:fly={{ y: 20, duration: 600 }} class="text-4xl sm:text-6xl font-sora font-900 text-white mb-6 tracking-tight leading-[1.1]">
-			The Future of <span class="text-gold">Exam Readiness</span> 🚀
-		</h1>
-		<p in:fly={{ y: 20, duration: 600, delay: 200 }} class="text-white/40 max-w-2xl mx-auto text-lg sm:text-xl leading-relaxed mb-24">
-			SchoolCBT is not just a question bank. We are a Results as a Service (RaaS) platform 
-			dedicated to ensuring every Nigerian student is 100% ready for their JAMB, WAEC, and NECO exams.
-		</p>
 
-		<div class="grid lg:grid-cols-2 gap-12 sm:gap-16 items-center text-left mb-24">
-			<div class="space-y-8">
-				<h2 class="font-sora text-3xl sm:text-4xl font-900 text-white">Our Core <span class="text-gold">Values</span> 🏛️</h2>
-				<div class="grid sm:grid-cols-2 gap-6">
-					{#each mission as m}
-						<div class="glass-card p-6 border-white/05 hover:border-gold/30 transition-all group">
-							<div class="text-3xl mb-4 group-hover:scale-110 transition-transform">{m.emoji}</div>
-							<div class="text-white font-bold mb-2">{m.title}</div>
-							<div class="text-white/40 text-xs leading-relaxed uppercase tracking-widest">{m.desc}</div>
+		<!-- Mission stat strip -->
+		<div class="mb-20 grid grid-cols-2 gap-5 md:grid-cols-4">
+			{#each [{ label: 'Students Enrolled', value: '18,000+', color: 'hsl(145,100%,39%)' }, { label: 'Questions in Database', value: '1.2M+', color: 'hsl(var(--accent))' }, { label: 'Curriculum Accuracy', value: '99.1%', color: 'hsl(174,60%,28%)' }, { label: 'Exams Covered', value: '5+', color: 'hsl(262,80%,60%)' }] as s}
+				<div class="glass-panel card-hover p-6 text-center">
+					<div class="mb-1 text-3xl font-black" style="color:{s.color}">{s.value}</div>
+					<div class="text-muted-foreground text-sm font-medium">{s.label}</div>
+				</div>
+			{/each}
+		</div>
+
+		<!-- Values -->
+		<div class="mb-20">
+			<div class="mb-12 text-center">
+				<div class="section-badge mb-4">Our Values</div>
+				<h2 class="text-foreground text-3xl font-black">What We Stand For</h2>
+			</div>
+			<div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+				{#each values as v}
+					<div class="glass-panel card-hover flex flex-col gap-4 p-6">
+						<div
+							class="flex h-12 w-12 items-center justify-center rounded-xl"
+							style="background:{v.color}12; border:1px solid {v.color}33"
+						>
+							<v.icon class="h-6 w-6" style="color:{v.color}" />
 						</div>
-					{/each}
-				</div>
-			</div>
-
-			<div class="glass-card p-10 sm:p-16 relative overflow-hidden group">
-				<div class="absolute inset-0 bg-gradient-to-br from-jade/05 to-transparent pointer-events-none"></div>
-				<h3 class="font-sora text-2xl font-800 text-white mb-6">Our <span class="text-jade">Vision</span> 🌟</h3>
-				<p class="text-white/60 text-lg leading-relaxed mb-8">
-					"To be the digital backbone of Nigerian secondary education, where every student's academic potential is unlocked through intelligent, personalized, and curriculum-grounded technology."
-				</p>
-				<div class="flex items-center gap-4 border-t border-white/05 pt-8">
-					<div class="w-12 h-12 rounded-full bg-gold/20 flex items-center justify-center text-xl shadow-lg">🇳🇬</div>
-					<div>
-						<div class="text-white font-black text-sm uppercase tracking-widest">Built for Nigeria</div>
-						<div class="text-white/30 text-[10px] font-bold uppercase tracking-[0.2em]">100% Curriculum Alignment</div>
-					</div>
-				</div>
-			</div>
-		</div>
-
-		<!-- Team Section -->
-		<div in:fade={{ delay: 400 }} class="mt-24">
-			<h2 class="font-sora text-3xl sm:text-4xl font-900 text-white mb-12">Meet the <span class="text-gold">Team</span> 👨‍💻</h2>
-			<div class="grid sm:grid-cols-3 gap-6 sm:gap-8">
-				{#each team as member}
-					<div class="glass-card p-8 border-white/05 hover:border-jade/30 transition-all group hover:-translate-y-1">
-						<div class="w-16 h-16 rounded-2xl bg-cobalt-light/10 flex items-center justify-center text-3xl mb-6 shadow-xl group-hover:scale-110 transition-transform">{member.icon}</div>
-						<div class="text-white font-bold text-lg mb-1">{member.name}</div>
-						<div class="text-jade text-[10px] font-black uppercase tracking-widest">{member.role}</div>
+						<div>
+							<h3 class="text-foreground mb-2 font-bold">{v.title}</h3>
+							<p class="text-muted-foreground text-sm leading-relaxed">{v.desc}</p>
+						</div>
 					</div>
 				{/each}
 			</div>
 		</div>
-	</div>
-</main>
 
-<Footer />
+		<!-- Architecture note -->
+		<div
+			class="glass-panel to-card mb-20 border-[hsl(var(--primary)/0.2)] bg-gradient-to-br from-[hsl(var(--primary)/0.04)] p-8 md:p-12"
+		>
+			<div class="mx-auto max-w-3xl text-center">
+				<div class="section-badge mb-5">AI Architecture</div>
+				<h2 class="text-foreground mb-5 text-2xl font-black">
+					Powered by Multi-Agent Intelligence
+				</h2>
+				<p class="text-muted-foreground mb-6 leading-relaxed">
+					SchoolCBT's engine uses 5 specialized agents — a Coordinator, Intake Agent, Researcher,
+					Question Composer, and Quality Evaluator — working together on Google Vertex AI to produce
+					curriculum-verified CBT content at scale. Every question batch is generated fresh,
+					grounded in official Nigerian exam syllabuses, and validated for accuracy before delivery.
+				</p>
+				<div class="flex flex-wrap justify-center gap-3">
+					{#each ['Google Vertex AI', 'Anthropic Claude', 'Firebase Auth', 'Convex Backend', 'Cloudflare CDN'] as tech}
+						<span
+							class="rounded-xl border border-[hsl(var(--primary)/0.15)] bg-[hsl(var(--primary)/0.08)] px-4 py-2 text-xs font-bold text-[hsl(var(--primary))]"
+							>{tech}</span
+						>
+					{/each}
+				</div>
+			</div>
+		</div>
+
+		<!-- CTA -->
+		<div class="text-center">
+			<h2 class="text-foreground mb-4 text-2xl font-black">
+				Join 18,000+ students preparing smarter
+			</h2>
+			<p class="text-muted-foreground mb-8">
+				Start free. No credit card required. Get your first AI-curated batch today.
+			</p>
+			<div class="flex flex-col justify-center gap-4 sm:flex-row">
+				<a href="/auth/signup" class="btn-primary rounded-2xl px-8 py-4 text-base"
+					>Create Free Account <ArrowRight class="ml-1 h-5 w-5" /></a
+				>
+				<a href="/exam" class="btn-outline rounded-2xl px-8 py-4 text-base">Try CBT Demo</a>
+			</div>
+		</div>
+	</div>
+</div>
