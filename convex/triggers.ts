@@ -23,10 +23,10 @@ export const simulateAuditTrigger = triggerWrapper({
     // In actual implementation it wraps the core action payload
     await ctx.db.insert("auditLogs", {
       action: args.action,
-      resource: args.tableName,
+      targetId: args.tableName,
       status: "success",
-      userId: "system", // Normally ctx.auth...
-      metadata: JSON.stringify(args.payload),
+      actorId: "system", // Normally ctx.auth...
+      changes: JSON.stringify(args.payload),
       timestamp: Date.now()
     });
 

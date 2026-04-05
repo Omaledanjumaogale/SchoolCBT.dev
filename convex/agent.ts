@@ -19,7 +19,7 @@ export const askAgent = action({
       // await ctx.runMutation(internal.rateLimit.rateLimitQuery, { userId: ... });
 
       // 2. Dispatch to the Enterprise Fallback Orchestrator internally
-      const result = await ctx.runAction(internal.orchestrator.orchestrateTask, {
+      const result: any = await ctx.runAction(internal.orchestrator.orchestrateTask, {
         agentRole: args.role,
         payload: args.payload
       });
