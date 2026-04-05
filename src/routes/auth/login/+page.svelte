@@ -52,7 +52,7 @@
 			const credential = await signInWithPopup(auth, provider);
 
 			const { getConvexClient } = await import('$lib/convex');
-			const { api } = await import('../../convex/_generated/api');
+			const { api } = await import('../../../../convex/_generated/api');
 			const convex = getConvexClient();
 			await convex.mutation(api.users.upsertUser, {
 				uid: credential.user.uid,
