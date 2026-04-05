@@ -80,7 +80,26 @@
 			if (!auth) throw new Error('Auth not initialized');
 			const credential = await createUserWithEmailAndPassword(auth, email, password);
 			await updateProfile(credential.user, { displayName: fullName });
-			goto('/dashboard');
+
+			// Persist to Convex
+			const { getConvexClient } = await import('$lib/convex');
+			const { api } = await import('../../convex/_generated/api');
+			const convex = getConvexClient();
+			await convex.mutation(api.users.upsertUser, {
+				uid: credential.user.uid,
+				name: fullName,
+				email,
+				role: role === 'tutor' ? 'tutor' : 'student',
+				level: educationLevel,
+				school: ''
+			});
+
+			const plan = $page.url.searchParams.get('plan');
+			if (plan) {
+				goto(`/checkout?plan=${plan}`);
+			} else {
+				goto(role === 'tutor' ? '/tutor' : '/dashboard');
+			}
 		} catch (err: unknown) {
 			const code = (err as { code?: string })?.code ?? '';
 			if (code === 'auth/email-already-in-use') {
@@ -201,21 +220,41 @@
 			</div>
 
 			<!-- Role toggle -->
-			{#if step === 1}
-				<div class="border-border bg-muted mb-6 flex rounded-xl border p-1">
-					{#each [{ v: 'student', label: 'Student' }, { v: 'tutor', label: 'Tutor' }] as r}
+				<div class="relative z-50 mb-7">
+					<div class="border-border bg-muted/60 flex rounded-xl border p-1 shadow-inner">
 						<button
 							type="button"
-							class="flex-1 rounded-lg py-2.5 text-sm font-bold transition-all {role === r.v
-								? 'bg-card text-foreground shadow-sm'
-								: 'text-muted-foreground hover:text-foreground'}"
-							onclick={() => {
-								role = r.v as 'student' | 'tutor';
-							}}>{r.label}</button
+							class="flex-1 rounded-lg py-3 text-sm font-black transition-all duration-200 {role === 'student'
+								? 'bg-white text-[hsl(var(--primary))] shadow-sm border border-border/50 scale-[1.02]'
+								: 'text-muted-foreground hover:bg-muted/80'}"
+							onclick={() => (role = 'student')}
 						>
-					{/each}
+							Student
+						</button>
+						<button
+							type="button"
+							class="flex-1 rounded-lg py-3 text-sm font-black transition-all duration-200 {role === 'tutor'
+								? 'bg-white text-[hsl(var(--primary))] shadow-sm border border-border/50 scale-[1.02]'
+								: 'text-muted-foreground hover:bg-muted/80'}"
+							onclick={() => (role = 'tutor')}
+						>
+							Tutor
+						</button>
+					</div>
 				</div>
-			{/if}
+				
+				<div class="mb-7 p-4 rounded-xl bg-[hsl(var(--primary)/0.03)] border border-[hsl(var(--primary)/0.1)] text-center transition-all duration-500">
+					<p class="text-xs font-bold text-foreground mb-1">
+						Joining as <span class="text-[hsl(var(--primary))] uppercase">{role}</span>
+					</p>
+					<p class="text-[10px] text-muted-foreground leading-relaxed px-2">
+						{#if role === 'student'}
+							Get AI-curated CBT batches, track your pass probability, and master your subjects.
+						{:else}
+							Assist students in their exam preparation, share your expertise, and build your tutor reputation.
+						{/if}
+					</p>
+				</div>
 
 			<!-- Error -->
 			{#if error}

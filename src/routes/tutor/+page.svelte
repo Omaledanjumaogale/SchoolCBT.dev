@@ -13,8 +13,16 @@
 		Award
 	} from 'lucide-svelte';
 	import { authStore } from '$lib/stores/auth';
+	import { goto } from '$app/navigation';
 
 	let activeTab = $state('overview');
+
+	onMount(() => {
+		const unsub = authStore.subscribe((s) => {
+			if (!s.loading && !s.user) goto('/auth/login?role=tutor&redirect=/tutor');
+		});
+		return unsub;
+	});
 
 	const tabs = [
 		{ id: 'overview', label: 'Overview', icon: LayoutDashboard },

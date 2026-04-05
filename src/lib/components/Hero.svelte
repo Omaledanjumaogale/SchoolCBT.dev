@@ -88,7 +88,7 @@
 					</a>
 					<a href="/exam" class="btn-outline bg-card rounded-2xl px-8 py-4 text-base">
 						<PlayCircle class="mr-2 h-5 w-5 text-[hsl(var(--accent))]" />
-						Try Live CBT Demo
+						Open CBT Center
 					</a>
 				</div>
 

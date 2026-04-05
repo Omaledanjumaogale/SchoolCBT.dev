@@ -48,7 +48,7 @@
 </script>
 
 <!-- ── PRICING ──────────────────────────────── -->
-<section id="pricing" class="border-border relative border-y bg-[hsl(120,20%,97%)] py-20 md:py-28">
+<section id="pricing" class="border-border relative border-y bg-[hsl(0,0%,98%)] py-20 md:py-28">
 	<div
 		class="pointer-events-none absolute top-0 right-0 h-[500px] w-[500px] rounded-full bg-[hsl(var(--accent)/0.05)] blur-[100px]"
 	></div>
@@ -93,7 +93,7 @@
 						AI Tutor Matching
 					</li>
 				</ul>
-				<a href="/auth/signup?plan=basic" class="btn-outline mt-auto py-3.5 text-sm">Get Started</a>
+				<a href="/checkout?plan=basic" class="btn-outline mt-auto py-3.5 text-sm">Get Started →</a>
 			</div>
 
 			<!-- Plan 2: Premium (Featured) -->
@@ -114,7 +114,7 @@
 					Student + Tutor
 				</div>
 				<div class="mb-1 flex items-baseline gap-1">
-					<span class="text-foreground text-4xl font-black">₦25,000</span>
+					<span class="text-foreground text-4xl font-black">&#8358;25,000</span>
 				</div>
 				<p class="text-muted-foreground mb-8 text-sm">for three months per exam + dedicated AI-matched tutor</p>
 
@@ -131,9 +131,9 @@
 					{/each}
 				</ul>
 				<a
-					href="/auth/signup?plan=premium"
+					href="/checkout?plan=premium"
 					class="btn-gold mt-auto py-3.5 text-sm shadow-lg shadow-[hsl(var(--accent)/0.25)]"
-					>Subscribe Now</a
+					>Subscribe Now →</a
 				>
 			</div>
 
@@ -159,8 +159,8 @@
 						</li>
 					{/each}
 				</ul>
-				<a href="/auth/signup?role=tutor" class="btn-outline mt-auto border-dashed py-3.5 text-sm"
-					>Join as Tutor</a
+				<a href="/auth/signup?role=tutor" class="btn-primary mt-auto py-3.5 text-sm"
+					>Register as Tutor →</a
 				>
 			</div>
 		</div>

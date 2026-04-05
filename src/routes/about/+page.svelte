@@ -35,7 +35,7 @@
 		{
 			icon: Globe2,
 			title: 'Global Infrastructure',
-			desc: 'Powered by Google Vertex AI, Firebase, and Cloudflare CDN delivering fast, reliable access across Nigeria and beyond.',
+			desc: 'Powered by an enterprise-grade elastic engine delivering fast, reliable access across Nigeria and beyond.',
 			color: 'hsl(210,80%,55%)'
 		}
 	];
@@ -119,18 +119,11 @@
 				</h2>
 				<p class="text-muted-foreground mb-6 leading-relaxed">
 					SchoolCBT's engine uses 5 specialized agents — a Coordinator, Intake Agent, Researcher,
-					Question Composer, and Quality Evaluator — working together on Google Vertex AI to produce
+					Question Composer, and Quality Evaluator — working together on a high-availability infrastructure to produce
 					curriculum-verified CBT content at scale. Every question batch is generated fresh,
 					grounded in official Nigerian exam syllabuses, and validated for accuracy before delivery.
 				</p>
-				<div class="flex flex-wrap justify-center gap-3">
-					{#each ['Google Vertex AI', 'Anthropic Claude', 'Firebase Auth', 'Convex Backend', 'Cloudflare CDN'] as tech}
-						<span
-							class="rounded-xl border border-[hsl(var(--primary)/0.15)] bg-[hsl(var(--primary)/0.08)] px-4 py-2 text-xs font-bold text-[hsl(var(--primary))]"
-							>{tech}</span
-						>
-					{/each}
-				</div>
+
 			</div>
 		</div>
 

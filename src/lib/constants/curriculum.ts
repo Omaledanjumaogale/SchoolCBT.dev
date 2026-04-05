@@ -1,173 +1,512 @@
+/**
+ * NIGERIA SECONDARY SCHOOL CURRICULUM
+ * Aligned with NERDC/FME syllabuses for JSS (JS1–JS3) and SSS (SS1–SS3)
+ * Covers: JAMB (UTME), WAEC (WASSCE), NECO (SSCE), NABTEB, Post-UTME
+ */
+
 export const CURRICULUM = {
 	JSS: {
 		'English Language': [
-			'Grammar & Language Use',
+			'Grammar & Usage — Parts of Speech',
+			'Grammar & Usage — Sentence Structure',
+			'Grammar & Usage — Tenses & Verb Forms',
+			'Grammar & Usage — Punctuation & Spelling',
 			'Comprehension & Summary',
-			'Composition & Writing',
-			'Literature & Oral Forms'
+			'Vocabulary Development',
+			'Composition Writing — Narrative & Descriptive',
+			'Composition Writing — Letter & Report Writing',
+			'Oral English & Phonetics',
+			'Literature — Poetry, Prose & Drama',
+			'Figures of Speech',
+			'Idioms, Proverbs & Word Study'
 		],
 		Mathematics: [
-			'Number & Numeration',
-			'Basic Operations & Algebra',
-			'Geometry & Mensuration',
-			'Statistics & Probability'
+			'Number & Numeration — Whole Numbers & Fractions',
+			'Number & Numeration — Decimals & Percentages',
+			'Number & Numeration — Directed Numbers',
+			'Number & Numeration — LCM & HCF',
+			'Basic Algebra — Simple Equations',
+			'Basic Algebra — Substitution & Formulae',
+			'Basic Algebra — Inequalities',
+			'Geometry — Lines & Angles',
+			'Geometry — Polygons & Triangles',
+			'Geometry — Circles & Construction',
+			'Mensuration — Perimeter & Area',
+			'Mensuration — Volume & Surface Area',
+			'Statistics — Data Collection & Presentation',
+			'Statistics — Mean, Median & Mode',
+			'Commercial Arithmetic — Simple Interest',
+			'Commercial Arithmetic — Profit, Loss & Ratio'
 		],
 		'Basic Science & Technology': [
-			'Living Things & Environment',
-			'Physical & Chemical Processes',
-			'Energy & Forces',
-			'Technology & Society'
+			'Living Things — Characteristics & Classification',
+			'Living Things — Cells, Tissues & Organs',
+			'Plants & Animals — Nutrition',
+			'Plants & Animals — Reproduction',
+			'Plants & Animals — Photosynthesis',
+			'Physical Processes — Matter & States',
+			'Physical Processes — Force & Motion',
+			'Physical Processes — Simple Machines',
+			'Chemical Processes — Acids, Bases & Salts',
+			'Chemical Processes — Mixtures & Solutions',
+			'Energy — Heat & Temperature',
+			'Energy — Light & Sound',
+			'Electricity — Basic Circuits',
+			'Technology & Society — ICT Fundamentals',
+			'Environment — Pollution & Conservation'
 		],
 		'Social Studies': [
-			'Family & Community',
-			'Citizenship & Government',
-			'Nigeria & Geography',
-			'Culture & Values'
+			'Family & Society — Structure & Functions',
+			'Community Development',
+			'Citizenship — Rights & Responsibilities',
+			'Governance — Local & State Government',
+			'Nigeria — Geography & Physical Features',
+			'Nigeria — Natural Resources',
+			'Culture & Values — Nigerian Cultural Heritage',
+			'Economic Activities — Production & Distribution',
+			'National Unity & Integration',
+			'Transportation & Communication'
 		],
-		'Civic Education': ['Citizenship', 'Government & Democracy', 'Social Issues'],
-		'Cultural & Creative Arts': ['Visual Arts', 'Music', 'Drama & Dance'],
-		'Physical & Health Education': ['Physical Education', 'Health Education'],
-		'Home Economics': ['Food & Nutrition', 'Clothing & Textiles', 'Home Management'],
+		'Civic Education': [
+			'Citizenship — Meaning & Types',
+			'Rights & Obligations of Citizens',
+			'Democratic Governance',
+			'Rule of Law',
+			'Social Issues — Corruption, Drug Abuse',
+			'National Symbols & Anthem',
+			'Human Rights'
+		],
+		'Business Studies': [
+			'Introduction to Business',
+			'Office Practice & Procedures',
+			'Commerce — Trade & Distribution',
+			'Keyboarding & Word Processing',
+			'Bookkeeping — Basic Accounting',
+			'Entrepreneurship'
+		],
 		'Agricultural Science': [
 			'Introduction to Agriculture',
-			'Soil Science',
-			'Crop Production',
-			'Animal Production'
-		],
-		'Business Studies': ['Office Practice', 'Commerce', 'Keyboarding', 'Bookkeeping'],
-		'Computer Studies / ICT': [
-			'Computer Fundamentals',
-			'Operating System & Applications',
-			'Internet & Communication',
-			'Programming Concepts'
-		],
-		'French Language': ['Oral Communication', 'Grammar', 'Reading & Writing'],
-		'Yoruba Language': ['Oral & Listening Skills', 'Grammar', 'Composition & Literature'],
-		'Hausa Language': ['Oral Literature & Communication', 'Grammar', 'Writing & Literature'],
-		'Igbo Language': ['Oral Literature', 'Grammar', 'Composition & Literature']
-	},
-	SSS: {
-		'English Language': [
-			'Comprehension',
-			'Summary Writing',
-			'Lexis & Structure',
-			'Oral English / Phonology',
-			'Essay Writing',
-			'Literature-in-English'
-		],
-		Mathematics: [
-			'Number & Numeration',
-			'Algebra',
-			'Geometry & Trigonometry',
-			'Calculus',
-			'Statistics & Probability',
-			'Vectors & Matrices'
-		],
-		Physics: [
-			'Mechanics',
-			'Thermal Physics',
-			'Waves & Optics',
-			'Electricity & Magnetism',
-			'Modern Physics'
-		],
-		Chemistry: [
-			'Atomic Structure & Periodic Table',
-			'States of Matter & Kinetic Theory',
-			'Chemical Reactions & Energetics',
-			'Inorganic Chemistry',
-			'Organic Chemistry'
-		],
-		Biology: [
-			'Cell Biology',
-			'Classification of Living Things',
-			'Plant Biology',
-			'Animal Biology & Physiology',
-			'Ecology & Environment',
-			'Genetics & Evolution'
-		],
-		'Further Mathematics': ['Pure Mathematics', 'Statistics & Probability', 'Mechanics'],
-		Geography: [
-			'Physical Geography',
-			'Human & Economic Geography',
-			'Regional Geography — Nigeria & Africa',
-			'Map Reading & Field Work'
-		],
-		Economics: [
-			'Microeconomics',
-			'Macroeconomics',
-			'International Trade & Finance',
-			'Nigerian Economy'
-		],
-		'Financial Accounting': [
-			'Bookkeeping Fundamentals',
-			'Financial Statements',
-			'Special Accounts & Organisations',
-			'Costing'
-		],
-		Commerce: [
-			'Trade & Distribution',
-			'Commercial Documents',
-			'Banking & Finance',
-			'Business Organisations'
-		],
-		Government: [
-			'Basic Concepts',
-			'Political Institutions',
-			'Nigerian Government & Politics',
-			'International Relations'
-		],
-		History: [
-			'Pre-Colonial Nigeria',
-			'Colonial Nigeria',
-			'Post-Colonial Nigeria & Africa',
-			'World History'
-		],
-		'Literature in English': ['Prose', 'Poetry', 'Drama', 'Prescribed Texts'],
-		'Christian Religious Studies': ['Old Testament', 'New Testament', 'Christian Ethics & Living'],
-		'Islamic Religious Studies': [
-			"Qur'an & Hadith",
-			'Islamic History',
-			'Islamic Jurisprudence & Practice'
-		],
-		'Agricultural Science': [
-			'Soil Science',
-			'Crop Production',
-			'Animal Production',
-			'Agricultural Economics & Extension'
-		],
-		'Technical Drawing': [
-			'Plane Geometry',
-			'Orthographic Projection',
-			'Isometric & Pictorial Drawing',
-			'Building Drawing'
-		],
-		'Computer Science': [
-			'Computer Hardware & Software',
-			'Data & Information Processing',
-			'Programming & Algorithms',
-			'Networking & Internet'
-		],
-		'Fine Arts': [
-			'Art Theory & Appreciation',
-			'Drawing & Painting',
-			'Sculpture & Ceramics',
-			'Graphics & Crafts'
-		],
-		Music: ['Music Theory', 'History & Appreciation', 'Performance & Composition'],
-		'French Language': [
-			'Oral Communication & Listening',
-			'Grammar (Advanced)',
-			'Reading & Comprehension',
-			'Written Expression'
+			'Soil Science — Soil Types & Properties',
+			'Soil Science — Soil Conservation',
+			'Crop Production — Planting & Harvesting',
+			'Crop Production — Plant Nutrients & Fertilizers',
+			'Animal Production — Livestock Rearing',
+			'Animal Production — Poultry & Fish',
+			'Agricultural Tools & Equipment',
+			'Agricultural Economics — Farm Records'
 		],
 		'Home Economics': [
-			'Food & Nutrition (Advanced)',
-			'Clothing & Textiles (Advanced)',
+			'Food & Nutrition — Food Classes & Functions',
+			'Food & Nutrition — Meal Planning & Preparation',
+			'Clothing & Textiles — Fibres & Fabrics',
+			'Clothing & Textiles — Sewing Skills',
+			'Home Management — Household Equipment',
 			'Child Development & Care',
-			'Home Management & Consumer Education'
+			'Consumer Education'
+		],
+		'Computer Studies / ICT': [
+			'Computer Fundamentals — Hardware & Software',
+			'Operating Systems — Windows & Linux Basics',
+			'Word Processing — Microsoft Word',
+			'Spreadsheet — Microsoft Excel Basics',
+			'Presentation Software — PowerPoint',
+			'Internet & Communication — Email & Web',
+			'Programming Concepts — Flowcharts & Algorithms',
+			'Data & Information',
+			'Computer Security & Ethics'
+		],
+		'Cultural & Creative Arts': ['Visual Arts — Drawing & Painting', 'Music — Theory & Notation', 'Drama — Play Writing & Performance', 'Arts & Crafts'],
+		'Physical & Health Education': [
+			'Physical Fitness & Exercise',
+			'Ball Games — Football, Basketball, Volleyball',
+			'Athletics — Running, Jumping, Throwing',
+			'Health — First Aid & Safety',
+			'Health — Substance Abuse Prevention',
+			'Sexual & Reproductive Health Basics'
+		],
+		'French Language': ['Oral Communication', 'Grammar — Articles, Verbs & Pronouns', 'Reading & Comprehension', 'Writing — Letter & Composition'],
+		'Hausa Language': ['Oral Literature & Listening', 'Grammar — Nouns & Verbs', 'Reading & Writing', 'Literature — Poetry & Prose'],
+		'Yoruba Language': ['Oral & Listening Skills', 'Grammar — Sentence Structure', 'Composition & Narrative', 'Literature — Oral & Written Forms'],
+		'Igbo Language': ['Oral Literature & Communication', 'Grammar — Tense & Morphology', 'Composition & Writing', 'Literary Appreciation']
+	},
+
+	SSS: {
+		'English Language': [
+			'Comprehension — Inference & Summary',
+			'Comprehension — Vocabulary in Context',
+			'Summary Writing — Techniques',
+			'Lexis & Structure — Concord',
+			'Lexis & Structure — Tenses',
+			'Lexis & Structure — Clauses & Phrases',
+			'Oral English — Vowels & Consonants',
+			'Oral English — Stress & Intonation',
+			'Essay Writing — Expository & Argumentative',
+			'Essay Writing — Narrative & Descriptive',
+			'Letter Writing — Formal & Informal',
+			'Report & Speech Writing',
+			'Literature-in-English — Fiction & Non-Fiction',
+			'Literature-in-English — Drama',
+			'Literature-in-English — Poetry Analysis',
+			'Figures of Speech & Stylistics'
+		],
+		Mathematics: [
+			'Number & Numeration — Indices & Logarithms',
+			'Number & Numeration — Surds & Number Bases',
+			'Algebra — Linear Equations & Inequalities',
+			'Algebra — Quadratic Equations',
+			'Algebra — Polynomials & Factorization',
+			'Algebra — Matrices & Determinants',
+			'Algebra — Sequences & Series',
+			'Geometry — Euclidean Geometry',
+			'Geometry — Locus & Construction',
+			'Trigonometry — Ratios & Identities',
+			'Trigonometry — Sine & Cosine Rules',
+			'Trigonometry — Graphs of Trig Functions',
+			'Calculus — Differentiation',
+			'Calculus — Integration',
+			'Calculus — Applications (Maxima, Minima)',
+			'Statistics & Probability — Data Representation',
+			'Statistics & Probability — Measures of Dispersion',
+			'Statistics & Probability — Probability Theory',
+			'Vectors — 2D & 3D',
+			'Coordinate Geometry — Lines & Circles',
+			'Sets, Relations & Functions'
+		],
+		Physics: [
+			'Mechanics — Scalars, Vectors & Motion',
+			'Mechanics — Newton\'s Laws of Motion',
+			'Mechanics — Work, Energy & Power',
+			'Mechanics — Projectile & Circular Motion',
+			'Mechanics — Equilibrium & Moment',
+			'Mechanics — Elasticity & Properties of Matter',
+			'Thermal Physics — Temperature & Thermometry',
+			'Thermal Physics — Heat Capacity & Latent Heat',
+			'Thermal Physics — Gas Laws & Kinetic Theory',
+			'Thermal Physics — Thermal Expansion',
+			'Waves & Optics — Wave Properties',
+			'Waves & Optics — Sound Waves & Resonance',
+			'Waves & Optics — Reflection & Refraction',
+			'Waves & Optics — Lenses & Mirrors',
+			'Waves & Optics — Dispersion & Spectrum',
+			'Electricity — Electric Field & Coulomb\'s Law',
+			'Electricity — Current, Resistance & Ohm\'s Law',
+			'Electricity — Capacitors & Capacitance',
+			'Electricity — Magnetic Force & Electromagnetic Induction',
+			'Electricity — Alternating Current (AC)',
+			'Modern Physics — Atomic Structure',
+			'Modern Physics — Photoelectric Effect',
+			'Modern Physics — Radioactivity',
+			'Modern Physics — Nuclear Reactions'
+		],
+		Chemistry: [
+			'Atomic Structure & Periodic Table — Atomic Theory',
+			'Atomic Structure & Periodic Table — Electronic Configuration',
+			'Atomic Structure & Periodic Table — Periodic Trends',
+			'Chemical Bonding — Ionic, Covalent & Metallic',
+			'Chemical Bonding — Shapes of Molecules',
+			'States of Matter — Kinetic Theory',
+			'States of Matter — Gas Laws',
+			'Chemical Reactions — Rates of Reaction',
+			'Chemical Reactions — Equilibrium (Le Chatelier\'s)',
+			'Chemical Reactions — Energetics & Thermochemistry',
+			'Electrochemistry — Electrolysis',
+			'Electrochemistry — Electrochemical Cells',
+			'Inorganic Chemistry — Metals & Their Compounds',
+			'Inorganic Chemistry — Non-Metals (Acids & Oxides)',
+			'Inorganic Chemistry — Water Chemistry',
+			'Organic Chemistry — Hydrocarbons (Alkanes, Alkenes, Alkynes)',
+			'Organic Chemistry — Functional Groups',
+			'Organic Chemistry — Polymers & Plastics',
+			'Organic Chemistry — Reactions & Mechanisms',
+			'Analytical Chemistry — Qualitative Analysis',
+			'Industrial Chemistry — Haber, Contact, Solvay Processes'
+		],
+		Biology: [
+			'Cell Biology — Structure & Functions',
+			'Cell Biology — Cell Division (Mitosis & Meiosis)',
+			'Biochemistry — Carbohydrates, Proteins & Lipids',
+			'Classification of Living Things — Kingdom & Phyla',
+			'Plant Biology — Photosynthesis & Respiration',
+			'Plant Biology — Transpiration & Transport',
+			'Plant Biology — Growth & Tropisms',
+			'Plant Biology — Reproduction in Plants',
+			'Animal Biology — Excretion & Osmoregulation',
+			'Animal Biology — Digestion & Nutrition',
+			'Animal Biology — Respiratory System',
+			'Animal Biology — Circulatory System',
+			'Animal Biology — Nervous System & Coordination',
+			'Animal Biology — Reproductive System',
+			'Ecology — Habitat & Population',
+			'Ecology — Food Chains & Energy Flow',
+			'Ecology — Nutrient Cycles',
+			'Ecology — Environmental Pollution',
+			'Genetics — Mendel\'s Laws',
+			'Genetics — DNA, RNA & Protein Synthesis',
+			'Evolution — Natural Selection & Adaptation',
+			'Microorganisms — Bacteria & Viruses'
+		],
+		'Further Mathematics': [
+			'Pure Mathematics — Functions & Graphs',
+			'Pure Mathematics — Trigonometric Functions',
+			'Pure Mathematics — Calculus (Advanced)',
+			'Pure Mathematics — Complex Numbers',
+			'Pure Mathematics — Mathematical Induction',
+			'Statistics & Probability — Distributions',
+			'Statistics & Probability — Hypothesis Testing',
+			'Mechanics — Statics & Dynamics'
+		],
+		Geography: [
+			'Physical Geography — Structure of the Earth',
+			'Physical Geography — Rocks & Weathering',
+			'Physical Geography — River & Coastal Features',
+			'Physical Geography — Climate & Vegetation',
+			'Physical Geography — Natural Hazards',
+			'Human Geography — Population & Settlement',
+			'Human Geography — Agriculture & Land Use',
+			'Human Geography — Industrialization',
+			'Economic Geography — Mining & Energy',
+			'Economic Geography — Trade & Transport',
+			'Regional Geography — Nigeria',
+			'Regional Geography — West Africa',
+			'Regional Geography — Africa',
+			'Map Reading — Scale, Relief & Contours',
+			'Map Reading — Grid References & Latitude/Longitude'
+		],
+		Economics: [
+			'Basic Economic Concepts — Scarcity & Choice',
+			'Basic Economic Concepts — Economic Systems',
+			'Microeconomics — Demand & Supply',
+			'Microeconomics — Elasticity',
+			'Microeconomics — Consumer Theory',
+			'Microeconomics — Production & Costs',
+			'Microeconomics — Market Structures',
+			'Macroeconomics — National Income',
+			'Macroeconomics — Money & Banking',
+			'Macroeconomics — Inflation & Unemployment',
+			'Macroeconomics — Fiscal & Monetary Policy',
+			'International Trade & Finance',
+			'Development Economics',
+			'Nigerian Economy — Agriculture & Industry',
+			'Nigerian Economy — Economic Problems & Solutions'
+		],
+		'Financial Accounting': [
+			'Bookkeeping Fundamentals — Double Entry',
+			'Bookkeeping Fundamentals — Ledger Accounts',
+			'Financial Statements — Trading Account',
+			'Financial Statements — Profit & Loss Account',
+			'Financial Statements — Balance Sheet',
+			'Bank Reconciliation',
+			'Special Accounts — Departmental & Branch Accounts',
+			'Non-profit Organisation Accounts',
+			'Partnership Accounts',
+			'Company Accounts & Shares',
+			'Costing — Marginal & Absorption Costing',
+			'Ratio Analysis & Interpretation'
+		],
+		Commerce: [
+			'Trade — Home & Foreign Trade',
+			'Trade — Channels of Distribution',
+			'Commercial Documents — Invoice, Cheque, Letter of Credit',
+			'Retail & Wholesale Trade',
+			'Banking — Types of Banks & Services',
+			'Banking — Instruments of Payment',
+			'Insurance — Principles & Types',
+			'Transport — Road, Rail, Air, Sea',
+			'Communication in Commerce',
+			'Business Organisation — Sole Trader, Partnership, Companies',
+			'Warehousing & Commodity Markets',
+			'Tourism & Hospitality'
+		],
+		Government: [
+			'Basic Concepts — State, Government & Nation',
+			'Basic Concepts — Sovereignty & Legitimacy',
+			'Political Institutions — Legislature',
+			'Political Institutions — Executive',
+			'Political Institutions — Judiciary',
+			'Constitutional Law — Nigerian Constitutions',
+			'Federalism — Federal & State Government',
+			'Federalism — Local Government',
+			'Political Parties & Electoral Systems',
+			'Human Rights & Rule of Law',
+			'Nigerian Government & Politics',
+			'International Relations — Organizations (AU, UN, ECOWAS)'
+		],
+		History: [
+			'Pre-Colonial Nigeria — Kingdoms & Empires',
+			'Pre-Colonial Nigeria — Social & Economic Life',
+			'Colonial Nigeria — European Contact & Conquest',
+			'Colonial Nigeria — Resistance Movements',
+			'Colonial Nigeria — Indirect Rule',
+			'Nationalist Movements & Independence',
+			'Post-Colonial Nigeria — Military & Civilian Rule',
+			'Nigeria\'s Foreign Policy',
+			'History of West Africa',
+			'World History — Revolutions & World Wars',
+			'Decolonization in Africa'
+		],
+		'Literature in English': [
+			'Prose — Narrative Techniques',
+			'Prose — Character & Theme Analysis',
+			'Poetry — Figurative Language & Devices',
+			'Poetry — African & World Poetry',
+			'Drama — Structure & Stage Directions',
+			'Drama — Prescribed Texts Analysis',
+			'Oral Literature — Myths, Legends & Folktales',
+			'Comparative Literary Criticism'
+		],
+		'Christian Religious Studies': [
+			'Old Testament — Creation & Early History',
+			'Old Testament — Patriarchs & Prophets',
+			'Old Testament — The Law & Wisdom Literature',
+			'New Testament — Life & Teachings of Jesus',
+			'New Testament — The Epistles',
+			'New Testament — The Early Church',
+			'Christian Ethics — Marriage & Family',
+			'Christian Ethics — Stewardship & Social Issues',
+			'Worship & Church History'
+		],
+		'Islamic Religious Studies': [
+			"Qur'an — Tafsir (Selected Chapters)",
+			"Qur'an — Recitation & Memorization",
+			'Hadith — Selected Traditions & Commentary',
+			'Pillars of Islam & Acts of Worship',
+			'Islamic History — Early Period & Caliphates',
+			'Islamic History — Islam in Nigeria & West Africa',
+			'Islamic Jurisprudence — Fiqh Basics',
+			'Islamic Ethics & Family Life'
+		],
+		'Agricultural Science': [
+			'Soil Science — Soil Formation & Classification',
+			'Soil Science — Soil Improvement & Fertilizers',
+			'Crop Production — Arable & Cash Crops',
+			'Crop Production — Horticultural Crops',
+			'Crop Production — Diseases & Pest Control',
+			'Animal Husbandry — Breeds & Breeds Selection',
+			'Animal Husbandry — Feeds & Feeding',
+			'Animal Husbandry — Animal Diseases',
+			'Fisheries & Aquaculture',
+			'Forestry & Wildlife Management',
+			'Agricultural Economics & Farm Records',
+			'Agricultural Extension Services'
+		],
+		'Technical Drawing': [
+			'Plane Geometry — Points, Lines & Angles',
+			'Plane Geometry — Polygons & Circles',
+			'Solid Geometry — Prisms & Pyramids',
+			'Orthographic Projection — First & Third Angle',
+			'Isometric & Axonometric Drawing',
+			'Sectional Views'
+		],
+		'Computer Science': [
+			'Computer Hardware — Input, Output & Storage',
+			'Computer Software — System & Application',
+			'Data Types & Representation',
+			'Algorithms & Flowcharts',
+			'Programming — BASIC, Python Fundamentals',
+			'Spreadsheet — Advanced Excel',
+			'Database — MS Access Basics',
+			'Networking — LAN, WAN & Internet',
+			'Web Design — HTML & CSS Basics',
+			'Cybersecurity & Ethics'
+		],
+		'Fine Arts': [
+			'Art Theory — Design Principles',
+			'Art History — Nigerian & African Art',
+			'Drawing — Life Drawing & Observation',
+			'Painting — Watercolour & Acrylic',
+			'Sculpture & Ceramics',
+			'Graphics & Photography'
+		],
+		Music: [
+			'Music Theory — Notation & Scales',
+			'Music Theory — Rhythm & Harmony',
+			'History of Nigerian Music',
+			'World Music Appreciation',
+			'Vocal & Instrumental Performance'
+		],
+		'French Language': [
+			'Oral Communication & Listening',
+			'Grammar — Verbs, Tenses & Moods',
+			'Grammar — Advanced Structures',
+			'Reading & Comprehension',
+			'Written Expression — Essay & Letter'
+		],
+		'Home Economics': [
+			'Food Science — Nutrition & Dietetics',
+			'Food Science — Food Preservation & Safety',
+			'Clothing Construction — Advanced Techniques',
+			'Textiles — Fabric Analysis',
+			'Child Development — Stages & Care',
+			'Family Life — Marriage & Parenting',
+			'Home Management — Budgeting & Consumer Skills'
 		]
+	}
+};
+
+/** Available examinations with metadata */
+export const EXAMINATIONS = {
+	JAMB: {
+		fullName: 'Joint Admissions & Matriculation Board (UTME)',
+		shortDesc: 'University entrance examination — 180 questions, 120 minutes',
+		subjects: 4,
+		format: 'Multiple Choice',
+		duration: '2 hours',
+		levels: ['SSS'],
+		gradeScale: '400 marks total (180+ recommended)',
+		color: 'hsl(145,100%,39%)'
+	},
+	WAEC: {
+		fullName: 'West African Examinations Council (WASSCE)',
+		shortDesc: 'O-Level certification — multiple papers per subject',
+		subjects: 9,
+		format: 'Multiple Choice + Theory',
+		duration: 'Varies per subject',
+		levels: ['SSS'],
+		gradeScale: 'A1–F9',
+		color: 'hsl(38,100%,50%)'
+	},
+	NECO: {
+		fullName: 'National Examinations Council (SSCE)',
+		shortDesc: 'SSS3 certificate — same structure as WAEC',
+		subjects: 9,
+		format: 'Multiple Choice + Theory',
+		duration: 'Varies per subject',
+		levels: ['SSS'],
+		gradeScale: 'A1–F9',
+		color: 'hsl(174,60%,28%)'
+	},
+	NABTEB: {
+		fullName: 'National Business & Technical Examinations Board',
+		shortDesc: 'Vocational & technical education certification',
+		subjects: 8,
+		format: 'Multiple Choice + Practical',
+		duration: 'Varies',
+		levels: ['SSS'],
+		gradeScale: 'Merit / Pass / Fail',
+		color: 'hsl(262,80%,60%)'
+	},
+	'Post-UTME': {
+		fullName: 'Post-UTME University Screening',
+		shortDesc: 'University supplementary exams across Nigeria',
+		subjects: 5,
+		format: 'Multiple Choice',
+		duration: '30–60 minutes',
+		levels: ['SSS'],
+		gradeScale: 'Varies by university',
+		color: 'hsl(210,80%,55%)'
+	},
+	'JSS Common Entrance': {
+		fullName: 'Junior Secondary School Common Entrance Exam',
+		shortDesc: 'Entry test for Federal Unity Schools and state schools',
+		subjects: 5,
+		format: 'Multiple Choice',
+		duration: '1.5 hours',
+		levels: ['JSS'],
+		gradeScale: 'Merit-based',
+		color: 'hsl(330,70%,55%)'
 	}
 };
 
 export type Level = keyof typeof CURRICULUM;
 export type Subject<L extends Level> = keyof (typeof CURRICULUM)[L];
+export type ExamType = keyof typeof EXAMINATIONS;

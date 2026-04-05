@@ -2,12 +2,15 @@
 	import { Mail, Lock, ArrowRight, Eye, EyeOff, AlertCircle } from 'lucide-svelte';
 	import { goto } from '$app/navigation';
 	import { browser } from '$app/environment';
+	import { page } from '$app/stores';
 
 	let email = $state('');
 	let password = $state('');
 	let showPassword = $state(false);
 	let loading = $state(false);
 	let error = $state('');
+
+	const redirectTo = $derived($page.url.searchParams.get('redirect') ?? '/dashboard');
 
 	async function handleLogin(e: Event) {
 		e.preventDefault();
@@ -19,7 +22,7 @@
 			const { signInWithEmailAndPassword } = await import('firebase/auth');
 			if (!auth) throw new Error('Auth not initialized');
 			await signInWithEmailAndPassword(auth, email, password);
-			goto('/dashboard');
+			goto(redirectTo);
 		} catch (err: unknown) {
 			const code = (err as { code?: string })?.code ?? '';
 			if (
@@ -46,8 +49,21 @@
 			const { signInWithPopup, GoogleAuthProvider } = await import('firebase/auth');
 			if (!auth) throw new Error('Auth not initialized');
 			const provider = new GoogleAuthProvider();
-			await signInWithPopup(auth, provider);
-			goto('/dashboard');
+			const credential = await signInWithPopup(auth, provider);
+
+			const { getConvexClient } = await import('$lib/convex');
+			const { api } = await import('../../convex/_generated/api');
+			const convex = getConvexClient();
+			await convex.mutation(api.users.upsertUser, {
+				uid: credential.user.uid,
+				name: credential.user.displayName || 'Google User',
+				email: credential.user.email || '',
+				role: 'student',
+				level: 'SSS',
+				school: ''
+			});
+
+			goto(redirectTo);
 		} catch (err) {
 			error = 'Google sign-in failed. Please try again.';
 		} finally {
