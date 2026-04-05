@@ -5,10 +5,6 @@
 		Brain,
 		PenTool,
 		CheckSquare,
-		Server,
-		Cpu,
-		CreditCard,
-		Database,
 		ArrowRight
 	} from 'lucide-svelte';
 
@@ -75,35 +71,6 @@
 			color: 'hsl(142,71%,40%)'
 		}
 	];
-
-	const techStack = [
-		{
-			name: 'Google Vertex AI',
-			sub: 'Gemini 1.5 Pro multimodal reasoning',
-			color: 'hsl(210,80%,55%)'
-		},
-		{
-			name: 'Vertex AI Agent Builder',
-			sub: 'Scalable agentic workflow runtime',
-			color: 'hsl(262,80%,60%)'
-		},
-		{
-			name: 'Stripe / Paystack',
-			sub: 'Naira billing & tutor wallet system',
-			color: 'hsl(142,71%,40%)'
-		},
-		{ name: 'Convex Backend', sub: 'Real-time reactive database', color: 'hsl(var(--primary))' },
-		{
-			name: 'Firebase Auth',
-			sub: 'Secure authentication & session management',
-			color: 'hsl(38,100%,50%)'
-		},
-		{
-			name: 'Multi-Tenant RAG',
-			sub: 'Verified Nigerian curricula vector database',
-			color: 'hsl(174,60%,28%)'
-		}
-	];
 </script>
 
 <!-- ── HOW IT WORKS ──────────────────────────── -->
@@ -120,7 +87,7 @@
 		</div>
 
 		<!-- 4-Step Grid -->
-		<div class="relative mb-6 grid gap-6 md:grid-cols-2 lg:grid-cols-4">
+		<div class="relative mb-20 grid gap-6 md:grid-cols-2 lg:grid-cols-4">
 			<!-- Connector (desktop) -->
 			<div
 				class="absolute top-[52px] right-[12.5%] left-[12.5%] z-0 hidden h-px bg-gradient-to-r from-transparent via-[hsl(var(--primary)/0.3)] to-transparent lg:block"
@@ -143,67 +110,39 @@
 			{/each}
 		</div>
 
-		<!-- ── AI AGENTS SECTION ── -->
-		<div class="mt-20 mb-6">
-			<div
-				class="glass-panel from-card border-[hsl(var(--primary)/0.2)] bg-gradient-to-br to-[hsl(var(--primary)/0.03)] p-8 shadow-xl md:p-12"
-			>
-				<div class="grid items-start gap-12 lg:grid-cols-2">
-					<!-- Left: Agents -->
-					<div>
-						<div class="section-badge mb-4">5 Specialized AI Agents</div>
-						<h3 class="text-foreground mb-3 text-2xl font-black">Multi-Agent RaaS Engine</h3>
-						<p class="text-muted-foreground mb-8 leading-relaxed">
-							Our proprietary engine orchestrates 5 specialized AI agents that collaborate to
-							generate, validate, and deliver curriculum-accurate examination content at scale.
-						</p>
+		<!-- ── MULTI-AGENT RAAS ENGINE SECTION ── -->
+		<div class="relative">
+			<div class="mx-auto mb-12 max-w-3xl text-center">
+				<div class="section-badge mb-4">5 Specialized AI Agents</div>
+				<h3 class="text-foreground mb-4 text-2xl font-black md:text-3xl">Multi-Agent RaaS Engine</h3>
+				<p class="text-muted-foreground leading-relaxed text-lg">
+					Our proprietary engine orchestrates specialized AI agents that collaborate to
+					generate, validate, and deliver curriculum-accurate examination content securely at scale.
+				</p>
+			</div>
 
-						<div class="space-y-5">
-							{#each agents as agent}
-								<div class="flex items-start gap-4">
-									<div
-										class="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl border"
-										style="background:{agent.color}12; border-color:{agent.color}33"
-									>
-										<agent.icon class="h-5 w-5" style="color:{agent.color}" />
-									</div>
-									<div>
-										<p class="text-foreground text-sm font-bold">{agent.name}</p>
-										<p class="text-muted-foreground mt-0.5 text-sm">{agent.desc}</p>
-									</div>
-								</div>
-							{/each}
+			<!-- Agents Grid -->
+			<div class="mb-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5">
+				{#each agents as agent}
+					<div
+						class="glass-panel border-card hover:border-[hsl(var(--primary)/0.3)] card-hover flex flex-col items-center p-6 text-center shadow-lg transition-transform hover:-translate-y-2"
+					>
+						<div
+							class="mb-5 flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl border transition-colors"
+							style="background:{agent.color}15; border-color:{agent.color}40"
+						>
+							<agent.icon class="h-6 w-6" style="color:{agent.color}" />
 						</div>
+						<h4 class="text-foreground mb-2 text-base font-bold">{agent.name}</h4>
+						<p class="text-muted-foreground text-sm leading-relaxed">{agent.desc}</p>
 					</div>
+				{/each}
+			</div>
 
-					<!-- Right: Tech Stack -->
-					<div class="space-y-3">
-						<h4 class="text-muted-foreground mb-5 text-sm font-bold tracking-widest uppercase">
-							Technology Stack
-						</h4>
-						{#each techStack as tech}
-							<div
-								class="border-border bg-card group flex items-center gap-4 rounded-xl border px-4 py-3.5 transition-all hover:border-[hsl(var(--primary)/0.4)] hover:shadow-md"
-							>
-								<div
-									class="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg"
-									style="background:{tech.color}15"
-								>
-									<div class="h-2.5 w-2.5 rounded-full" style="background:{tech.color}"></div>
-								</div>
-								<div class="flex-grow">
-									<p class="text-foreground text-sm font-bold">{tech.name}</p>
-									<p class="text-muted-foreground text-xs">{tech.sub}</p>
-								</div>
-								<span class="status-badge-green">Active</span>
-							</div>
-						{/each}
-
-						<a href="/auth/signup" class="btn-primary mt-4 w-full py-3.5 text-sm">
-							Get Started Free <ArrowRight class="ml-1.5 h-4 w-4" />
-						</a>
-					</div>
-				</div>
+			<div class="flex justify-center mt-8">
+				<a href="/auth/signup" class="btn-primary inline-flex items-center gap-2 px-8 py-4 text-base shadow-lg hover:shadow-xl hover:-translate-y-1 transition-all rounded-full">
+					Get Started Free <ArrowRight class="h-5 w-5" />
+				</a>
 			</div>
 		</div>
 	</div>
