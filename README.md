@@ -23,6 +23,12 @@ npx sv create my-app
 - **Global Reactive Toasts:** Centralized semantic toast mechanics utilizing `ToastProvider.svelte` backed by `lucide-svelte` iconography globally via a streamlined Svelte 5 runes component state.
 - **Informational Tooltips:** Advanced generic HTML `Tooltip.svelte` with full a11y focus and hover logic ensuring high-barrier technical inputs yield intuitive UI knowledge hints.
 - **Progressive Web Push Hooks:** Ready-to-use silent Service Worker hooks injected securely to dispatch Real-Time Push messaging architectures targeting Edge devices independently.
+
+### Enterprise Multi-Agent Orchestration
+- **Agent Roles & Schema (`convex/agentConfig.ts`):** Strictly typed LLM configuration arrays wrapping `Tutor`, `Predictive Analyst`, `Exam Grader`, and `Curriculum Planner` agent modes with zero-hallucination expected JSON outputs validated runtime via `zod`.
+- **Intelligent Fallback Chain (`convex/orchestrator.ts`):** Primary agent executions target `openai` (`gpt-4o-mini`). Should token-overflow or endpoint latency trigger, a meticulously cascaded OpenRouter-backed pipeline drops seamlessly through `gemini`, `deepseek-v3`, `qwen3`, down to `nemotron-super` without disrupting the client application logic.
+- **Unified Actions API (`convex/agent.ts`):** Exposes `askAgent` as the singular downstream handler bridging Svelte queries securely to the locked internal action workflows.
+
 > To deploy your app, you may need to install an [adapter](https://svelte.dev/docs/kit/adapters) for your target environment.
 
 ## Developing
